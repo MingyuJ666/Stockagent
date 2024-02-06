@@ -7,19 +7,23 @@ from prompt.agent_prompt import *
 from procoder.functional import format_prompt
 from procoder.prompt import *
 from utils import *
+from secretary import Secretary
+from stock import Stock
 
 
 def random_init(stock_initial_price):
     stock, cash, debt_amount = 0.0, 0.0, 0.0
-    while stock * stock_initial_price * 10 + cash < MIN_INITIAL_PROPERTY \
-            or stock * stock_initial_price * 10 + cash > MAX_INITIAL_PROPERTY \
-            or debt_amount > stock * stock_initial_price * 10 + cash:
-        stock = random.uniform(0, MAX_INITIAL_PROPERTY / (stock_initial_price * 10))
+    while stock * stock_initial_price + cash < MIN_INITIAL_PROPERTY \
+            or stock * stock_initial_price + cash > MAX_INITIAL_PROPERTY \
+            or debt_amount > stock * stock_initial_price + cash:
+        stock = random.uniform(0, MAX_INITIAL_PROPERTY / stock_initial_price)
         cash = random.uniform(0, MAX_INITIAL_PROPERTY)
         debt_amount = random.uniform(0, MAX_INITIAL_PROPERTY)
-    debt = {"amount": debt_amount,
-            "type": random.choice(LOAN_TYPE),
-            "repayment_date": random.randint(1, TOTAL_DATE)
+    debt = {
+            "loan": "yes",
+            "amount": debt_amount,
+            "loan_type": random.randint(1, len(LOAN_TYPE)),
+            "repayment_date": random.choice(REPAYMENT_DAY)
             }
     return stock, cash, debt
 
@@ -31,8 +35,8 @@ class Agent:
         self.model = model
         self.character = random.choice(["性格一", "性格二"])  # todo
 
-        self.stock_a, self.cash, init_debt = random_init(stock_a_price)
-        self.stock_b = 0  # stock 以手为单位存储，一手=10股，计算资产时*10
+        self.stock_a_amount, self.cash, init_debt = random_init(stock_a_price)
+        self.stock_b_amount = 0  # stock 以手为单位存储，一手=10股，股价其实是一手的价格
         self.init_proper = self.get_total_proper(stock_a_price, 0)  # 初始资产 后续借贷不超过初始资产
 
         self.action_history = [[] for _ in range(TOTAL_DATE)]
@@ -61,7 +65,7 @@ class Agent:
                 time.sleep(1)
 
     def get_total_proper(self, stock_a_price, stock_b_price):
-        return self.stock_a * stock_a_price * 10 + self.stock_b * stock_b_price * 10 + self.cash
+        return self.stock_a_amount * stock_a_price + self.stock_b_amount * stock_b_price + self.cash
 
     def get_total_loan(self):
         debt = 0
@@ -76,14 +80,15 @@ class Agent:
             assert self.init_proper > self.get_total_loan()
             max_loan = self.init_proper - self.get_total_loan()
             inputs = {
-                "date": date,
-                "character": self.character,
-                "stock_a": self.stock_a,
-                "stock_b": self.stock_b,
-                "cash": self.cash,
-                "debt": self.loans,
-                "max_loan": max_loan
+                'date': date,
+                'character': self.character,
+                'stock_a': self.stock_a_amount,
+                'stock_b': self.stock_b_amount,
+                'cash': self.cash,
+                'debt': self.loans,
+                'max_loan': max_loan
             }
+
         # other days action : prompt with last day forum message & stock price
         else:
             prompt = Collection(LASTDAY_FORUM_AND_STOCK_PROMPT, LOAN_TYPE_PROMPT, DECIDE_IF_LOAN_PROMPT)
@@ -92,8 +97,8 @@ class Agent:
             inputs = {
                 "date": date,
                 "character": self.character,
-                "stock_a": self.stock_a,
-                "stock_b": self.stock_b,
+                "stock_a": self.stock_a_amount,
+                "stock_b": self.stock_b_amount,
                 "cash": self.cash,
                 "debt": self.loans,
                 "max_loan": max_loan,
@@ -101,7 +106,6 @@ class Agent:
                 "stock_b_price": stock_b_price,
                 "lastday_forum_message": lastday_forum_message
             }
-
         try_times = 0
         MAX_TRY_TIMES = 10
         resp = self.run_api(format_prompt(prompt, inputs))
@@ -118,12 +122,117 @@ class Agent:
             loan_format_check, fail_response, loan = self.secretary.check_loan(date, resp)
 
         if loan["loan"] == "yes":
+            loan["repayment_date"] = date + LOAN_TYPE_DATE[loan["loan_type"]]      # add loan repayment_date
             self.loans.append(loan)
             self.action_history[date].append(loan)
             self.cash += loan["amount"]
 
-        def loan_repayment():
-            # todo check是否贷款还款日，还款，破产检查
+    # date=交易日, time=当前交易时段
+    def plan_stock(self, date, time, stock_a, stock_b):
+        if date == 1:
+            prompt = Collection(FIRST_DAY_FINANCIAL_REPORT, DECIDE_BUY_STOCK_PROMPT)
+            inputs = {
+                "date": date,
+                "time": time,
+                "stock_a": self.stock_a_amount,
+                "stock_b": self.stock_b_amount,
+                "stock_a_price": stock_a.get_price(),
+                "stock_b_price": stock_b.get_price(),
+                "cash": self.cash
+            }
+        elif date in SEASON_REPORT_DAY:
+            prompt = Collection(SEASONAL_FINANCIAL_REPORT, DECIDE_BUY_STOCK_PROMPT)
+            inputs = {
+                "date": date,
+                "time": time,
+                "stock_a": self.stock_a_amount,
+                "stock_b": self.stock_b_amount,
+                "stock_a_price": stock_a.get_price(),
+                "stock_b_price": stock_b.get_price(),
+                "cash": self.cash,
+                "stock_a_report": stock_a.gen_financial_report(),
+                "stock_b_report": stock_b.gen_financial_report()
+            }
+        else:
+            prompt = DECIDE_BUY_STOCK_PROMPT
+            inputs = {
+                "date": date,
+                "time": time,
+                "stock_a": self.stock_a_amount,
+                "stock_b": self.stock_b_amount,
+                "stock_a_price": stock_a.get_price(),
+                "stock_b_price": stock_b.get_price(),
+                "cash": self.cash
+            }
+        try_times = 0
+        MAX_TRY_TIMES = 10
+        resp = self.run_api(format_prompt(prompt, inputs))
+        action_format_check, fail_response, action = self.secretary.check_action(
+            resp, self.cash, self.stock_a_amount, self.stock_b_amount, stock_a.get_price(), stock_b.get_price())
+        while not action_format_check:
+            print("Action format check failed because of these issues: {}".format(fail_response))
+            try_times += 1
+            if try_times > MAX_TRY_TIMES:
+                print("Action format try times > MAX_TRY_TIMES. Skip as no loan today.")
+                action = {"action_type": "no"}
+                break
 
-        def interest_payment():
-            # todo 贷款付息日付息
+            resp = self.run_api(format_prompt(BUY_STOCK_RETRY_PROMPT, {"fail_response": fail_response}), temperature=0)
+            action_format_check, fail_response, action = self.secretary.check_action(
+                resp, self.cash, self.stock_a_amount, self.stock_b_amount, stock_a.get_price(), stock_b.get_price())
+
+        if action["action_type"] == "buy":
+            self.action_history[date].append(action)
+            if action["stock"] == "stock_a":
+                self.stock_a_amount += action["amount"]
+                self.cash -= action["amount"] * stock_a.get_price()
+            else:
+                self.stock_b_amount += action["amount"]
+                self.cash -= action["amount"] * stock_b.get_price()
+        elif action["action_type"] == "sell":
+            self.action_history[date].append(action)
+            if action["stock"] == "stock_a":
+                self.stock_a_amount -= action["amount"]
+                self.cash += action["amount"] * stock_a.get_price()
+            else:
+                self.stock_b_amount -= action["amount"]
+                self.cash += action["amount"] * stock_b.get_price()
+        elif action["action_type"] == "no":
+            return action
+
+        print("WRONG ACTION: {}".format(action))
+        return None
+
+
+    def loan_repayment(self, date):
+        # check是否贷款还款日，还款，破产检查
+        to_del = []
+        for idx, loan in enumerate(self.loans):
+            if loan["repayment_date"] == date:
+                self.cash -= loan["amount"] * (1 + LOAN_RATE[loan["loan_type"]])
+                to_del.append(idx)
+        if self.cash < 0:
+            self.bankrupt()
+        for idx in to_del:
+            del self.loans[idx]
+
+    def interest_payment(self):
+        # 贷款付息日付息
+        for loan in self.loans:
+            self.cash -= loan["amount"] * LOAN_RATE[loan["loan_type"]] / 4
+            if self.cash < 0:
+                self.bankrupt()
+
+    def bankrupt(self):
+        # todo cash<0，强制卖股票，股票卖完了破产，agent is_bankrupt=true
+        return
+
+# test
+# secretary = Secretary("gpt-3.5-turbo")
+# agent = Agent(1, 123, secretary, "gpt-3.5-turbo")
+# agent.plan_loan(1, 100, 100, "prompt")
+
+# stocka = Stock("a", 5, 100, [])
+# stockb = Stock("b", 7, 100, [])
+# plan = '{"action_type": "sell", "stock": "B", "amount": 10}'
+# print(secretary.check_action(plan, 100, 0, 20, stocka.get_price(), stockb.get_price()))

@@ -11,4 +11,5 @@ REPAYMENT_DAY = [65, 130, 195, 260]
 SEASON_REPORT_DAY = [33, 98, 163, 228]
 
 LOAN_TYPE = ["one-year", "one2five-year", "five-year"]
+LOAN_TYPE_DATE = [365, 365, 365] # todo 确定可选的贷款时长
 LOAN_RATE = [0.042, 0.045, 0.047]
