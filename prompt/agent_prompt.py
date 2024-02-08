@@ -60,9 +60,9 @@ DECIDE_BUY_STOCK_PROMPT = NamedBlock(
     content="""
         现在是第{date}天的{time}交易时段，A公司的股票股价为{stock_a_price}，B公司的股票股价为{stock_b_price}。
         你当前持有{stock_a}股A公司股票，持有{stock_b}股B公司股票，{cash}元现金。
-        你需要决定是否购买/卖出A公司或B公司的股票，以及购买/卖出的数量。 
+        你需要决定是否购买/卖出A公司或B公司的股票，以及购买/卖出的数量与价格。 
         用json形式返回结果，例如：
-        {{{{"action_type":"buy"|"sell", "stock":"A"|"B", amount: 100}}}}
+        {{{{"action_type":"buy"|"sell", "stock":"A"|"B", amount: 100, price : 30}}}}
         如果既不购买也不卖出，则返回：
         {{{{"action_type" : "no"}}}}
     """

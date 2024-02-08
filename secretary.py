@@ -131,23 +131,28 @@ class Secretary:
             else:
                 return True, "", parsed_json
         else:
-            if "stock" not in parsed_json or "amount" not in parsed_json:
+            if "stock" not in parsed_json or "amount" not in parsed_json or "price" not in parsed_json:
                 print("Wrong json content in response: ", resp)
-                fail_response = "Should include stock and amount in response " \
+                fail_response = "Should include stock, amount and price in response " \
                                 "if value of key 'action_type' is buy or sell."
                 return False, fail_response, None
             if parsed_json["stock"] not in ['A', 'B']:
                 print("Wrong json content in response: ", resp)
                 fail_response = "Value of key 'stock' should be 'A' or 'B'."
                 return False, fail_response, None
+            if parsed_json["price"] <= 0:
+                print("Wrong json content in response: ", resp)
+                fail_response = f"Value of key 'price' should be positive."
+                return False, fail_response, None
 
             # buy more than cash or sell more than hold amount
-            price = prices[parsed_json["stock"]]
+            # price = prices[parsed_json["stock"]]
+            price = parsed_json["price"]
             if parsed_json["action_type"].lower() == "buy":
                 if parsed_json["amount"] <= 0 or parsed_json["amount"] * price > cash:
                     print("Wrong json content in response: ", resp)
                     fail_response = f"The cash you have now is {cash}, " \
-                                    f"the value of 'amount' * price {price} " \
+                                    f"the value of 'amount' * 'price'  " \
                                     f"should be positive and not exceed cash."
                     return False, fail_response, None
 

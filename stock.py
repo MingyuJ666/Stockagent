@@ -2,19 +2,19 @@ import json
 import os
 
 class Stock:
-    def __init__(self, name, initial_price, initial_proper, history):
+    def __init__(self, name, initial_price, initial_stock, is_new=False):
         self.name = name
         self.price = initial_price
         self.ideal_price = 0
-        self.proper = initial_proper
-        self.history = history
+        self.initial_stock = initial_stock
+        self.history = {}   # {date: session_deal}
+        self.session_deal = [] # [{"price", "amount"}]
 
     def gen_financial_report(self):
         # todo 生成季度财报
         return {
             "name": self.name,
             "price": self.price,
-            "proper": self.proper,
             "history": self.history
         }
 
@@ -30,6 +30,14 @@ class Stock:
                 self.price = 0
             elif action["action_type"] == "sell":
                 self.price = 0
+
+    def add_session_deal(self, price_and_amount):
+        self.session_deal.append(price_and_amount)
+
+    def update_price(self, date):
+        self.price = self.session_deal[-1]["price"]
+        self.history[date] = self.session_deal
+        self.session_deal.clear()
 
     def get_price(self):
         return self.price

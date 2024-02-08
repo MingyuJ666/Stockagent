@@ -1,8 +1,10 @@
 import os
 import time
-
 import openai
 import random
+
+from colorama import Fore, Style
+
 from prompt.agent_prompt import *
 from procoder.functional import format_prompt
 from procoder.prompt import *
@@ -23,7 +25,7 @@ def random_init(stock_initial_price):
             "loan": "yes",
             "amount": debt_amount,
             "loan_type": random.randint(1, len(LOAN_TYPE)),
-            "repayment_date": random.choice(REPAYMENT_DAY)
+            "repayment_date": random.choice(REPAYMENT_DAYS)
             }
     return stock, cash, debt
 
@@ -42,6 +44,7 @@ class Agent:
         self.action_history = [[] for _ in range(TOTAL_DATE)]
         self.chat_history = []
         self.loans = [init_debt]
+        self.is_bankrupt = False
 
     def run_api(self, prompt, temperature: float = 0):
         openai.api_key = OPENAI_API_KEY
@@ -140,7 +143,7 @@ class Agent:
                 "stock_b_price": stock_b.get_price(),
                 "cash": self.cash
             }
-        elif date in SEASON_REPORT_DAY:
+        elif date in SEASON_REPORT_DAYS:
             prompt = Collection(SEASONAL_FINANCIAL_REPORT, DECIDE_BUY_STOCK_PROMPT)
             inputs = {
                 "date": date,
@@ -183,25 +186,43 @@ class Agent:
 
         if action["action_type"] == "buy":
             self.action_history[date].append(action)
-            if action["stock"] == "stock_a":
-                self.stock_a_amount += action["amount"]
-                self.cash -= action["amount"] * stock_a.get_price()
-            else:
-                self.stock_b_amount += action["amount"]
-                self.cash -= action["amount"] * stock_b.get_price()
+            # if action["stock"] == "stock_a":
+            #     self.stock_a_amount += action["amount"]
+            #     self.cash -= action["amount"] * stock_a.get_price()
+            # else:
+            #     self.stock_b_amount += action["amount"]
+            #     self.cash -= action["amount"] * stock_b.get_price()
         elif action["action_type"] == "sell":
             self.action_history[date].append(action)
-            if action["stock"] == "stock_a":
-                self.stock_a_amount -= action["amount"]
-                self.cash += action["amount"] * stock_a.get_price()
-            else:
-                self.stock_b_amount -= action["amount"]
-                self.cash += action["amount"] * stock_b.get_price()
+            # if action["stock"] == "stock_a":
+            #     self.stock_a_amount -= action["amount"]
+            #     self.cash += action["amount"] * stock_a.get_price()
+            # else:
+            #     self.stock_b_amount -= action["amount"]
+            #     self.cash += action["amount"] * stock_b.get_price()
         elif action["action_type"] == "no":
             return action
 
         print("WRONG ACTION: {}".format(action))
         return None
+
+    def buy_stock(self, stock_name, price, amount):
+        self.cash -= price*amount
+        if self.cash < 0 or stock_name not in ['A', 'B']:
+            raise RuntimeError("ERROR: ILLEGAL STOCK BUY BEHAVIOR")
+        if stock_name == 'A':
+            self.stock_a_amount += amount
+        elif stock_name == 'B':
+            self.stock_b_amount += amount
+
+    def sell_stock(self, stock_name, price, amount):
+        if stock_name == 'A':
+            self.stock_a_amount -= amount
+        elif stock_name == 'B':
+            self.stock_b_amount -= amount
+        if self.stock_b_amount < 0 or self.stock_a_amount < 0:
+            raise RuntimeError("ERROR: ILLEGAL STOCK SELL BEHAVIOR")
+        self.cash += price * amount
 
 
     def loan_repayment(self, date):
@@ -227,6 +248,8 @@ class Agent:
         # todo cash<0，强制卖股票，股票卖完了破产，agent is_bankrupt=true
         return
 
+    def is_bankrupt(self):
+        return self.is_bankrupt
 # test
 # secretary = Secretary("gpt-3.5-turbo")
 # agent = Agent(1, 123, secretary, "gpt-3.5-turbo")
