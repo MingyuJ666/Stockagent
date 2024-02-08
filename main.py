@@ -109,7 +109,7 @@ def simulation(args):
             random.shuffle(sequence)
             for i in sequence:
                 agent = all_agents[i]
-                # todo 修改prompt和planstock，增加大盘内容
+                # todo 修改prompt和 plan_stock，在prompt中增加大盘内容
                 action = agent.plan_stock(date, session, stock_a, stock_b, stock_a_deals, stock_b_deals)
                 action["agent"] = agent.order
                 if not action["action_type"] == "no":
@@ -117,6 +117,12 @@ def simulation(args):
                         handle_action(action, stock_a_deals, all_agents, stock_a)
                     else:
                         handle_action(action, stock_b_deals, all_agents, stock_b)
+
+            # 交易时段结束，更新股票价格
+            stock_a.update_price(date)
+            stock_b.update_price(date)
+
+        # todo 交易日结束，论坛信息更新
 
 
 if __name__ == "__main__":
