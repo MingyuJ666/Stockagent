@@ -64,8 +64,9 @@ class Agent:
                 return resp
             except openai.OpenAIError as e:
                 retry += 1
-                print(e)
                 time.sleep(1)
+        print(Fore.RED + "ERROR: OPENAI API FAILED. SKIP THIS INTERACTION." + Style.RESET_ALL)
+        return ""
 
     def get_total_proper(self, stock_a_price, stock_b_price):
         return self.stock_a_amount * stock_a_price + self.stock_b_amount * stock_b_price + self.cash
@@ -79,7 +80,9 @@ class Agent:
     def plan_loan(self, date, stock_a_price, stock_b_price, lastday_forum_message):
         # first day action : prompt with background
         if date == 1:
-            prompt = Collection(BACKGROUND_PROMPT, LOAN_TYPE_PROMPT, DECIDE_IF_LOAN_PROMPT)
+            prompt = Collection(BACKGROUND_PROMPT,
+                                LOAN_TYPE_PROMPT,
+                                DECIDE_IF_LOAN_PROMPT).set_indexing_method(sharp2_indexing).set_sep("\n")
             assert self.init_proper > self.get_total_loan()
             max_loan = self.init_proper - self.get_total_loan()
             inputs = {
@@ -94,7 +97,9 @@ class Agent:
 
         # other days action : prompt with last day forum message & stock price
         else:
-            prompt = Collection(LASTDAY_FORUM_AND_STOCK_PROMPT, LOAN_TYPE_PROMPT, DECIDE_IF_LOAN_PROMPT)
+            prompt = Collection(LASTDAY_FORUM_AND_STOCK_PROMPT,
+                                LOAN_TYPE_PROMPT,
+                                DECIDE_IF_LOAN_PROMPT).set_indexing_method(sharp2_indexing).set_sep("\n")
             assert self.init_proper > self.get_total_loan()
             max_loan = self.init_proper - self.get_total_loan()
             inputs = {
@@ -112,16 +117,22 @@ class Agent:
         try_times = 0
         MAX_TRY_TIMES = 10
         resp = self.run_api(format_prompt(prompt, inputs))
+        if resp == "":
+            return
+
         loan_format_check, fail_response, loan = self.secretary.check_loan(resp, max_loan)  # secretary check loan format
         while not loan_format_check:
-            print("Loan format check failed because of these issues: {}".format(fail_response))
+            print("WARNING: Loan format check failed because of these issues: {}".format(fail_response))
             try_times += 1
             if try_times > MAX_TRY_TIMES:
-                print("Loan format try times > MAX_TRY_TIMES. Skip as no loan today.")
+                print(Fore.BLUE + "WARNING: Loan format try times > MAX_TRY_TIMES. Skip as no loan today."
+                      + Style.RESET_ALL)
                 loan = {"loan": "no"}
                 break
 
             resp = self.run_api(format_prompt(LOAN_RETRY_PROMPT, {"fail_response": fail_response}), temperature=0)
+            if resp == "":
+                return
             loan_format_check, fail_response, loan = self.secretary.check_loan(date, resp)
 
         if loan["loan"] == "yes":
@@ -131,9 +142,10 @@ class Agent:
             self.cash += loan["amount"]
 
     # date=交易日, time=当前交易时段
-    def plan_stock(self, date, time, stock_a, stock_b):
+    def plan_stock(self, date, time, stock_a, stock_b, stock_a_deals, stock_b_deals):
         if date == 1:
-            prompt = Collection(FIRST_DAY_FINANCIAL_REPORT, DECIDE_BUY_STOCK_PROMPT)
+            prompt = Collection(FIRST_DAY_FINANCIAL_REPORT,
+                                DECIDE_BUY_STOCK_PROMPT).set_indexing_method(sharp2_indexing).set_sep("\n")
             inputs = {
                 "date": date,
                 "time": time,
@@ -141,10 +153,13 @@ class Agent:
                 "stock_b": self.stock_b_amount,
                 "stock_a_price": stock_a.get_price(),
                 "stock_b_price": stock_b.get_price(),
+                "stock_a_deals": stock_a_deals,
+                "stock_b_deals": stock_b_deals,
                 "cash": self.cash
             }
         elif date in SEASON_REPORT_DAYS:
-            prompt = Collection(SEASONAL_FINANCIAL_REPORT, DECIDE_BUY_STOCK_PROMPT)
+            prompt = Collection(SEASONAL_FINANCIAL_REPORT,
+                                DECIDE_BUY_STOCK_PROMPT).set_indexing_method(sharp2_indexing).set_sep("\n")
             inputs = {
                 "date": date,
                 "time": time,
@@ -152,6 +167,8 @@ class Agent:
                 "stock_b": self.stock_b_amount,
                 "stock_a_price": stock_a.get_price(),
                 "stock_b_price": stock_b.get_price(),
+                "stock_a_deals": stock_a_deals,
+                "stock_b_deals": stock_b_deals,
                 "cash": self.cash,
                 "stock_a_report": stock_a.gen_financial_report(),
                 "stock_b_report": stock_b.gen_financial_report()
@@ -165,22 +182,31 @@ class Agent:
                 "stock_b": self.stock_b_amount,
                 "stock_a_price": stock_a.get_price(),
                 "stock_b_price": stock_b.get_price(),
+                "stock_a_deals": stock_a_deals,
+                "stock_b_deals": stock_b_deals,
                 "cash": self.cash
             }
+        print(format_prompt(prompt, inputs))
         try_times = 0
         MAX_TRY_TIMES = 10
         resp = self.run_api(format_prompt(prompt, inputs))
+        if resp == "":
+            return None
+
         action_format_check, fail_response, action = self.secretary.check_action(
             resp, self.cash, self.stock_a_amount, self.stock_b_amount, stock_a.get_price(), stock_b.get_price())
         while not action_format_check:
             print("Action format check failed because of these issues: {}".format(fail_response))
             try_times += 1
             if try_times > MAX_TRY_TIMES:
-                print("Action format try times > MAX_TRY_TIMES. Skip as no loan today.")
+                print(Fore.BLUE + "WARNING: Action format try times > MAX_TRY_TIMES. Skip as no loan today."
+                      + Style.RESET_ALL)
                 action = {"action_type": "no"}
                 break
 
             resp = self.run_api(format_prompt(BUY_STOCK_RETRY_PROMPT, {"fail_response": fail_response}), temperature=0)
+            if resp == "":
+                return None
             action_format_check, fail_response, action = self.secretary.check_action(
                 resp, self.cash, self.stock_a_amount, self.stock_b_amount, stock_a.get_price(), stock_b.get_price())
 
@@ -203,7 +229,7 @@ class Agent:
         elif action["action_type"] == "no":
             return action
 
-        print("WRONG ACTION: {}".format(action))
+        print(Fore.RED + "ERROR: WRONG ACTION: {}".format(action) + Style.RESET_ALL)
         return None
 
     def buy_stock(self, stock_name, price, amount):
@@ -224,8 +250,7 @@ class Agent:
             raise RuntimeError("ERROR: ILLEGAL STOCK SELL BEHAVIOR")
         self.cash += price * amount
 
-
-    def loan_repayment(self, date):
+    def loan_repayment(self, date, stock_a_price, stock_b_price):
         # check是否贷款还款日，还款，破产检查
         to_del = []
         for idx, loan in enumerate(self.loans):
@@ -233,29 +258,44 @@ class Agent:
                 self.cash -= loan["amount"] * (1 + LOAN_RATE[loan["loan_type"]])
                 to_del.append(idx)
         if self.cash < 0:
-            self.bankrupt()
+            self.bankrupt(stock_a_price, stock_b_price)
         for idx in to_del:
             del self.loans[idx]
 
-    def interest_payment(self):
+    def interest_payment(self, stock_a_price, stock_b_price):
         # 贷款付息日付息
         for loan in self.loans:
             self.cash -= loan["amount"] * LOAN_RATE[loan["loan_type"]] / 4
             if self.cash < 0:
-                self.bankrupt()
+                self.bankrupt(stock_a_price, stock_b_price)
 
-    def bankrupt(self):
+    def bankrupt(self, stock_a_price, stock_b_price):
         # todo cash<0，强制卖股票，股票卖完了破产，agent is_bankrupt=true
+        total_value_of_stock = self.stock_a_amount * stock_a_price + self.stock_b_amount * stock_b_price
+        if total_value_of_stock + self.cash < 0:
+            self.is_bankrupt = True
+            print(f"LOG: Agent {self.order} bankrupt. Action history: " + str(self.action_history))
+            return
+        # todo 卖股票也是挂在交易单上吗？
+
         return
 
     def is_bankrupt(self):
         return self.is_bankrupt
+
+    def post_message(self):
+        prompt = format_prompt(POST_MESSAGE_PROMPT, inputs={})
+        resp = self.run_api(prompt)
+        return resp
+
+
 # test
 # secretary = Secretary("gpt-3.5-turbo")
 # agent = Agent(1, 123, secretary, "gpt-3.5-turbo")
-# agent.plan_loan(1, 100, 100, "prompt")
-
 # stocka = Stock("a", 5, 100, [])
 # stockb = Stock("b", 7, 100, [])
+# agent.plan_stock(33, 1, stocka, stockb, "", "")
+
+
 # plan = '{"action_type": "sell", "stock": "B", "amount": 10}'
 # print(secretary.check_action(plan, 100, 0, 20, stocka.get_price(), stockb.get_price()))

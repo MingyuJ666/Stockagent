@@ -63,8 +63,10 @@ def simulation(args):
     # stock b publish
     stock_b_deals["sell"].append({"agent": 0, "amount": STOCK_B_PUBLISH, "price": STOCK_B_INITIAL_PRICE})
 
+    print(Fore.GREEN + "--------Simulation Start!--------" + Style.RESET_ALL)
     for date in range(1, TOTAL_DATE + 1):
 
+        print(Fore.GREEN + f"--------DAY {date}---------" + Style.RESET_ALL)
         # 除b发行外，删除前一天的所有交易
         stock_a_deals["sell"].clear()
         stock_a_deals["buy"].clear()
@@ -104,12 +106,12 @@ def simulation(args):
             agent.plan_loan(date, stock_a.get_price(), stock_b.get_price(), last_day_forum_message)
 
         for session in range(1, TOTAL_SESSION + 1):
+            print(Fore.GREEN + f"SESSION {session}" + Style.RESET_ALL)
             # 随机定义交易顺序
             sequence = list(range(len(all_agents)))
             random.shuffle(sequence)
             for i in sequence:
                 agent = all_agents[i]
-                # todo 修改prompt和 plan_stock，在prompt中增加大盘内容
                 action = agent.plan_stock(date, session, stock_a, stock_b, stock_a_deals, stock_b_deals)
                 action["agent"] = agent.order
                 if not action["action_type"] == "no":
@@ -122,7 +124,21 @@ def simulation(args):
             stock_a.update_price(date)
             stock_b.update_price(date)
 
-        # todo 交易日结束，论坛信息更新
+        # 交易日结束，论坛信息更新
+        last_day_forum_message.clear()
+        for agent in all_agents:
+            message = agent.post_message()
+            last_day_forum_message.append({"name": agent.order, "message": message})
+
+    print(Fore.GREEN + "--------Simulation finished!--------" + Style.RESET_ALL)
+    print(Fore.GREEN + "--------Agents action history--------" + Style.RESET_ALL)
+    for agent in all_agents:
+        print(f"Agent {agent.order} action history:")
+        print(agent.action_history)
+    print(Fore.GREEN + "--------Stock deal history--------" + Style.RESET_ALL)
+    for stock in [stock_a, stock_b]:
+        print(f"Stock {stock.name} deal history:")
+        print(stock.history)
 
 
 if __name__ == "__main__":
