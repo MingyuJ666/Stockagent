@@ -1,0 +1,3 @@
+2024-02-11 17:00:48,860 - CustomLogger - DEBUG - --------Simulation Start!--------
+2024-02-11 17:00:48,860 - CustomLogger - DEBUG - --------DAY 1---------
+2024-02-11 17:01:26,656 - CustomLogger - ERROR - ERROR: OPENAI API FAILED. SKIP THIS INTERACTION.

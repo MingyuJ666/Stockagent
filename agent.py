@@ -1,16 +1,14 @@
-import os
+import math
 import time
 import openai
 import random
 
-from colorama import Fore, Style
+from log.custom_logger import log
 
 from prompt.agent_prompt import *
 from procoder.functional import format_prompt
 from procoder.prompt import *
 from utils import *
-from secretary import Secretary
-from stock import Stock
 
 
 def random_init(stock_initial_price):
@@ -65,7 +63,7 @@ class Agent:
             except openai.OpenAIError as e:
                 retry += 1
                 time.sleep(1)
-        print(Fore.RED + "ERROR: OPENAI API FAILED. SKIP THIS INTERACTION." + Style.RESET_ALL)
+        log.logger.error("ERROR: OPENAI API FAILED. SKIP THIS INTERACTION.")
         return ""
 
     def get_total_proper(self, stock_a_price, stock_b_price):
@@ -122,11 +120,10 @@ class Agent:
 
         loan_format_check, fail_response, loan = self.secretary.check_loan(resp, max_loan)  # secretary check loan format
         while not loan_format_check:
-            print("WARNING: Loan format check failed because of these issues: {}".format(fail_response))
+            log.logger.debug("WARNING: Loan format check failed because of these issues: {}".format(fail_response))
             try_times += 1
             if try_times > MAX_TRY_TIMES:
-                print(Fore.BLUE + "WARNING: Loan format try times > MAX_TRY_TIMES. Skip as no loan today."
-                      + Style.RESET_ALL)
+                log.logger.warning("WARNING: Loan format try times > MAX_TRY_TIMES. Skip as no loan today.")
                 loan = {"loan": "no"}
                 break
 
@@ -186,7 +183,6 @@ class Agent:
                 "stock_b_deals": stock_b_deals,
                 "cash": self.cash
             }
-        print(format_prompt(prompt, inputs))
         try_times = 0
         MAX_TRY_TIMES = 10
         resp = self.run_api(format_prompt(prompt, inputs))
@@ -196,11 +192,10 @@ class Agent:
         action_format_check, fail_response, action = self.secretary.check_action(
             resp, self.cash, self.stock_a_amount, self.stock_b_amount, stock_a.get_price(), stock_b.get_price())
         while not action_format_check:
-            print("Action format check failed because of these issues: {}".format(fail_response))
+            log.logger.debug("Action format check failed because of these issues: {}".format(fail_response))
             try_times += 1
             if try_times > MAX_TRY_TIMES:
-                print(Fore.BLUE + "WARNING: Action format try times > MAX_TRY_TIMES. Skip as no loan today."
-                      + Style.RESET_ALL)
+                log.logger.warning("WARNING: Action format try times > MAX_TRY_TIMES. Skip as no loan today.")
                 action = {"action_type": "no"}
                 break
 
@@ -229,7 +224,7 @@ class Agent:
         elif action["action_type"] == "no":
             return action
 
-        print(Fore.RED + "ERROR: WRONG ACTION: {}".format(action) + Style.RESET_ALL)
+        log.logger.error("ERROR: WRONG ACTION: {}".format(action))
         return None
 
     def buy_stock(self, stock_name, price, amount):
@@ -250,7 +245,7 @@ class Agent:
             raise RuntimeError("ERROR: ILLEGAL STOCK SELL BEHAVIOR")
         self.cash += price * amount
 
-    def loan_repayment(self, date, stock_a_price, stock_b_price):
+    def loan_repayment(self, date):
         # check是否贷款还款日，还款，破产检查
         to_del = []
         for idx, loan in enumerate(self.loans):
@@ -258,30 +253,37 @@ class Agent:
                 self.cash -= loan["amount"] * (1 + LOAN_RATE[loan["loan_type"]])
                 to_del.append(idx)
         if self.cash < 0:
-            self.bankrupt(stock_a_price, stock_b_price)
+            self.is_bankrupt = True
         for idx in to_del:
             del self.loans[idx]
 
-    def interest_payment(self, stock_a_price, stock_b_price):
+    def interest_payment(self):
         # 贷款付息日付息
         for loan in self.loans:
             self.cash -= loan["amount"] * LOAN_RATE[loan["loan_type"]] / 4
             if self.cash < 0:
-                self.bankrupt(stock_a_price, stock_b_price)
+                self.is_bankrupt = True
 
-    def bankrupt(self, stock_a_price, stock_b_price):
-        # todo cash<0，强制卖股票，股票卖完了破产，agent is_bankrupt=true
+    def bankrupt_process(self, stock_a_price, stock_b_price):
         total_value_of_stock = self.stock_a_amount * stock_a_price + self.stock_b_amount * stock_b_price
         if total_value_of_stock + self.cash < 0:
-            self.is_bankrupt = True
-            print(f"LOG: Agent {self.order} bankrupt. Action history: " + str(self.action_history))
-            return
-        # todo 卖股票也是挂在交易单上吗？
+            log.logger.warning(f"Agent {self.order} bankrupt. Action history: " + str(self.action_history))
+            return True
+        if stock_a_price * self.stock_a_amount >= -self.cash:
+            sell_a = math.ceil(-self.cash / stock_a_price)
+            self.stock_a_amount -= sell_a
+            self.cash += sell_a * stock_a_price
+        else:
+            self.cash += stock_a_price * self.stock_a_amount
+            self.stock_a_amount = 0
+            sell_b = math.ceil(-self.cash / stock_b_price)
+            self.stock_b_amount -= sell_b
+            self.cash += sell_b * stock_b_price
 
-        return
+        if self.stock_a_amount < 0 or self.stock_b_amount < 0 or self.cash < 0:
+            raise RuntimeError("ERROR: WRONG BANKRUPT PROCESS")
 
-    def is_bankrupt(self):
-        return self.is_bankrupt
+        return False
 
     def post_message(self):
         prompt = format_prompt(POST_MESSAGE_PROMPT, inputs={})
