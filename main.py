@@ -16,7 +16,8 @@ def handle_action(action, stock_deals, all_agents, stock):
                 # 交易成交
                 close_amount = min(action["amount"], sell_action["amount"])
                 all_agents[action["agent"]].buy_stock(stock.name, close_amount, action["price"])
-                all_agents[sell_action["agent"]].sell_stock(stock.name, close_amount, action["price"])
+                if not sell_action["agent"] == -1: # B发行
+                    all_agents[sell_action["agent"]].sell_stock(stock.name, close_amount, action["price"])
                 stock.add_session_deal({"price": action["price"], "amount": close_amount})
 
                 if action["amount"] > close_amount:  # 买单未结束，卖单结束，继续循环
@@ -60,16 +61,17 @@ def simulation(args):
     stock_a = Stock("A", STOCK_A_INITIAL_PRICE, 0, is_new=False)
     stock_b = Stock("B", STOCK_B_INITIAL_PRICE, STOCK_B_PUBLISH, is_new=True)
     all_agents = []
-    for i in range(1, AGENTS_NUM + 1):  # agents start from 1, 0 refers to stock_b
+    for i in range(0, AGENTS_NUM):  # agents start from 0, -1 refers to stock_b
         agent = Agent(i, stock_a.get_price(), secretary, args.model)
         all_agents.append(agent)
+        print("cash: {}, stock a: {}, debt: {}".format(agent.cash, agent.stock_a_amount, agent.loans))
 
     # start simulation
     last_day_forum_message = []
     stock_a_deals = {"sell": [], "buy": []}
     stock_b_deals = {"sell": [], "buy": []}
     # stock b publish
-    stock_b_deals["sell"].append({"agent": 0, "amount": STOCK_B_PUBLISH, "price": STOCK_B_INITIAL_PRICE})
+    stock_b_deals["sell"].append({"agent": -1, "amount": STOCK_B_PUBLISH, "price": STOCK_B_INITIAL_PRICE})
 
     log.logger.debug("--------Simulation Start!--------")
     for date in range(1, TOTAL_DATE + 1):
@@ -114,6 +116,8 @@ def simulation(args):
                     continue
 
                 action = agent.plan_stock(date, session, stock_a, stock_b, stock_a_deals, stock_b_deals)
+                if action is None:
+                    continue
                 action["agent"] = agent.order
                 if not action["action_type"] == "no":
                     if action["stock"] == 'A':
@@ -133,8 +137,10 @@ def simulation(args):
 
         # 交易日结束，论坛信息更新
         last_day_forum_message.clear()
+        log.logger.debug(f"DAY {date} ends, display forum messages...")
         for agent in all_agents:
             message = agent.post_message()
+            log.logger.info("Agent {} says: {}".format(agent.order, message))
             last_day_forum_message.append({"name": agent.order, "message": message})
 
     log.logger.debug("--------Simulation finished!--------")
@@ -150,6 +156,6 @@ def simulation(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model", type=str, default="gpt-3.5-turbo", help="model name")
+    parser.add_argument("--model", type=str, default="gpt-4-turbo-preview", help="model name")
     args = parser.parse_args()
     simulation(args)

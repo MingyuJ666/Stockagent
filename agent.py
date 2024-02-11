@@ -1,6 +1,7 @@
 import math
 import time
 import openai
+import tiktoken
 import random
 
 from log.custom_logger import log
@@ -16,13 +17,13 @@ def random_init(stock_initial_price):
     while stock * stock_initial_price + cash < MIN_INITIAL_PROPERTY \
             or stock * stock_initial_price + cash > MAX_INITIAL_PROPERTY \
             or debt_amount > stock * stock_initial_price + cash:
-        stock = random.uniform(0, MAX_INITIAL_PROPERTY / stock_initial_price)
+        stock = int(random.uniform(0, MAX_INITIAL_PROPERTY / stock_initial_price))
         cash = random.uniform(0, MAX_INITIAL_PROPERTY)
         debt_amount = random.uniform(0, MAX_INITIAL_PROPERTY)
     debt = {
             "loan": "yes",
             "amount": debt_amount,
-            "loan_type": random.randint(1, len(LOAN_TYPE)),
+            "loan_type": random.randint(0, len(LOAN_TYPE)),
             "repayment_date": random.choice(REPAYMENT_DAYS)
             }
     return stock, cash, debt
@@ -33,7 +34,7 @@ class Agent:
         self.order = i
         self.secretary = secretary
         self.model = model
-        self.character = random.choice(["性格一", "性格二"])  # todo
+        self.character = random.choice(["稳健型", "激进型"])
 
         self.stock_a_amount, self.cash, init_debt = random_init(stock_a_price)
         self.stock_b_amount = 0  # stock 以手为单位存储，一手=10股，股价其实是一手的价格
@@ -45,11 +46,16 @@ class Agent:
         self.is_bankrupt = False
 
     def run_api(self, prompt, temperature: float = 0):
+        encoding = tiktoken.encoding_for_model('gpt-3.5-turbo')
         openai.api_key = OPENAI_API_KEY
         client = openai.OpenAI(api_key=openai.api_key)
         self.chat_history.append({"role": "user", "content": prompt})
         max_retry = 2
         retry = 0
+
+        # just cut off the overflow tokens
+        # tokens = encoding.encode(self.chat_history)
+
         while retry < max_retry:
             try:
                 response = client.chat.completions.create(
@@ -61,6 +67,7 @@ class Agent:
                 resp = response.choices[0].message.content
                 return resp
             except openai.OpenAIError as e:
+                log.logger.warning("OpenAI api retry...{}".format(e))
                 retry += 1
                 time.sleep(1)
         log.logger.error("ERROR: OPENAI API FAILED. SKIP THIS INTERACTION.")
@@ -81,7 +88,7 @@ class Agent:
             prompt = Collection(BACKGROUND_PROMPT,
                                 LOAN_TYPE_PROMPT,
                                 DECIDE_IF_LOAN_PROMPT).set_indexing_method(sharp2_indexing).set_sep("\n")
-            assert self.init_proper > self.get_total_loan()
+            assert self.init_proper >= self.get_total_loan()
             max_loan = self.init_proper - self.get_total_loan()
             inputs = {
                 'date': date,
@@ -98,7 +105,7 @@ class Agent:
             prompt = Collection(LASTDAY_FORUM_AND_STOCK_PROMPT,
                                 LOAN_TYPE_PROMPT,
                                 DECIDE_IF_LOAN_PROMPT).set_indexing_method(sharp2_indexing).set_sep("\n")
-            assert self.init_proper > self.get_total_loan()
+            assert self.init_proper >= self.get_total_loan()
             max_loan = self.init_proper - self.get_total_loan()
             inputs = {
                 "date": date,
@@ -112,9 +119,12 @@ class Agent:
                 "stock_b_price": stock_b_price,
                 "lastday_forum_message": lastday_forum_message
             }
+        if max_loan == 0:
+            return
         try_times = 0
         MAX_TRY_TIMES = 10
         resp = self.run_api(format_prompt(prompt, inputs))
+        #print(resp)
         if resp == "":
             return
 
@@ -137,7 +147,9 @@ class Agent:
             self.loans.append(loan)
             self.action_history[date].append(loan)
             self.cash += loan["amount"]
-
+            log.logger.info("INFO: Agent {} decide to loan: {}".format(self.order, loan))
+        else:
+            log.logger.info("INFO: Agent {} decide not to loan".format(self.order))
     # date=交易日, time=当前交易时段
     def plan_stock(self, date, time, stock_a, stock_b, stock_a_deals, stock_b_deals):
         if date == 1:
@@ -186,6 +198,7 @@ class Agent:
         try_times = 0
         MAX_TRY_TIMES = 10
         resp = self.run_api(format_prompt(prompt, inputs))
+        #print(resp)
         if resp == "":
             return None
 
@@ -207,21 +220,26 @@ class Agent:
 
         if action["action_type"] == "buy":
             self.action_history[date].append(action)
+            log.logger.info("INFO: Agent {} decide to action: {}".format(self.order, action))
             # if action["stock"] == "stock_a":
             #     self.stock_a_amount += action["amount"]
             #     self.cash -= action["amount"] * stock_a.get_price()
             # else:
             #     self.stock_b_amount += action["amount"]
             #     self.cash -= action["amount"] * stock_b.get_price()
+            return action
         elif action["action_type"] == "sell":
             self.action_history[date].append(action)
+            log.logger.info("INFO: Agent {} decide to action: {}".format(self.order, action))
             # if action["stock"] == "stock_a":
             #     self.stock_a_amount -= action["amount"]
             #     self.cash += action["amount"] * stock_a.get_price()
             # else:
             #     self.stock_b_amount -= action["amount"]
             #     self.cash += action["amount"] * stock_b.get_price()
+            return action
         elif action["action_type"] == "no":
+            log.logger.info("INFO: Agent {} decide not to action".format(self.order))
             return action
 
         log.logger.error("ERROR: WRONG ACTION: {}".format(action))

@@ -33,7 +33,6 @@ class Secretary:
     """
     def check_loan(self, resp, max_loan) -> (bool, str, dict):
         # format check
-        assert '{' in resp
         if resp.count('{') == 1 and resp.count('}') == 1:
             start_idx = resp.index('{')
             end_idx = resp.index('}')
@@ -76,9 +75,9 @@ class Secretary:
                 log.logger.debug("Wrong json content in response: {}".format(resp))
                 fail_response = "Should include loan_type and amount in response if value of key 'loan' is yes."
                 return False, fail_response, None
-            if parsed_json["loan_type"] not in [1, 2, 3]:
+            if parsed_json["loan_type"] not in [0, 1, 2]:
                 log.logger.debug("Wrong json content in response: {}".format(resp))
-                fail_response = "Value of key 'loan_type' should be 1, 2 or 3."
+                fail_response = "Value of key 'loan_type' should be 0, 1 or 2."
                 return False, fail_response, None
             if parsed_json["amount"] <= 0 or parsed_json["amount"] > max_loan:
                 log.logger.debug("Wrong json content in response: {}".format(resp))
@@ -144,6 +143,10 @@ class Secretary:
             if parsed_json["price"] <= 0:
                 log.logger.debug("Wrong json content in response: {}".format(resp))
                 fail_response = f"Value of key 'price' should be positive."
+                return False, fail_response, None
+            if not isinstance(parsed_json["amount"], int):
+                log.logger.debug("Wrong json content in response: {}".format(resp))
+                fail_response = f"Value of key 'amount' should be integer."
                 return False, fail_response, None
 
             # buy more than cash or sell more than hold amount

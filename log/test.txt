@@ -1,3 +1,897 @@
 2024-02-11 17:00:48,860 - CustomLogger - DEBUG - --------Simulation Start!--------
 2024-02-11 17:00:48,860 - CustomLogger - DEBUG - --------DAY 1---------
 2024-02-11 17:01:26,656 - CustomLogger - ERROR - ERROR: OPENAI API FAILED. SKIP THIS INTERACTION.
+2024-02-11 17:10:59,697 - Stocklogger - DEBUG - --------Simulation Start!--------
+2024-02-11 17:10:59,697 - Stocklogger - DEBUG - --------DAY 1---------
+2024-02-11 17:12:36,915 - Stocklogger - DEBUG - --------Simulation Start!--------
+2024-02-11 17:12:36,915 - Stocklogger - DEBUG - --------DAY 1---------
+2024-02-11 17:14:39,081 - Stocklogger - DEBUG - SESSION 1
+2024-02-11 17:15:56,526 - Stocklogger - DEBUG - --------Simulation Start!--------
+2024-02-11 17:15:56,527 - Stocklogger - DEBUG - --------DAY 1---------
+2024-02-11 17:15:57,656 - Stocklogger - INFO - INFO: Agent 1 decide not to loan
+2024-02-11 17:15:58,856 - Stocklogger - INFO - INFO: Agent 2 decide not to loan
+2024-02-11 17:16:00,045 - Stocklogger - INFO - INFO: Agent 3 decide not to loan
+2024-02-11 17:16:01,193 - Stocklogger - INFO - INFO: Agent 4 decide not to loan
+2024-02-11 17:16:02,735 - Stocklogger - INFO - INFO: Agent 5 decide not to loan
+2024-02-11 17:16:03,851 - Stocklogger - INFO - INFO: Agent 6 decide not to loan
+2024-02-11 17:16:04,779 - Stocklogger - INFO - INFO: Agent 7 decide not to loan
+2024-02-11 17:16:06,340 - Stocklogger - INFO - INFO: Agent 8 decide not to loan
+2024-02-11 17:16:07,184 - Stocklogger - INFO - INFO: Agent 9 decide not to loan
+2024-02-11 17:16:08,361 - Stocklogger - INFO - INFO: Agent 10 decide not to loan
+2024-02-11 17:16:09,593 - Stocklogger - INFO - INFO: Agent 11 decide not to loan
+2024-02-11 17:16:10,464 - Stocklogger - INFO - INFO: Agent 12 decide not to loan
+2024-02-11 17:16:11,699 - Stocklogger - INFO - INFO: Agent 13 decide not to loan
+2024-02-11 17:16:12,874 - Stocklogger - INFO - INFO: Agent 14 decide not to loan
+2024-02-11 17:16:13,729 - Stocklogger - INFO - INFO: Agent 15 decide not to loan
+2024-02-11 17:16:14,911 - Stocklogger - INFO - INFO: Agent 16 decide not to loan
+2024-02-11 17:16:16,073 - Stocklogger - INFO - INFO: Agent 17 decide not to loan
+2024-02-11 17:16:17,011 - Stocklogger - INFO - INFO: Agent 18 decide not to loan
+2024-02-11 17:16:18,149 - Stocklogger - INFO - INFO: Agent 19 decide not to loan
+2024-02-11 17:16:19,688 - Stocklogger - INFO - INFO: Agent 20 decide not to loan
+2024-02-11 17:16:21,147 - Stocklogger - INFO - INFO: Agent 21 decide not to loan
+2024-02-11 17:16:22,394 - Stocklogger - INFO - INFO: Agent 22 decide not to loan
+2024-02-11 17:16:23,927 - Stocklogger - INFO - INFO: Agent 23 decide not to loan
+2024-02-11 17:16:25,110 - Stocklogger - INFO - INFO: Agent 24 decide not to loan
+2024-02-11 17:16:26,069 - Stocklogger - INFO - INFO: Agent 25 decide not to loan
+2024-02-11 17:16:27,515 - Stocklogger - INFO - INFO: Agent 26 decide not to loan
+2024-02-11 17:16:28,665 - Stocklogger - INFO - INFO: Agent 27 decide not to loan
+2024-02-11 17:16:29,775 - Stocklogger - INFO - INFO: Agent 28 decide not to loan
+2024-02-11 17:16:30,615 - Stocklogger - INFO - INFO: Agent 29 decide not to loan
+2024-02-11 17:16:31,734 - Stocklogger - INFO - INFO: Agent 30 decide not to loan
+2024-02-11 17:16:32,928 - Stocklogger - INFO - INFO: Agent 31 decide not to loan
+2024-02-11 17:16:34,065 - Stocklogger - INFO - INFO: Agent 32 decide not to loan
+2024-02-11 17:16:35,235 - Stocklogger - INFO - INFO: Agent 33 decide not to loan
+2024-02-11 17:16:36,315 - Stocklogger - INFO - INFO: Agent 34 decide not to loan
+2024-02-11 17:16:37,486 - Stocklogger - INFO - INFO: Agent 35 decide not to loan
+2024-02-11 17:16:38,668 - Stocklogger - INFO - INFO: Agent 36 decide not to loan
+2024-02-11 17:16:39,853 - Stocklogger - INFO - INFO: Agent 37 decide not to loan
+2024-02-11 17:16:47,160 - Stocklogger - INFO - INFO: Agent 38 decide not to loan
+2024-02-11 17:16:48,350 - Stocklogger - INFO - INFO: Agent 39 decide not to loan
+2024-02-11 17:16:49,426 - Stocklogger - INFO - INFO: Agent 40 decide not to loan
+2024-02-11 17:16:50,335 - Stocklogger - INFO - INFO: Agent 41 decide not to loan
+2024-02-11 17:16:51,362 - Stocklogger - INFO - INFO: Agent 42 decide not to loan
+2024-02-11 17:16:56,267 - Stocklogger - DEBUG - --------Simulation Start!--------
+2024-02-11 17:16:56,267 - Stocklogger - DEBUG - --------DAY 1---------
+2024-02-11 17:16:57,164 - Stocklogger - INFO - INFO: Agent 1 decide not to loan
+2024-02-11 17:16:58,035 - Stocklogger - INFO - INFO: Agent 2 decide not to loan
+2024-02-11 17:16:59,538 - Stocklogger - INFO - INFO: Agent 3 decide not to loan
+2024-02-11 17:17:00,541 - Stocklogger - INFO - INFO: Agent 4 decide not to loan
+2024-02-11 17:17:01,694 - Stocklogger - INFO - INFO: Agent 5 decide not to loan
+2024-02-11 17:17:08,468 - Stocklogger - DEBUG - --------Simulation Start!--------
+2024-02-11 17:17:08,468 - Stocklogger - DEBUG - --------DAY 1---------
+2024-02-11 17:17:10,486 - Stocklogger - INFO - INFO: Agent 1 decide not to loan
+2024-02-11 17:17:12,028 - Stocklogger - INFO - INFO: Agent 2 decide not to loan
+2024-02-11 17:17:13,538 - Stocklogger - INFO - INFO: Agent 3 decide not to loan
+2024-02-11 17:17:14,436 - Stocklogger - INFO - INFO: Agent 4 decide not to loan
+2024-02-11 17:17:15,556 - Stocklogger - INFO - INFO: Agent 5 decide not to loan
+2024-02-11 17:17:16,430 - Stocklogger - INFO - INFO: Agent 6 decide not to loan
+2024-02-11 17:17:17,643 - Stocklogger - INFO - INFO: Agent 7 decide not to loan
+2024-02-11 17:17:18,566 - Stocklogger - INFO - INFO: Agent 8 decide not to loan
+2024-02-11 17:17:19,417 - Stocklogger - INFO - INFO: Agent 9 decide not to loan
+2024-02-11 17:17:20,339 - Stocklogger - INFO - INFO: Agent 10 decide not to loan
+2024-02-11 17:17:21,283 - Stocklogger - INFO - INFO: Agent 11 decide not to loan
+2024-02-11 17:17:40,241 - Stocklogger - DEBUG - --------Simulation Start!--------
+2024-02-11 17:17:40,241 - Stocklogger - DEBUG - --------DAY 1---------
+2024-02-11 17:17:41,272 - Stocklogger - INFO - INFO: Agent 1 decide not to loan
+2024-02-11 17:17:42,441 - Stocklogger - INFO - INFO: Agent 2 decide not to loan
+2024-02-11 17:17:43,562 - Stocklogger - INFO - INFO: Agent 3 decide not to loan
+2024-02-11 17:17:44,479 - Stocklogger - INFO - INFO: Agent 4 decide not to loan
+2024-02-11 17:17:45,397 - Stocklogger - INFO - INFO: Agent 5 decide not to loan
+2024-02-11 17:17:46,518 - Stocklogger - INFO - INFO: Agent 6 decide not to loan
+2024-02-11 17:17:47,685 - Stocklogger - INFO - INFO: Agent 7 decide not to loan
+2024-02-11 17:17:48,869 - Stocklogger - INFO - INFO: Agent 8 decide not to loan
+2024-02-11 17:17:50,031 - Stocklogger - INFO - INFO: Agent 9 decide not to loan
+2024-02-11 17:17:51,208 - Stocklogger - INFO - INFO: Agent 10 decide not to loan
+2024-02-11 17:18:19,609 - Stocklogger - DEBUG - --------Simulation Start!--------
+2024-02-11 17:18:19,609 - Stocklogger - DEBUG - --------DAY 1---------
+2024-02-11 17:18:20,498 - Stocklogger - INFO - INFO: Agent 1 decide not to loan
+2024-02-11 17:18:21,466 - Stocklogger - INFO - INFO: Agent 2 decide not to loan
+2024-02-11 17:18:22,384 - Stocklogger - INFO - INFO: Agent 3 decide not to loan
+2024-02-11 17:18:23,515 - Stocklogger - INFO - INFO: Agent 4 decide not to loan
+2024-02-11 17:18:24,647 - Stocklogger - INFO - INFO: Agent 5 decide not to loan
+2024-02-11 17:18:26,200 - Stocklogger - INFO - INFO: Agent 6 decide not to loan
+2024-02-11 17:18:27,433 - Stocklogger - INFO - INFO: Agent 7 decide not to loan
+2024-02-11 17:18:28,349 - Stocklogger - INFO - INFO: Agent 8 decide not to loan
+2024-02-11 17:18:29,264 - Stocklogger - INFO - INFO: Agent 9 decide not to loan
+2024-02-11 17:18:30,801 - Stocklogger - INFO - INFO: Agent 10 decide not to loan
+2024-02-11 17:18:30,801 - Stocklogger - DEBUG - SESSION 1
+2024-02-11 17:18:31,928 - Stocklogger - INFO - INFO: Agent 3 decide not to action
+2024-02-11 17:18:32,801 - Stocklogger - INFO - INFO: Agent 4 decide not to action
+2024-02-11 17:18:33,979 - Stocklogger - INFO - INFO: Agent 6 decide not to action
+2024-02-11 17:18:35,135 - Stocklogger - INFO - INFO: Agent 10 decide not to action
+2024-02-11 17:18:36,002 - Stocklogger - INFO - INFO: Agent 2 decide not to action
+2024-02-11 17:18:37,142 - Stocklogger - INFO - INFO: Agent 7 decide not to action
+2024-02-11 17:18:38,413 - Stocklogger - INFO - INFO: Agent 9 decide not to action
+2024-02-11 17:18:39,621 - Stocklogger - INFO - INFO: Agent 5 decide not to action
+2024-02-11 17:18:40,578 - Stocklogger - INFO - INFO: Agent 8 decide not to action
+2024-02-11 17:18:41,830 - Stocklogger - INFO - INFO: Agent 1 decide not to action
+2024-02-11 17:19:25,210 - Stocklogger - DEBUG - --------Simulation Start!--------
+2024-02-11 17:19:25,210 - Stocklogger - DEBUG - --------DAY 1---------
+2024-02-11 17:19:26,436 - Stocklogger - INFO - INFO: Agent 1 decide not to loan
+2024-02-11 17:19:27,370 - Stocklogger - INFO - INFO: Agent 2 decide not to loan
+2024-02-11 17:19:28,561 - Stocklogger - INFO - INFO: Agent 3 decide not to loan
+2024-02-11 17:19:29,492 - Stocklogger - INFO - INFO: Agent 4 decide not to loan
+2024-02-11 17:19:30,346 - Stocklogger - INFO - INFO: Agent 5 decide not to loan
+2024-02-11 17:19:31,265 - Stocklogger - INFO - INFO: Agent 6 decide not to loan
+2024-02-11 17:19:32,199 - Stocklogger - INFO - INFO: Agent 7 decide not to loan
+2024-02-11 17:19:33,298 - Stocklogger - INFO - INFO: Agent 8 decide not to loan
+2024-02-11 17:19:34,494 - Stocklogger - INFO - INFO: Agent 9 decide not to loan
+2024-02-11 17:19:35,348 - Stocklogger - INFO - INFO: Agent 10 decide not to loan
+2024-02-11 17:19:35,348 - Stocklogger - DEBUG - SESSION 1
+2024-02-11 17:19:36,256 - Stocklogger - INFO - INFO: Agent 1 decide not to action
+2024-02-11 17:19:37,161 - Stocklogger - INFO - INFO: Agent 8 decide not to action
+2024-02-11 17:19:38,286 - Stocklogger - INFO - INFO: Agent 3 decide not to action
+2024-02-11 17:19:39,257 - Stocklogger - INFO - INFO: Agent 9 decide not to action
+2024-02-11 17:19:40,401 - Stocklogger - INFO - INFO: Agent 2 decide not to action
+2024-02-11 17:19:41,401 - Stocklogger - INFO - INFO: Agent 10 decide not to action
+2024-02-11 17:19:42,605 - Stocklogger - INFO - INFO: Agent 6 decide not to action
+2024-02-11 17:19:43,517 - Stocklogger - INFO - INFO: Agent 4 decide not to action
+2024-02-11 17:19:44,719 - Stocklogger - INFO - INFO: Agent 5 decide not to action
+2024-02-11 17:19:45,623 - Stocklogger - INFO - INFO: Agent 7 decide not to action
+2024-02-11 17:19:45,623 - Stocklogger - DEBUG - SESSION 2
+2024-02-11 17:19:46,817 - Stocklogger - INFO - INFO: Agent 1 decide not to action
+2024-02-11 17:19:48,892 - Stocklogger - INFO - INFO: Agent 10 decide not to action
+2024-02-11 17:19:50,137 - Stocklogger - INFO - INFO: Agent 4 decide not to action
+2024-02-11 17:19:51,063 - Stocklogger - INFO - INFO: Agent 9 decide not to action
+2024-02-11 17:19:51,920 - Stocklogger - INFO - INFO: Agent 3 decide not to action
+2024-02-11 17:19:52,852 - Stocklogger - INFO - INFO: Agent 7 decide not to action
+2024-02-11 17:19:53,956 - Stocklogger - INFO - INFO: Agent 8 decide not to action
+2024-02-11 17:19:55,134 - Stocklogger - INFO - INFO: Agent 5 decide not to action
+2024-02-11 17:19:55,996 - Stocklogger - INFO - INFO: Agent 2 decide not to action
+2024-02-11 17:19:57,194 - Stocklogger - INFO - INFO: Agent 6 decide not to action
+2024-02-11 17:19:57,194 - Stocklogger - DEBUG - SESSION 3
+2024-02-11 17:19:58,083 - Stocklogger - INFO - INFO: Agent 10 decide not to action
+2024-02-11 17:19:59,887 - Stocklogger - INFO - INFO: Agent 3 decide not to action
+2024-02-11 17:20:01,143 - Stocklogger - INFO - INFO: Agent 6 decide not to action
+2024-02-11 17:20:02,275 - Stocklogger - INFO - INFO: Agent 7 decide not to action
+2024-02-11 17:20:03,479 - Stocklogger - INFO - INFO: Agent 9 decide not to action
+2024-02-11 17:20:04,380 - Stocklogger - INFO - INFO: Agent 5 decide not to action
+2024-02-11 17:20:05,889 - Stocklogger - INFO - INFO: Agent 2 decide not to action
+2024-02-11 17:20:07,488 - Stocklogger - INFO - INFO: Agent 1 decide not to action
+2024-02-11 17:20:08,741 - Stocklogger - INFO - INFO: Agent 4 decide not to action
+2024-02-11 17:20:09,699 - Stocklogger - INFO - INFO: Agent 8 decide not to action
+2024-02-11 17:20:09,699 - Stocklogger - DEBUG - SESSION 4
+2024-02-11 17:20:11,190 - Stocklogger - INFO - INFO: Agent 4 decide not to action
+2024-02-11 17:20:44,380 - Stocklogger - DEBUG - --------Simulation Start!--------
+2024-02-11 17:20:44,381 - Stocklogger - DEBUG - --------DAY 1---------
+2024-02-11 17:20:45,269 - Stocklogger - INFO - INFO: Agent 1 decide not to loan
+2024-02-11 17:20:46,160 - Stocklogger - INFO - INFO: Agent 2 decide not to loan
+2024-02-11 17:20:47,060 - Stocklogger - INFO - INFO: Agent 3 decide not to loan
+2024-02-11 17:20:48,207 - Stocklogger - INFO - INFO: Agent 4 decide not to loan
+2024-02-11 17:21:35,717 - Stocklogger - DEBUG - --------Simulation Start!--------
+2024-02-11 17:21:35,717 - Stocklogger - DEBUG - --------DAY 1---------
+2024-02-11 17:21:36,694 - Stocklogger - INFO - INFO: Agent 1 decide not to loan
+2024-02-11 17:21:37,866 - Stocklogger - INFO - INFO: Agent 2 decide not to loan
+2024-02-11 17:21:38,785 - Stocklogger - INFO - INFO: Agent 3 decide not to loan
+2024-02-11 17:21:39,912 - Stocklogger - INFO - INFO: Agent 4 decide not to loan
+2024-02-11 17:21:40,749 - Stocklogger - INFO - INFO: Agent 5 decide not to loan
+2024-02-11 17:21:41,877 - Stocklogger - INFO - INFO: Agent 6 decide not to loan
+2024-02-11 17:21:43,425 - Stocklogger - INFO - INFO: Agent 7 decide not to loan
+2024-02-11 17:21:44,591 - Stocklogger - INFO - INFO: Agent 8 decide not to loan
+2024-02-11 17:21:45,786 - Stocklogger - INFO - INFO: Agent 9 decide not to loan
+2024-02-11 17:21:46,641 - Stocklogger - INFO - INFO: Agent 10 decide not to loan
+2024-02-11 17:21:46,641 - Stocklogger - DEBUG - SESSION 1
+2024-02-11 17:21:47,846 - Stocklogger - INFO - INFO: Agent 7 decide not to action
+2024-02-11 17:21:48,981 - Stocklogger - INFO - INFO: Agent 8 decide not to action
+2024-02-11 17:21:50,132 - Stocklogger - INFO - INFO: Agent 3 decide not to action
+2024-02-11 17:21:51,257 - Stocklogger - INFO - INFO: Agent 6 decide not to action
+2024-02-11 17:21:52,338 - Stocklogger - INFO - INFO: Agent 2 decide not to action
+2024-02-11 17:21:53,297 - Stocklogger - INFO - INFO: Agent 9 decide not to action
+2024-02-11 17:21:54,508 - Stocklogger - INFO - INFO: Agent 10 decide not to action
+2024-02-11 17:21:55,740 - Stocklogger - INFO - INFO: Agent 4 decide not to action
+2024-02-11 17:21:56,939 - Stocklogger - INFO - INFO: Agent 1 decide not to action
+2024-02-11 17:21:58,126 - Stocklogger - INFO - INFO: Agent 5 decide not to action
+2024-02-11 17:21:58,126 - Stocklogger - DEBUG - SESSION 2
+2024-02-11 17:21:59,036 - Stocklogger - INFO - INFO: Agent 1 decide not to action
+2024-02-11 17:21:59,944 - Stocklogger - INFO - INFO: Agent 7 decide not to action
+2024-02-11 17:22:00,895 - Stocklogger - INFO - INFO: Agent 4 decide not to action
+2024-02-11 17:22:01,874 - Stocklogger - INFO - INFO: Agent 9 decide not to action
+2024-02-11 17:22:03,410 - Stocklogger - INFO - INFO: Agent 3 decide not to action
+2024-02-11 17:23:16,864 - Stocklogger - DEBUG - --------Simulation Start!--------
+2024-02-11 17:23:16,865 - Stocklogger - DEBUG - --------DAY 1---------
+2024-02-11 17:23:17,835 - Stocklogger - INFO - INFO: Agent 1 decide not to loan
+2024-02-11 17:23:18,692 - Stocklogger - INFO - INFO: Agent 2 decide not to loan
+2024-02-11 17:23:19,812 - Stocklogger - INFO - INFO: Agent 3 decide not to loan
+2024-02-11 17:23:20,937 - Stocklogger - INFO - INFO: Agent 4 decide not to loan
+2024-02-11 17:23:22,061 - Stocklogger - INFO - INFO: Agent 5 decide not to loan
+2024-02-11 17:23:23,196 - Stocklogger - INFO - INFO: Agent 6 decide not to loan
+2024-02-11 17:23:24,046 - Stocklogger - INFO - INFO: Agent 7 decide not to loan
+2024-02-11 17:23:24,885 - Stocklogger - INFO - INFO: Agent 8 decide not to loan
+2024-02-11 17:23:26,118 - Stocklogger - INFO - INFO: Agent 9 decide not to loan
+2024-02-11 17:23:27,285 - Stocklogger - INFO - INFO: Agent 10 decide not to loan
+2024-02-11 17:23:27,286 - Stocklogger - DEBUG - SESSION 1
+2024-02-11 17:23:28,809 - Stocklogger - INFO - INFO: Agent 3 decide not to action
+2024-02-11 17:23:29,991 - Stocklogger - INFO - INFO: Agent 5 decide not to action
+2024-02-11 17:23:32,000 - Stocklogger - INFO - INFO: Agent 8 decide not to action
+2024-02-11 17:23:32,909 - Stocklogger - INFO - INFO: Agent 2 decide not to action
+2024-02-11 17:23:34,239 - Stocklogger - INFO - INFO: Agent 7 decide not to action
+2024-02-11 17:23:35,379 - Stocklogger - INFO - INFO: Agent 9 decide not to action
+2024-02-11 17:23:36,575 - Stocklogger - INFO - INFO: Agent 4 decide not to action
+2024-02-11 17:23:37,520 - Stocklogger - INFO - INFO: Agent 10 decide not to action
+2024-02-11 17:23:38,408 - Stocklogger - INFO - INFO: Agent 1 decide not to action
+2024-02-11 17:23:41,438 - Stocklogger - INFO - INFO: Agent 6 decide not to action
+2024-02-11 17:23:41,439 - Stocklogger - DEBUG - SESSION 2
+2024-02-11 17:23:42,362 - Stocklogger - INFO - INFO: Agent 9 decide not to action
+2024-02-11 17:23:43,544 - Stocklogger - INFO - INFO: Agent 1 decide not to action
+2024-02-11 17:23:44,713 - Stocklogger - INFO - INFO: Agent 4 decide not to action
+2024-02-11 17:24:24,083 - Stocklogger - DEBUG - --------Simulation Start!--------
+2024-02-11 17:24:24,084 - Stocklogger - DEBUG - --------DAY 1---------
+2024-02-11 17:24:25,932 - Stocklogger - INFO - INFO: Agent 1 decide not to loan
+2024-02-11 17:24:27,459 - Stocklogger - INFO - INFO: Agent 2 decide not to loan
+2024-02-11 17:24:29,307 - Stocklogger - INFO - INFO: Agent 3 decide not to loan
+2024-02-11 17:24:31,592 - Stocklogger - INFO - INFO: Agent 4 decide not to loan
+2024-02-11 17:24:33,609 - Stocklogger - INFO - INFO: Agent 5 decide not to loan
+2024-02-11 17:24:35,106 - Stocklogger - INFO - INFO: Agent 6 decide not to loan
+2024-02-11 17:24:36,572 - Stocklogger - INFO - INFO: Agent 7 decide not to loan
+2024-02-11 17:24:38,307 - Stocklogger - INFO - INFO: Agent 8 decide not to loan
+2024-02-11 17:24:40,382 - Stocklogger - INFO - INFO: Agent 9 decide not to loan
+2024-02-11 17:24:41,841 - Stocklogger - INFO - INFO: Agent 10 decide not to loan
+2024-02-11 17:24:41,841 - Stocklogger - DEBUG - SESSION 1
+2024-02-11 17:24:43,618 - Stocklogger - INFO - INFO: Agent 6 decide not to action
+2024-02-11 17:24:46,119 - Stocklogger - INFO - INFO: Agent 4 decide to action: {'action_type': 'buy', 'stock': 'B', 'amount': 100, 'price': 5.4}
+2024-02-11 17:24:46,120 - Stocklogger - ERROR - ERROR: WRONG ACTION: {'action_type': 'buy', 'stock': 'B', 'amount': 100, 'price': 5.4}
+2024-02-11 17:28:00,614 - Stocklogger - DEBUG - --------Simulation Start!--------
+2024-02-11 17:28:00,615 - Stocklogger - DEBUG - --------DAY 1---------
+2024-02-11 17:28:02,776 - Stocklogger - INFO - INFO: Agent 1 decide not to loan
+2024-02-11 17:28:04,229 - Stocklogger - INFO - INFO: Agent 2 decide not to loan
+2024-02-11 17:28:06,603 - Stocklogger - INFO - INFO: Agent 3 decide not to loan
+2024-02-11 17:28:08,121 - Stocklogger - INFO - INFO: Agent 4 decide not to loan
+2024-02-11 17:28:10,020 - Stocklogger - INFO - INFO: Agent 5 decide not to loan
+2024-02-11 17:28:11,700 - Stocklogger - INFO - INFO: Agent 6 decide not to loan
+2024-02-11 17:28:13,399 - Stocklogger - INFO - INFO: Agent 7 decide not to loan
+2024-02-11 17:28:15,023 - Stocklogger - INFO - INFO: Agent 8 decide not to loan
+2024-02-11 17:28:16,984 - Stocklogger - INFO - INFO: Agent 9 decide not to loan
+2024-02-11 17:28:18,525 - Stocklogger - INFO - INFO: Agent 10 decide not to loan
+2024-02-11 17:28:18,526 - Stocklogger - DEBUG - SESSION 1
+2024-02-11 17:28:20,105 - Stocklogger - INFO - INFO: Agent 7 decide not to action
+2024-02-11 17:28:21,890 - Stocklogger - INFO - INFO: Agent 6 decide not to action
+2024-02-11 17:28:24,433 - Stocklogger - INFO - INFO: Agent 5 decide to action: {'action_type': 'buy', 'stock': 'B', 'amount': 100, 'price': 5.4}
+2024-02-11 17:28:24,433 - Stocklogger - ERROR - ERROR: WRONG ACTION: {'action_type': 'buy', 'stock': 'B', 'amount': 100, 'price': 5.4}
+2024-02-11 17:28:26,050 - Stocklogger - INFO - INFO: Agent 3 decide not to action
+2024-02-11 17:28:27,734 - Stocklogger - INFO - INFO: Agent 2 decide not to action
+2024-02-11 17:28:29,613 - Stocklogger - INFO - INFO: Agent 10 decide not to action
+2024-02-11 17:28:32,661 - Stocklogger - INFO - INFO: Agent 9 decide to action: {'action_type': 'buy', 'stock': 'B', 'amount': 100, 'price': 5.4}
+2024-02-11 17:28:32,662 - Stocklogger - ERROR - ERROR: WRONG ACTION: {'action_type': 'buy', 'stock': 'B', 'amount': 100, 'price': 5.4}
+2024-02-11 17:28:34,389 - Stocklogger - INFO - INFO: Agent 1 decide not to action
+2024-02-11 17:32:39,278 - Stocklogger - DEBUG - --------Simulation Start!--------
+2024-02-11 17:32:39,278 - Stocklogger - DEBUG - --------DAY 1---------
+2024-02-11 17:32:41,311 - Stocklogger - INFO - INFO: Agent 1 decide not to loan
+2024-02-11 17:32:42,888 - Stocklogger - INFO - INFO: Agent 2 decide not to loan
+2024-02-11 17:32:44,438 - Stocklogger - INFO - INFO: Agent 3 decide not to loan
+2024-02-11 17:32:46,087 - Stocklogger - INFO - INFO: Agent 4 decide not to loan
+2024-02-11 17:32:48,000 - Stocklogger - INFO - INFO: Agent 5 decide not to loan
+2024-02-11 17:32:49,288 - Stocklogger - INFO - INFO: Agent 6 decide not to loan
+2024-02-11 17:32:50,867 - Stocklogger - INFO - INFO: Agent 7 decide not to loan
+2024-02-11 17:32:52,241 - Stocklogger - INFO - INFO: Agent 8 decide not to loan
+2024-02-11 17:32:53,803 - Stocklogger - INFO - INFO: Agent 9 decide not to loan
+2024-02-11 17:32:55,219 - Stocklogger - INFO - INFO: Agent 10 decide not to loan
+2024-02-11 17:32:55,220 - Stocklogger - DEBUG - SESSION 1
+2024-02-11 17:32:57,768 - Stocklogger - INFO - INFO: Agent 3 decide not to action
+2024-02-11 17:33:00,248 - Stocklogger - INFO - INFO: Agent 9 decide to action: {'action_type': 'buy', 'stock': 'B', 'amount': 100, 'price': 5.4}
+2024-02-11 17:35:54,536 - Stocklogger - DEBUG - --------Simulation Start!--------
+2024-02-11 17:35:54,537 - Stocklogger - DEBUG - --------DAY 1---------
+2024-02-11 17:35:56,718 - Stocklogger - INFO - INFO: Agent 1 decide not to loan
+2024-02-11 17:35:59,214 - Stocklogger - INFO - INFO: Agent 2 decide not to loan
+2024-02-11 17:36:01,007 - Stocklogger - INFO - INFO: Agent 3 decide not to loan
+2024-02-11 17:36:02,814 - Stocklogger - INFO - INFO: Agent 4 decide not to loan
+2024-02-11 17:36:04,413 - Stocklogger - INFO - INFO: Agent 5 decide not to loan
+2024-02-11 17:36:06,089 - Stocklogger - INFO - INFO: Agent 6 decide not to loan
+2024-02-11 17:36:07,709 - Stocklogger - INFO - INFO: Agent 7 decide not to loan
+2024-02-11 17:36:09,951 - Stocklogger - INFO - INFO: Agent 8 decide not to loan
+2024-02-11 17:36:11,378 - Stocklogger - INFO - INFO: Agent 9 decide not to loan
+2024-02-11 17:36:12,736 - Stocklogger - INFO - INFO: Agent 10 decide not to loan
+2024-02-11 17:36:12,737 - Stocklogger - DEBUG - SESSION 1
+2024-02-11 17:36:14,412 - Stocklogger - INFO - INFO: Agent 6 decide not to action
+2024-02-11 17:36:15,885 - Stocklogger - INFO - INFO: Agent 3 decide not to action
+2024-02-11 17:36:18,346 - Stocklogger - INFO - INFO: Agent 2 decide to action: {'action_type': 'buy', 'stock': 'B', 'amount': 100, 'price': 5.4}
+2024-02-11 17:36:18,346 - Stocklogger - INFO - ACTION - BUY:2, SELL:0, STOCK:B, PRICE:5.4, AMOUNT:100
+2024-02-11 17:36:19,845 - Stocklogger - INFO - INFO: Agent 7 decide not to action
+2024-02-11 17:36:21,378 - Stocklogger - INFO - INFO: Agent 9 decide not to action
+2024-02-11 17:36:24,239 - Stocklogger - INFO - INFO: Agent 10 decide to action: {'action_type': 'buy', 'stock': 'B', 'amount': 100, 'price': 5.4}
+2024-02-11 17:38:21,634 - Stocklogger - DEBUG - --------Simulation Start!--------
+2024-02-11 17:38:21,634 - Stocklogger - DEBUG - --------DAY 1---------
+2024-02-11 17:38:23,233 - Stocklogger - INFO - INFO: Agent 0 decide not to loan
+2024-02-11 17:39:08,873 - Stocklogger - DEBUG - --------Simulation Start!--------
+2024-02-11 17:39:08,873 - Stocklogger - DEBUG - --------DAY 1---------
+2024-02-11 17:39:10,535 - Stocklogger - INFO - INFO: Agent 0 decide not to loan
+2024-02-11 17:39:12,040 - Stocklogger - INFO - INFO: Agent 1 decide not to loan
+2024-02-11 17:39:13,316 - Stocklogger - INFO - INFO: Agent 2 decide not to loan
+2024-02-11 17:39:15,250 - Stocklogger - INFO - INFO: Agent 3 decide not to loan
+2024-02-11 17:39:18,235 - Stocklogger - DEBUG - Wrong json content in response: {"loan": "yes", "loan_type": 0, "amount": 4729.274234638411}
+2024-02-11 17:39:18,235 - Stocklogger - DEBUG - WARNING: Loan format check failed because of these issues: Value of key 'loan_type' should be 1, 2 or 3.
+2024-02-11 17:40:39,218 - Stocklogger - DEBUG - --------Simulation Start!--------
+2024-02-11 17:40:39,219 - Stocklogger - DEBUG - --------DAY 1---------
+2024-02-11 17:40:40,854 - Stocklogger - INFO - INFO: Agent 0 decide not to loan
+2024-02-11 17:40:42,451 - Stocklogger - INFO - INFO: Agent 1 decide not to loan
+2024-02-11 17:40:55,955 - Stocklogger - INFO - INFO: Agent 2 decide not to loan
+2024-02-11 17:40:58,568 - Stocklogger - INFO - INFO: Agent 3 decide not to loan
+2024-02-11 17:41:00,407 - Stocklogger - INFO - INFO: Agent 4 decide not to loan
+2024-02-11 17:41:01,856 - Stocklogger - INFO - INFO: Agent 5 decide not to loan
+2024-02-11 17:41:03,245 - Stocklogger - INFO - INFO: Agent 6 decide not to loan
+2024-02-11 17:41:04,747 - Stocklogger - INFO - INFO: Agent 7 decide not to loan
+2024-02-11 17:41:06,034 - Stocklogger - INFO - INFO: Agent 8 decide not to loan
+2024-02-11 17:41:07,829 - Stocklogger - INFO - INFO: Agent 9 decide not to loan
+2024-02-11 17:41:07,830 - Stocklogger - DEBUG - SESSION 1
+2024-02-11 17:41:09,525 - Stocklogger - INFO - INFO: Agent 6 decide not to action
+2024-02-11 17:41:11,506 - Stocklogger - INFO - INFO: Agent 1 decide not to action
+2024-02-11 17:41:16,233 - Stocklogger - INFO - INFO: Agent 8 decide to action: {'action_type': 'buy', 'stock': 'B', 'amount': 200, 'price': 6}
+2024-02-11 17:41:18,289 - Stocklogger - INFO - INFO: Agent 3 decide not to action
+2024-02-11 17:41:20,811 - Stocklogger - INFO - INFO: Agent 4 decide to action: {'action_type': 'buy', 'stock': 'B', 'amount': 200, 'price': 6}
+2024-02-11 17:41:22,525 - Stocklogger - INFO - INFO: Agent 7 decide not to action
+2024-02-11 17:41:25,163 - Stocklogger - INFO - INFO: Agent 2 decide to action: {'action_type': 'buy', 'stock': 'B', 'amount': 300, 'price': 6}
+2024-02-11 17:41:27,778 - Stocklogger - INFO - INFO: Agent 5 decide to action: {'action_type': 'buy', 'stock': 'B', 'amount': 100, 'price': 6}
+2024-02-11 17:41:29,555 - Stocklogger - INFO - INFO: Agent 0 decide not to action
+2024-02-11 17:41:31,379 - Stocklogger - INFO - INFO: Agent 9 decide not to action
+2024-02-11 17:41:31,379 - Stocklogger - DEBUG - SESSION 2
+2024-02-11 17:41:32,966 - Stocklogger - INFO - INFO: Agent 6 decide not to action
+2024-02-11 17:41:36,829 - Stocklogger - INFO - INFO: Agent 3 decide not to action
+2024-02-11 17:41:38,639 - Stocklogger - INFO - INFO: Agent 0 decide not to action
+2024-02-11 17:41:40,433 - Stocklogger - INFO - INFO: Agent 1 decide not to action
+2024-02-11 17:41:43,309 - Stocklogger - INFO - INFO: Agent 8 decide to action: {'action_type': 'sell', 'stock': 'A', 'amount': 100, 'price': 10}
+2024-02-11 17:41:46,966 - Stocklogger - INFO - INFO: Agent 5 decide to action: {'action_type': 'sell', 'stock': 'A', 'amount': 100, 'price': 10}
+2024-02-11 17:41:49,358 - Stocklogger - INFO - INFO: Agent 2 decide to action: {'action_type': 'sell', 'stock': 'A', 'amount': 50, 'price': 10}
+2024-02-11 17:41:50,953 - Stocklogger - INFO - INFO: Agent 9 decide not to action
+2024-02-11 17:41:53,547 - Stocklogger - INFO - INFO: Agent 4 decide to action: {'action_type': 'sell', 'stock': 'A', 'amount': 100, 'price': 10}
+2024-02-11 17:41:55,480 - Stocklogger - INFO - INFO: Agent 7 decide not to action
+2024-02-11 17:41:55,481 - Stocklogger - DEBUG - SESSION 3
+2024-02-11 17:41:57,167 - Stocklogger - INFO - INFO: Agent 3 decide not to action
+2024-02-11 17:41:58,770 - Stocklogger - INFO - INFO: Agent 8 decide not to action
+2024-02-11 17:42:00,378 - Stocklogger - INFO - INFO: Agent 5 decide not to action
+2024-02-11 17:42:02,419 - Stocklogger - INFO - INFO: Agent 7 decide not to action
+2024-02-11 17:42:04,333 - Stocklogger - INFO - INFO: Agent 4 decide not to action
+2024-02-11 17:42:06,091 - Stocklogger - INFO - INFO: Agent 1 decide not to action
+2024-02-11 17:42:07,890 - Stocklogger - INFO - INFO: Agent 9 decide not to action
+2024-02-11 17:42:11,100 - Stocklogger - INFO - INFO: Agent 6 decide not to action
+2024-02-11 17:42:12,808 - Stocklogger - INFO - INFO: Agent 2 decide not to action
+2024-02-11 17:42:14,656 - Stocklogger - INFO - INFO: Agent 0 decide not to action
+2024-02-11 17:42:14,657 - Stocklogger - DEBUG - SESSION 4
+2024-02-11 17:42:17,974 - Stocklogger - INFO - INFO: Agent 8 decide to action: {'action_type': 'buy', 'stock': 'B', 'amount': 100, 'price': 6}
+2024-02-11 17:42:20,406 - Stocklogger - INFO - INFO: Agent 0 decide not to action
+2024-02-11 17:42:22,187 - Stocklogger - INFO - INFO: Agent 4 decide not to action
+2024-02-11 17:42:23,965 - Stocklogger - INFO - INFO: Agent 9 decide not to action
+2024-02-11 17:42:25,723 - Stocklogger - INFO - INFO: Agent 3 decide not to action
+2024-02-11 17:42:28,275 - Stocklogger - INFO - INFO: Agent 5 decide to action: {'action_type': 'buy', 'stock': 'B', 'amount': 100, 'price': 6}
+2024-02-11 17:42:30,803 - Stocklogger - INFO - INFO: Agent 2 decide to action: {'action_type': 'buy', 'stock': 'B', 'amount': 200, 'price': 6}
+2024-02-11 17:42:32,654 - Stocklogger - INFO - INFO: Agent 1 decide not to action
+2024-02-11 17:42:34,394 - Stocklogger - INFO - INFO: Agent 6 decide not to action
+2024-02-11 17:42:36,058 - Stocklogger - INFO - INFO: Agent 7 decide not to action
+2024-02-11 17:42:36,058 - Stocklogger - DEBUG - SESSION 5
+2024-02-11 17:42:38,357 - Stocklogger - INFO - INFO: Agent 2 decide not to action
+2024-02-11 17:42:42,540 - Stocklogger - INFO - INFO: Agent 0 decide not to action
+2024-02-11 17:42:44,934 - Stocklogger - INFO - INFO: Agent 8 decide not to action
+2024-02-11 17:42:47,165 - Stocklogger - INFO - INFO: Agent 1 decide not to action
+2024-02-11 17:42:49,138 - Stocklogger - INFO - INFO: Agent 4 decide not to action
+2024-02-11 17:42:51,648 - Stocklogger - INFO - INFO: Agent 5 decide not to action
+2024-02-11 17:42:53,586 - Stocklogger - INFO - INFO: Agent 6 decide not to action
+2024-02-11 17:42:56,144 - Stocklogger - INFO - INFO: Agent 7 decide not to action
+2024-02-11 17:42:58,647 - Stocklogger - INFO - INFO: Agent 9 decide not to action
+2024-02-11 17:43:01,392 - Stocklogger - INFO - INFO: Agent 3 decide not to action
+2024-02-11 17:43:01,392 - Stocklogger - DEBUG - SESSION 6
+2024-02-11 17:43:04,618 - Stocklogger - INFO - INFO: Agent 7 decide not to action
+2024-02-11 17:43:07,119 - Stocklogger - INFO - INFO: Agent 0 decide not to action
+2024-02-11 17:43:10,209 - Stocklogger - INFO - INFO: Agent 6 decide not to action
+2024-02-11 17:43:13,107 - Stocklogger - INFO - INFO: Agent 1 decide not to action
+2024-02-11 17:43:16,127 - Stocklogger - INFO - INFO: Agent 5 decide to action: {'action_type': 'sell', 'stock': 'A', 'amount': 100, 'price': 10}
+2024-02-11 17:43:19,501 - Stocklogger - INFO - INFO: Agent 2 decide to action: {'action_type': 'sell', 'stock': 'A', 'amount': 30, 'price': 10}
+2024-02-11 17:43:22,467 - Stocklogger - INFO - INFO: Agent 8 decide to action: {'action_type': 'sell', 'stock': 'A', 'amount': 50, 'price': 10}
+2024-02-11 17:43:24,606 - Stocklogger - INFO - INFO: Agent 4 decide not to action
+2024-02-11 17:43:26,868 - Stocklogger - INFO - INFO: Agent 3 decide not to action
+2024-02-11 17:43:29,667 - Stocklogger - INFO - INFO: Agent 9 decide not to action
+2024-02-11 17:43:29,667 - Stocklogger - DEBUG - SESSION 7
+2024-02-11 17:43:32,092 - Stocklogger - INFO - INFO: Agent 0 decide not to action
+2024-02-11 17:43:34,825 - Stocklogger - INFO - INFO: Agent 3 decide not to action
+2024-02-11 17:43:37,713 - Stocklogger - INFO - INFO: Agent 7 decide not to action
+2024-02-11 17:43:39,934 - Stocklogger - INFO - INFO: Agent 6 decide not to action
+2024-02-11 17:43:43,885 - Stocklogger - INFO - INFO: Agent 9 decide not to action
+2024-02-11 17:43:46,160 - Stocklogger - INFO - INFO: Agent 2 decide not to action
+2024-02-11 17:43:48,890 - Stocklogger - INFO - INFO: Agent 5 decide not to action
+2024-02-11 17:43:51,107 - Stocklogger - INFO - INFO: Agent 1 decide not to action
+2024-02-11 17:43:53,356 - Stocklogger - INFO - INFO: Agent 4 decide not to action
+2024-02-11 17:43:55,546 - Stocklogger - INFO - INFO: Agent 8 decide not to action
+2024-02-11 17:43:55,547 - Stocklogger - DEBUG - SESSION 8
+2024-02-11 17:43:58,265 - Stocklogger - INFO - INFO: Agent 0 decide not to action
+2024-02-11 17:44:01,915 - Stocklogger - INFO - INFO: Agent 6 decide not to action
+2024-02-11 17:44:04,809 - Stocklogger - INFO - INFO: Agent 2 decide to action: {'action_type': 'buy', 'stock': 'B', 'amount': 100, 'price': 6}
+2024-02-11 17:44:07,655 - Stocklogger - INFO - INFO: Agent 3 decide not to action
+2024-02-11 17:44:11,547 - Stocklogger - INFO - INFO: Agent 8 decide to action: {'action_type': 'sell', 'stock': 'A', 'amount': 50, 'price': 10}
+2024-02-11 17:44:13,996 - Stocklogger - INFO - INFO: Agent 9 decide not to action
+2024-02-11 17:44:16,296 - Stocklogger - INFO - INFO: Agent 1 decide not to action
+2024-02-11 17:44:18,888 - Stocklogger - INFO - INFO: Agent 4 decide not to action
+2024-02-11 17:44:21,923 - Stocklogger - INFO - INFO: Agent 5 decide to action: {'action_type': 'buy', 'stock': 'B', 'amount': 100, 'price': 6}
+2024-02-11 17:44:24,801 - Stocklogger - INFO - INFO: Agent 7 decide not to action
+2024-02-11 17:44:24,801 - Stocklogger - DEBUG - SESSION 9
+2024-02-11 17:44:27,263 - Stocklogger - INFO - INFO: Agent 9 decide not to action
+2024-02-11 17:44:29,854 - Stocklogger - INFO - INFO: Agent 4 decide not to action
+2024-02-11 17:44:31,677 - Stocklogger - INFO - INFO: Agent 1 decide not to action
+2024-02-11 17:44:34,101 - Stocklogger - INFO - INFO: Agent 0 decide not to action
+2024-02-11 17:44:36,438 - Stocklogger - INFO - INFO: Agent 5 decide not to action
+2024-02-11 17:44:38,808 - Stocklogger - INFO - INFO: Agent 8 decide not to action
+2024-02-11 17:44:41,269 - Stocklogger - INFO - INFO: Agent 3 decide not to action
+2024-02-11 17:44:43,766 - Stocklogger - INFO - INFO: Agent 7 decide not to action
+2024-02-11 17:44:46,451 - Stocklogger - INFO - INFO: Agent 6 decide not to action
+2024-02-11 17:44:48,787 - Stocklogger - INFO - INFO: Agent 2 decide not to action
+2024-02-11 17:44:48,787 - Stocklogger - DEBUG - SESSION 10
+2024-02-11 17:44:51,538 - Stocklogger - INFO - INFO: Agent 7 decide not to action
+2024-02-11 17:44:56,437 - Stocklogger - INFO - INFO: Agent 5 decide to action: {'action_type': 'sell', 'stock': 'A', 'amount': 100, 'price': 10}
+2024-02-11 17:44:59,075 - Stocklogger - INFO - INFO: Agent 9 decide not to action
+2024-02-11 17:45:01,191 - Stocklogger - INFO - INFO: Agent 0 decide not to action
+2024-02-11 17:45:04,211 - Stocklogger - INFO - INFO: Agent 1 decide not to action
+2024-02-11 17:45:06,728 - Stocklogger - INFO - INFO: Agent 6 decide not to action
+2024-02-11 17:45:10,802 - Stocklogger - INFO - INFO: Agent 2 decide to action: {'action_type': 'sell', 'stock': 'A', 'amount': 20, 'price': 10}
+2024-02-11 17:45:13,362 - Stocklogger - INFO - INFO: Agent 3 decide not to action
+2024-02-11 17:45:15,958 - Stocklogger - INFO - INFO: Agent 4 decide not to action
+2024-02-11 17:45:19,435 - Stocklogger - INFO - INFO: Agent 8 decide to action: {'action_type': 'sell', 'stock': 'A', 'amount': 50, 'price': 10}
+2024-02-11 17:45:19,435 - Stocklogger - DEBUG - SESSION 11
+2024-02-11 17:45:21,858 - Stocklogger - INFO - INFO: Agent 4 decide not to action
+2024-02-11 17:45:25,154 - Stocklogger - INFO - INFO: Agent 3 decide not to action
+2024-02-11 17:45:27,781 - Stocklogger - INFO - INFO: Agent 0 decide not to action
+2024-02-11 17:45:30,999 - Stocklogger - INFO - INFO: Agent 9 decide not to action
+2024-02-11 17:45:39,974 - Stocklogger - INFO - INFO: Agent 2 decide not to action
+2024-02-11 17:45:42,176 - Stocklogger - INFO - INFO: Agent 7 decide not to action
+2024-02-11 17:45:45,274 - Stocklogger - INFO - INFO: Agent 6 decide not to action
+2024-02-11 17:45:48,189 - Stocklogger - INFO - INFO: Agent 1 decide not to action
+2024-02-11 17:45:51,060 - Stocklogger - INFO - INFO: Agent 5 decide not to action
+2024-02-11 17:45:54,911 - Stocklogger - INFO - INFO: Agent 8 decide not to action
+2024-02-11 17:45:54,912 - Stocklogger - DEBUG - SESSION 12
+2024-02-11 17:45:56,558 - Stocklogger - WARNING - OpenAI api retry...Error code: 400 - {'error': {'message': "This model's maximum context length is 8192 tokens. However, your messages resulted in 8855 tokens. Please reduce the length of the messages.", 'type': 'invalid_request_error', 'param': 'messages', 'code': 'context_length_exceeded'}}
+2024-02-11 17:45:58,026 - Stocklogger - WARNING - OpenAI api retry...Error code: 400 - {'error': {'message': "This model's maximum context length is 8192 tokens. However, your messages resulted in 8855 tokens. Please reduce the length of the messages.", 'type': 'invalid_request_error', 'param': 'messages', 'code': 'context_length_exceeded'}}
+2024-02-11 17:45:59,039 - Stocklogger - ERROR - ERROR: OPENAI API FAILED. SKIP THIS INTERACTION.
+2024-02-11 17:46:00,638 - Stocklogger - WARNING - OpenAI api retry...Error code: 400 - {'error': {'message': "This model's maximum context length is 8192 tokens. However, your messages resulted in 8996 tokens. Please reduce the length of the messages.", 'type': 'invalid_request_error', 'param': 'messages', 'code': 'context_length_exceeded'}}
+2024-02-11 17:46:02,074 - Stocklogger - WARNING - OpenAI api retry...Error code: 400 - {'error': {'message': "This model's maximum context length is 8192 tokens. However, your messages resulted in 8996 tokens. Please reduce the length of the messages.", 'type': 'invalid_request_error', 'param': 'messages', 'code': 'context_length_exceeded'}}
+2024-02-11 17:46:03,090 - Stocklogger - ERROR - ERROR: OPENAI API FAILED. SKIP THIS INTERACTION.
+2024-02-11 17:46:04,086 - Stocklogger - WARNING - OpenAI api retry...Error code: 400 - {'error': {'message': "This model's maximum context length is 8192 tokens. However, your messages resulted in 9027 tokens. Please reduce the length of the messages.", 'type': 'invalid_request_error', 'param': 'messages', 'code': 'context_length_exceeded'}}
+2024-02-11 17:46:06,017 - Stocklogger - WARNING - OpenAI api retry...Error code: 400 - {'error': {'message': "This model's maximum context length is 8192 tokens. However, your messages resulted in 9027 tokens. Please reduce the length of the messages.", 'type': 'invalid_request_error', 'param': 'messages', 'code': 'context_length_exceeded'}}
+2024-02-11 17:46:07,018 - Stocklogger - ERROR - ERROR: OPENAI API FAILED. SKIP THIS INTERACTION.
+2024-02-11 17:46:08,033 - Stocklogger - WARNING - OpenAI api retry...Error code: 400 - {'error': {'message': "This model's maximum context length is 8192 tokens. However, your messages resulted in 8782 tokens. Please reduce the length of the messages.", 'type': 'invalid_request_error', 'param': 'messages', 'code': 'context_length_exceeded'}}
+2024-02-11 17:46:09,479 - Stocklogger - WARNING - OpenAI api retry...Error code: 400 - {'error': {'message': "This model's maximum context length is 8192 tokens. However, your messages resulted in 8782 tokens. Please reduce the length of the messages.", 'type': 'invalid_request_error', 'param': 'messages', 'code': 'context_length_exceeded'}}
+2024-02-11 17:46:10,494 - Stocklogger - ERROR - ERROR: OPENAI API FAILED. SKIP THIS INTERACTION.
+2024-02-11 17:46:11,626 - Stocklogger - WARNING - OpenAI api retry...Error code: 400 - {'error': {'message': "This model's maximum context length is 8192 tokens. However, your messages resulted in 8781 tokens. Please reduce the length of the messages.", 'type': 'invalid_request_error', 'param': 'messages', 'code': 'context_length_exceeded'}}
+2024-02-11 17:46:13,068 - Stocklogger - WARNING - OpenAI api retry...Error code: 400 - {'error': {'message': "This model's maximum context length is 8192 tokens. However, your messages resulted in 8781 tokens. Please reduce the length of the messages.", 'type': 'invalid_request_error', 'param': 'messages', 'code': 'context_length_exceeded'}}
+2024-02-11 17:46:14,071 - Stocklogger - ERROR - ERROR: OPENAI API FAILED. SKIP THIS INTERACTION.
+2024-02-11 18:05:18,824 - Stocklogger - DEBUG - --------Simulation Start!--------
+2024-02-11 18:05:18,824 - Stocklogger - DEBUG - --------DAY 1---------
+2024-02-11 18:05:20,734 - Stocklogger - DEBUG - Wrong json content in response: {{"loan" : "no"}}
+2024-02-11 18:05:20,734 - Stocklogger - DEBUG - WARNING: Loan format check failed because of these issues: Wrong json format, there is no {} or more than one {} in response.
+2024-02-11 18:07:19,646 - Stocklogger - DEBUG - --------Simulation Start!--------
+2024-02-11 18:07:19,646 - Stocklogger - DEBUG - --------DAY 1---------
+2024-02-11 18:07:22,379 - Stocklogger - INFO - INFO: Agent 0 decide not to loan
+2024-02-11 18:07:23,977 - Stocklogger - INFO - INFO: Agent 1 decide not to loan
+2024-02-11 18:07:25,454 - Stocklogger - INFO - INFO: Agent 2 decide not to loan
+2024-02-11 18:07:27,531 - Stocklogger - INFO - INFO: Agent 3 decide to loan: {'loan': 'yes', 'loan_type': 2, 'amount': 9049.99470892431, 'repayment_date': 301}
+2024-02-11 18:07:29,385 - Stocklogger - INFO - INFO: Agent 4 decide not to loan
+2024-02-11 18:07:30,855 - Stocklogger - INFO - INFO: Agent 5 decide not to loan
+2024-02-11 18:07:32,280 - Stocklogger - INFO - INFO: Agent 6 decide not to loan
+2024-02-11 18:07:33,828 - Stocklogger - INFO - INFO: Agent 7 decide not to loan
+2024-02-11 18:07:35,147 - Stocklogger - INFO - INFO: Agent 8 decide not to loan
+2024-02-11 18:07:37,134 - Stocklogger - INFO - INFO: Agent 9 decide not to loan
+2024-02-11 18:07:37,134 - Stocklogger - DEBUG - SESSION 1
+2024-02-11 18:07:38,798 - Stocklogger - INFO - INFO: Agent 5 decide not to action
+2024-02-11 18:07:40,934 - Stocklogger - INFO - INFO: Agent 3 decide to action: {'action_type': 'buy', 'stock': 'B', 'amount': 2000, 'price': 6}
+2024-02-11 18:07:42,522 - Stocklogger - INFO - INFO: Agent 8 decide not to action
+2024-02-11 18:07:44,376 - Stocklogger - INFO - INFO: Agent 0 decide to action: {'action_type': 'buy', 'stock': 'B', 'amount': 855, 'price': 6}
+2024-02-11 18:07:46,853 - Stocklogger - INFO - INFO: Agent 1 decide to action: {'action_type': 'buy', 'stock': 'B', 'amount': 1200, 'price': 6}
+2024-02-11 18:07:48,421 - Stocklogger - INFO - INFO: Agent 4 decide not to action
+2024-02-11 18:07:50,471 - Stocklogger - INFO - INFO: Agent 7 decide not to action
+2024-02-11 18:07:51,848 - Stocklogger - INFO - INFO: Agent 6 decide not to action
+2024-02-11 18:07:53,519 - Stocklogger - INFO - INFO: Agent 9 decide not to action
+2024-02-11 18:07:55,464 - Stocklogger - INFO - INFO: Agent 2 decide to action: {'action_type': 'buy', 'stock': 'B', 'amount': 200, 'price': 6}
+2024-02-11 18:07:55,465 - Stocklogger - DEBUG - SESSION 2
+2024-02-11 18:07:56,906 - Stocklogger - INFO - INFO: Agent 2 decide not to action
+2024-02-11 18:07:58,576 - Stocklogger - INFO - INFO: Agent 0 decide not to action
+2024-02-11 18:08:00,579 - Stocklogger - INFO - INFO: Agent 8 decide to action: {'action_type': 'buy', 'stock': 'B', 'amount': 315, 'price': 6}
+2024-02-11 18:08:02,441 - Stocklogger - INFO - INFO: Agent 9 decide to action: {'action_type': 'buy', 'stock': 'B', 'amount': 440, 'price': 6}
+2024-02-11 18:08:04,492 - Stocklogger - INFO - INFO: Agent 4 decide not to action
+2024-02-11 18:08:06,837 - Stocklogger - INFO - INFO: Agent 7 decide not to action
+2024-02-11 18:08:08,238 - Stocklogger - INFO - INFO: Agent 1 decide not to action
+2024-02-11 18:08:10,049 - Stocklogger - INFO - INFO: Agent 6 decide not to action
+2024-02-11 18:08:12,399 - Stocklogger - INFO - INFO: Agent 3 decide not to action
+2024-02-11 18:08:14,368 - Stocklogger - INFO - INFO: Agent 5 decide not to action
+2024-02-11 18:08:14,368 - Stocklogger - DEBUG - SESSION 3
+2024-02-11 18:08:16,363 - Stocklogger - INFO - INFO: Agent 1 decide not to action
+2024-02-11 18:08:18,400 - Stocklogger - INFO - INFO: Agent 7 decide not to action
+2024-02-11 18:08:20,252 - Stocklogger - INFO - INFO: Agent 9 decide not to action
+2024-02-11 18:08:22,002 - Stocklogger - INFO - INFO: Agent 4 decide not to action
+2024-02-11 18:08:23,796 - Stocklogger - INFO - INFO: Agent 0 decide not to action
+2024-02-11 18:08:25,832 - Stocklogger - INFO - INFO: Agent 5 decide not to action
+2024-02-11 18:08:28,059 - Stocklogger - INFO - INFO: Agent 3 decide not to action
+2024-02-11 18:08:29,936 - Stocklogger - INFO - INFO: Agent 6 decide not to action
+2024-02-11 18:08:31,767 - Stocklogger - INFO - INFO: Agent 8 decide not to action
+2024-02-11 18:08:33,515 - Stocklogger - INFO - INFO: Agent 2 decide not to action
+2024-02-11 18:10:30,236 - Stocklogger - DEBUG - --------DAY 2---------
+2024-02-11 18:10:32,707 - Stocklogger - INFO - INFO: Agent 0 decide not to loan
+2024-02-11 18:10:36,595 - Stocklogger - INFO - INFO: Agent 1 decide to loan: {'loan': 'yes', 'loan_type': 2, 'amount': 2863.8757554309714, 'repayment_date': 302}
+2024-02-11 18:10:39,364 - Stocklogger - INFO - INFO: Agent 2 decide to loan: {'loan': 'yes', 'loan_type': 2, 'amount': 2000, 'repayment_date': 302}
+2024-02-11 18:14:26,116 - Stocklogger - DEBUG - --------Simulation Start!--------
+2024-02-11 18:14:26,116 - Stocklogger - DEBUG - --------DAY 1---------
+2024-02-11 18:14:27,939 - Stocklogger - INFO - INFO: Agent 0 decide not to loan
+2024-02-11 18:14:30,294 - Stocklogger - INFO - INFO: Agent 1 decide not to loan
+2024-02-11 18:14:31,653 - Stocklogger - INFO - INFO: Agent 2 decide not to loan
+2024-02-11 18:14:33,007 - Stocklogger - INFO - INFO: Agent 3 decide not to loan
+2024-02-11 18:14:34,473 - Stocklogger - INFO - INFO: Agent 4 decide not to loan
+2024-02-11 18:14:35,815 - Stocklogger - INFO - INFO: Agent 5 decide not to loan
+2024-02-11 18:14:37,361 - Stocklogger - INFO - INFO: Agent 6 decide not to loan
+2024-02-11 18:14:38,902 - Stocklogger - INFO - INFO: Agent 7 decide not to loan
+2024-02-11 18:14:40,594 - Stocklogger - INFO - INFO: Agent 8 decide not to loan
+2024-02-11 18:14:42,205 - Stocklogger - INFO - INFO: Agent 9 decide not to loan
+2024-02-11 18:14:42,206 - Stocklogger - DEBUG - SESSION 1
+2024-02-11 18:14:43,731 - Stocklogger - INFO - INFO: Agent 9 decide not to action
+2024-02-11 18:14:45,557 - Stocklogger - INFO - INFO: Agent 8 decide not to action
+2024-02-11 18:14:47,436 - Stocklogger - INFO - INFO: Agent 0 decide not to action
+2024-02-11 18:14:48,760 - Stocklogger - INFO - INFO: Agent 7 decide not to action
+2024-02-11 18:14:50,111 - Stocklogger - INFO - INFO: Agent 6 decide not to action
+2024-02-11 18:14:52,420 - Stocklogger - INFO - INFO: Agent 5 decide to action: {'action_type': 'buy', 'stock': 'B', 'amount': 460, 'price': 6}
+2024-02-11 18:14:53,658 - Stocklogger - INFO - INFO: Agent 2 decide not to action
+2024-02-11 18:14:55,217 - Stocklogger - INFO - INFO: Agent 1 decide not to action
+2024-02-11 18:14:56,730 - Stocklogger - INFO - INFO: Agent 3 decide not to action
+2024-02-11 18:14:58,264 - Stocklogger - INFO - INFO: Agent 4 decide not to action
+2024-02-11 18:14:58,265 - Stocklogger - DEBUG - SESSION 2
+2024-02-11 18:15:00,990 - Stocklogger - INFO - INFO: Agent 9 decide to action: {'action_type': 'buy', 'stock': 'B', 'amount': 400, 'price': 6}
+2024-02-11 18:15:03,627 - Stocklogger - INFO - INFO: Agent 1 decide to action: {'action_type': 'buy', 'stock': 'B', 'amount': 400, 'price': 6}
+2024-02-11 18:15:05,412 - Stocklogger - INFO - INFO: Agent 8 decide not to action
+2024-02-11 18:15:07,565 - Stocklogger - INFO - INFO: Agent 0 decide not to action
+2024-02-11 18:15:09,472 - Stocklogger - INFO - INFO: Agent 2 decide not to action
+2024-02-11 18:15:11,110 - Stocklogger - INFO - INFO: Agent 6 decide not to action
+2024-02-11 18:15:13,407 - Stocklogger - INFO - INFO: Agent 3 decide not to action
+2024-02-11 18:15:15,046 - Stocklogger - INFO - INFO: Agent 7 decide not to action
+2024-02-11 18:15:17,216 - Stocklogger - INFO - INFO: Agent 4 decide not to action
+2024-02-11 18:15:19,507 - Stocklogger - INFO - INFO: Agent 5 decide not to action
+2024-02-11 18:15:19,507 - Stocklogger - DEBUG - SESSION 3
+2024-02-11 18:15:21,736 - Stocklogger - INFO - INFO: Agent 6 decide not to action
+2024-02-11 18:15:23,496 - Stocklogger - INFO - INFO: Agent 1 decide not to action
+2024-02-11 18:15:25,683 - Stocklogger - INFO - INFO: Agent 7 decide not to action
+2024-02-11 18:15:27,972 - Stocklogger - INFO - INFO: Agent 9 decide not to action
+2024-02-11 18:15:29,931 - Stocklogger - INFO - INFO: Agent 8 decide not to action
+2024-02-11 18:15:31,665 - Stocklogger - INFO - INFO: Agent 5 decide not to action
+2024-02-11 18:15:33,820 - Stocklogger - INFO - INFO: Agent 3 decide not to action
+2024-02-11 18:15:35,588 - Stocklogger - INFO - INFO: Agent 2 decide not to action
+2024-02-11 18:15:37,488 - Stocklogger - INFO - INFO: Agent 0 decide not to action
+2024-02-11 18:15:39,113 - Stocklogger - INFO - INFO: Agent 4 decide not to action
+2024-02-11 18:15:39,113 - Stocklogger - DEBUG - DAY 1 ends, display forum messages...
+2024-02-11 18:15:48,822 - Stocklogger - INFO - Agent 0 says: 今天的交易日非常有趣，尽管我选择了保持观望态度，没有进行任何买卖操作。我注意到B股票吸引了一些买家的兴趣，这可能是因为它的高风险高收益特性。对于我来说，作为一个稳健型投资者，我更倾向于观察市场动态，而不是急于行动。我认为耐心是投资成功的关键之一，尤其是在如此波动的市场中。我期待看到接下来几天市场的发展，并根据市场情况做出明智的决策。希望所有交易员都能在这个市场中找到自己的成功之路。
+2024-02-11 18:15:59,277 - Stocklogger - INFO - Agent 1 says: 今天的交易日非常有趣，尤其是对于B公司的股票，我们看到了市场上对它的极大兴趣。尽管B公司被标记为高风险高回报，但这正是市场活力的体现。我注意到了B股的买盘相当活跃，这可能预示着市场对其未来表现的乐观预期。
+
+对于A公司，虽然今天没有太多的买卖动作，但稳定的股价和公司的强劲基础让我对持有这些股票感到安心。在这样的市场环境下，保持耐心，观察市场动态，寻找合适的机会成为了我的主要策略。
+
+今天的交易没有让我进行任何操作，但这正是交易的一部分——不是每一天都需要活跃交易。有时候，观望和等待是更明智的选择。我期待着接下来的交易日，希望能够捕捉到更多的机会。
+2024-02-11 18:16:05,911 - Stocklogger - INFO - Agent 2 says: 今天的交易日非常有趣，尽管我选择了保持观望态度，没有进行任何买卖操作。我注意到了B股票的买盘活跃，这可能预示着市场对其有一定的期待，尽管它被标记为高风险高收益。A股票作为一只表现稳健的股票，今天并没有太多的波动，这对于像我这样偏好稳定的投资者来说，是一个好消息。我会继续关注市场动态，寻找合适的机会进行投资。希望所有交易员都能在市场中找到自己的机会，实现盈利。
+2024-02-11 18:16:20,172 - Stocklogger - INFO - Agent 3 says: 今天的交易日非常有趣，尽管我选择了保持观望态度，没有进行任何买卖操作。我注意到了B股票的活跃买盘，这表明市场对于这只新上市的股票充满了兴趣和期待。尽管B股票被标记为高风险高收益，但似乎有不少交易员愿意接受这个挑战。对于A股票，今天的市场相对平静，没有出现明显的买卖动向，这可能是因为大家都认为它是一只稳定的股票。
+
+从今天的市场行为来看，我认为重要的是要保持耐心，观察市场趋势，并在合适的时机做出决策。对于B股票，虽然它显示出了潜在的增长机会，但我会更加谨慎，等待更多的市场信息，以便做出更为明智的投资决策。同时，我也会继续关注A股票的表现，看看是否有利可图的机会出现。
+
+总的来说，今天是一个学习和观察的好机会，我期待着接下来的交易日能够带来更多的机会和挑战。
+2024-02-11 18:16:27,816 - Stocklogger - INFO - Agent 4 says: 今天的交易日非常有趣，尽管我最终决定保持观望态度，没有进行任何买卖操作。我注意到B股票吸引了一些买家的兴趣，这可能表明市场对新上市股票的态度正在变得积极。然而，鉴于我的稳健投资风格，我选择在进行任何操作之前进一步观察市场动态。我认为耐心等待更明确的市场信号是明智的，尤其是在面对新上市股票时，这些股票往往伴随着较高的不确定性和波动性。期待明天的交易日，希望能够捕捉到更多有价值的投资机会。
+2024-02-11 18:16:35,538 - Stocklogger - INFO - Agent 5 says: 今天的交易日非常有趣，尤其是对于新上市的B股票。我注意到B股票的买盘相当活跃，这表明市场对它有很大的兴趣。虽然我今天没有进行任何交易，但我密切关注了市场动态，尤其是B股票的表现。我认为，对于激进型投资者来说，B股票可能是一个值得关注的机会，因为它的风险和收益都比较大。然而，重要的是要谨慎行事，不要仅仅因为一时的市场热情就冲动投资。我会继续观察市场走势，并在适当的时候做出我的投资决策。希望所有交易员都能在这个市场中找到自己的机会。
+2024-02-11 18:16:46,526 - Stocklogger - INFO - Agent 6 says: 今天的交易日非常有趣，尽管我选择了保持观望态度，没有进行任何买卖操作。我注意到B股的买盘相当活跃，这可能预示着市场对B股的兴趣正在增加，尤其是考虑到它是一个新上市的股票，风险和收益都比较大。对于A股，今天似乎没有太多的波动，这对于像我这样偏好稳健策略的交易员来说，是一个好消息。我会继续密切关注市场动态，寻找合适的机会进行操作。希望所有交易员都能在接下来的交易日中找到自己的机会。
+2024-02-11 18:16:54,438 - Stocklogger - INFO - Agent 7 says: 今天的交易日非常有趣，尽管我选择了保持观望态度，没有进行任何买卖操作。我注意到B股有一定的买盘，但我决定在更多信息公开后再做决策。市场总是充满变数，作为一名稳健型投资者，我更倾向于在有充分信息和信心的情况下才进行操作。期待接下来的交易日能有更多的机会出现。保持耐心，寻找合适的时机，是我一直坚持的原则。
+2024-02-11 18:17:03,195 - Stocklogger - INFO - Agent 8 says: 今天的交易日非常有趣，尽管我选择了保持观望态度，没有进行任何买卖操作。我注意到B股的买盘相当活跃，这可能表明市场对这只新上市股票的兴趣很高，尽管它被标记为高风险高收益。对于A股，今天似乎没有太多动作，这可能是因为大家都在等待更明确的市场信号。作为一名稳健型投资者，我认为在做出投资决策之前，观察市场动态和趋势是非常重要的。我期待看到接下来几天市场的表现，以及它如何影响我的投资策略。总的来说，今天是一个学习和观察的好日子，我期待在接下来的交易日中采取更积极的行动。
+2024-02-11 18:17:16,883 - Stocklogger - INFO - Agent 9 says: 今天的交易日非常有趣，尤其是对于B公司的股票。虽然我最终决定保持观望态度，没有进行任何买卖操作，但是观察市场的动态和其他交易员的行为给了我很多洞察。
+
+首先，我注意到B公司股票的买盘非常活跃，这表明市场上有不少交易员对这只新上市的股票抱有很大的兴趣。这种情况下，虽然B公司的股票被标记为“风险大收益大”，但是市场的热情似乎在某种程度上降低了对风险的担忧。
+
+其次，A公司股票的交易相对平静，没有买卖盘的活动。这可能是因为大家都在观望B公司股票的表现，或者是因为A公司股票已经被市场广泛认为是一种安全的投资。
+
+对于我来说，今天的经历强化了我对市场情绪和交易动态的理解。虽然我今天没有进行任何交易，但是观察和分析市场的这一过程对我来说是非常宝贵的。我期待在接下来的交易日中利用这些洞察来做出更明智的交易决策。
+2024-02-11 18:17:16,884 - Stocklogger - DEBUG - --------DAY 2---------
+2024-02-11 18:17:20,117 - Stocklogger - INFO - INFO: Agent 0 decide not to loan
+2024-02-11 18:17:22,932 - Stocklogger - INFO - INFO: Agent 1 decide not to loan
+2024-02-11 18:17:25,583 - Stocklogger - INFO - INFO: Agent 2 decide not to loan
+2024-02-11 18:17:28,950 - Stocklogger - INFO - INFO: Agent 3 decide not to loan
+2024-02-11 18:17:31,254 - Stocklogger - INFO - INFO: Agent 4 decide not to loan
+2024-02-11 18:17:33,686 - Stocklogger - INFO - INFO: Agent 5 decide not to loan
+2024-02-11 18:17:36,065 - Stocklogger - INFO - INFO: Agent 6 decide not to loan
+2024-02-11 18:17:39,002 - Stocklogger - INFO - INFO: Agent 7 decide not to loan
+2024-02-11 18:17:41,161 - Stocklogger - INFO - INFO: Agent 8 decide not to loan
+2024-02-11 18:17:43,869 - Stocklogger - INFO - INFO: Agent 9 decide not to loan
+2024-02-11 18:17:43,870 - Stocklogger - DEBUG - SESSION 1
+2024-02-11 18:17:46,351 - Stocklogger - INFO - INFO: Agent 3 decide not to action
+2024-02-11 18:17:49,562 - Stocklogger - INFO - INFO: Agent 7 decide not to action
+2024-02-11 18:17:51,636 - Stocklogger - INFO - INFO: Agent 6 decide not to action
+2024-02-11 18:17:54,260 - Stocklogger - INFO - INFO: Agent 8 decide not to action
+2024-02-11 18:17:56,696 - Stocklogger - INFO - INFO: Agent 4 decide not to action
+2024-02-11 18:17:59,358 - Stocklogger - INFO - INFO: Agent 5 decide not to action
+2024-02-11 18:18:01,666 - Stocklogger - INFO - INFO: Agent 2 decide not to action
+2024-02-11 18:18:03,906 - Stocklogger - INFO - INFO: Agent 9 decide not to action
+2024-02-11 18:18:05,962 - Stocklogger - INFO - INFO: Agent 0 decide not to action
+2024-02-11 18:18:08,625 - Stocklogger - INFO - INFO: Agent 1 decide not to action
+2024-02-11 18:18:08,625 - Stocklogger - DEBUG - SESSION 2
+2024-02-11 18:18:11,114 - Stocklogger - INFO - INFO: Agent 0 decide not to action
+2024-02-11 18:18:14,025 - Stocklogger - INFO - INFO: Agent 2 decide not to action
+2024-02-11 18:18:16,561 - Stocklogger - INFO - INFO: Agent 5 decide not to action
+2024-02-11 18:18:19,084 - Stocklogger - INFO - INFO: Agent 6 decide not to action
+2024-02-11 18:18:21,487 - Stocklogger - INFO - INFO: Agent 4 decide not to action
+2024-02-11 18:20:56,757 - Stocklogger - DEBUG - --------Simulation Start!--------
+2024-02-11 18:20:56,757 - Stocklogger - DEBUG - --------DAY 1---------
+2024-02-11 18:20:58,586 - Stocklogger - INFO - INFO: Agent 0 decide not to loan
+2024-02-11 18:20:59,768 - Stocklogger - INFO - INFO: Agent 1 decide not to loan
+2024-02-11 18:21:02,297 - Stocklogger - INFO - INFO: Agent 2 decide to loan: {'loan': 'yes', 'loan_type': 2, 'amount': 6578.2776084797115, 'repayment_date': 301}
+2024-02-11 18:21:03,700 - Stocklogger - INFO - INFO: Agent 3 decide not to loan
+2024-02-11 18:21:05,495 - Stocklogger - INFO - INFO: Agent 4 decide not to loan
+2024-02-11 18:21:06,832 - Stocklogger - INFO - INFO: Agent 5 decide not to loan
+2024-02-11 18:21:08,274 - Stocklogger - INFO - INFO: Agent 6 decide not to loan
+2024-02-11 18:21:09,766 - Stocklogger - INFO - INFO: Agent 7 decide not to loan
+2024-02-11 18:21:11,191 - Stocklogger - INFO - INFO: Agent 8 decide not to loan
+2024-02-11 18:21:12,718 - Stocklogger - INFO - INFO: Agent 9 decide not to loan
+2024-02-11 18:21:12,719 - Stocklogger - DEBUG - SESSION 1
+2024-02-11 18:21:25,246 - Stocklogger - DEBUG - --------Simulation Start!--------
+2024-02-11 18:21:25,246 - Stocklogger - DEBUG - --------DAY 1---------
+2024-02-11 18:21:27,788 - Stocklogger - INFO - INFO: Agent 0 decide not to loan
+2024-02-11 18:21:29,432 - Stocklogger - INFO - INFO: Agent 1 decide not to loan
+2024-02-11 18:21:30,997 - Stocklogger - INFO - INFO: Agent 2 decide not to loan
+2024-02-11 18:21:32,603 - Stocklogger - INFO - INFO: Agent 3 decide not to loan
+2024-02-11 18:21:35,141 - Stocklogger - INFO - INFO: Agent 4 decide to loan: {'loan': 'yes', 'loan_type': 2, 'amount': 3235.3569110504905, 'repayment_date': 301}
+2024-02-11 18:21:35,141 - Stocklogger - DEBUG - SESSION 1
+2024-02-11 18:21:36,713 - Stocklogger - INFO - INFO: Agent 1 decide not to action
+2024-02-11 18:21:38,389 - Stocklogger - INFO - INFO: Agent 3 decide not to action
+2024-02-11 18:21:40,204 - Stocklogger - INFO - INFO: Agent 2 decide to action: {'action_type': 'buy', 'stock': 'B', 'amount': 200, 'price': 6}
+2024-02-11 18:21:41,829 - Stocklogger - INFO - INFO: Agent 0 decide not to action
+2024-02-11 18:21:44,007 - Stocklogger - INFO - INFO: Agent 4 decide to action: {'action_type': 'buy', 'stock': 'B', 'amount': 816, 'price': 6}
+2024-02-11 18:21:44,008 - Stocklogger - DEBUG - SESSION 2
+2024-02-11 18:21:46,404 - Stocklogger - INFO - INFO: Agent 2 decide not to action
+2024-02-11 18:21:48,556 - Stocklogger - INFO - INFO: Agent 4 decide not to action
+2024-02-11 18:21:50,555 - Stocklogger - INFO - INFO: Agent 3 decide not to action
+2024-02-11 18:21:52,688 - Stocklogger - INFO - INFO: Agent 0 decide not to action
+2024-02-11 18:21:54,143 - Stocklogger - INFO - INFO: Agent 1 decide not to action
+2024-02-11 18:21:54,143 - Stocklogger - DEBUG - SESSION 3
+2024-02-11 18:21:55,881 - Stocklogger - INFO - INFO: Agent 3 decide not to action
+2024-02-11 18:21:57,451 - Stocklogger - INFO - INFO: Agent 4 decide not to action
+2024-02-11 18:21:59,076 - Stocklogger - INFO - INFO: Agent 0 decide not to action
+2024-02-11 18:22:00,611 - Stocklogger - INFO - INFO: Agent 2 decide not to action
+2024-02-11 18:22:02,531 - Stocklogger - INFO - INFO: Agent 1 decide not to action
+2024-02-11 18:22:02,531 - Stocklogger - DEBUG - DAY 1 ends, display forum messages...
+2024-02-11 18:22:11,854 - Stocklogger - INFO - Agent 0 says: 今天的交易日非常有趣，尽管我选择了保持观望态度，没有进行任何买卖操作。我注意到B股票吸引了一些买家，这可能表明市场对这只新上市股票的兴趣正在增加。尽管如此，我决定保持谨慎，观察市场动态，以便更好地理解这两只股票的长期潜力。我认为耐心是投资成功的关键，特别是在如此动态的市场中。期待明天的交易日，希望能够捕捉到更多的机会。
+2024-02-11 18:22:20,723 - Stocklogger - INFO - Agent 1 says: 今天的交易日非常有趣，尽管我选择了保持观望态度，没有进行任何买卖操作。我注意到了B股票的买盘活跃，这可能预示着市场对B股票的兴趣正在增加，尤其是考虑到它是一个风险较大但收益可能较高的股票。A股票今天相对平静，没有太多的买卖盘动作，这可能是因为市场普遍认为A股票是一个稳健的投资选择。对于稳健型投资者来说，今天的市场并没有提供太多的操作机会，但对于喜欢追求高风险高回报的投资者来说，B股票可能是一个值得关注的目标。我会继续保持观望，分析市场动态，寻找合适的投资机会。
+2024-02-11 18:22:30,629 - Stocklogger - INFO - Agent 2 says: 今天的交易日非常有趣，尤其是对于新上市的B股票。虽然我今天没有进行任何交易，但我密切关注了市场动态和买卖盘的变化。我注意到B股票吸引了一些买家的兴趣，这可能表明市场对这只新股票有一定的乐观预期。然而，我决定保持谨慎，观察更多的市场动态，以便做出更明智的投资决策。对于A股票，尽管市场评价很高，但今天的交易板块相对平静，没有显著的买卖动作。我认为，在做出进一步投资决策之前，观察市场趋势和股票表现是非常重要的。期待明天的交易日，希望能够捕捉到更多的机会。
+2024-02-11 18:22:44,302 - Stocklogger - INFO - Agent 3 says: 今天的交易日非常有趣，尽管我选择了保持观望态度，没有进行任何买卖操作。我注意到B股的买盘有所增加，这可能表明市场对B股的兴趣正在上升，尤其是考虑到它是新上市的股票，风险和收益都比较大。对于A股，今天似乎没有太多动作，这可能是因为大家都在等待更多的市场信息。作为一名稳健型投资者，我更倾向于观察市场动态，寻找更确定的机会。期待接下来的交易日能有更多的机会出现。
+2024-02-11 18:22:50,966 - Stocklogger - INFO - Agent 4 says: 今天的交易日非常有趣，尤其是对于新上市的B股票。我注意到B股票的买盘相当活跃，这表明市场对这只新股票有着较高的兴趣。尽管如此，我决定保持观望态度，没有对B股票进行交易。我认为，在进行任何投资决策之前，更多地观察市场动态和股票表现是明智的。此外，我也在考虑未来可能的策略调整，以适应市场的变化。希望我的这些心得能对其他交易员有所帮助。期待明天的交易日，看看市场会有怎样的表现。
+2024-02-11 18:22:50,966 - Stocklogger - DEBUG - --------DAY 2---------
+2024-02-11 18:22:54,115 - Stocklogger - INFO - INFO: Agent 0 decide to loan: {'loan': 'yes', 'loan_type': 2, 'amount': 4864.99, 'repayment_date': 302}
+2024-02-11 18:22:56,270 - Stocklogger - INFO - INFO: Agent 1 decide not to loan
+2024-02-11 18:22:58,801 - Stocklogger - INFO - INFO: Agent 2 decide not to loan
+2024-02-11 18:23:02,369 - Stocklogger - INFO - INFO: Agent 3 decide not to loan
+2024-02-11 18:23:02,369 - Stocklogger - DEBUG - SESSION 1
+2024-02-11 18:23:04,589 - Stocklogger - INFO - INFO: Agent 1 decide not to action
+2024-02-11 18:23:07,141 - Stocklogger - INFO - INFO: Agent 3 decide not to action
+2024-02-11 18:23:08,969 - Stocklogger - INFO - INFO: Agent 4 decide not to action
+2024-02-11 18:23:11,738 - Stocklogger - INFO - INFO: Agent 0 decide to action: {'action_type': 'buy', 'stock': 'B', 'amount': 800, 'price': 6}
+2024-02-11 18:23:14,634 - Stocklogger - INFO - INFO: Agent 2 decide not to action
+2024-02-11 18:23:14,634 - Stocklogger - DEBUG - SESSION 2
+2024-02-11 18:23:17,325 - Stocklogger - INFO - INFO: Agent 0 decide not to action
+2024-02-11 18:23:19,564 - Stocklogger - INFO - INFO: Agent 4 decide not to action
+2024-02-11 18:23:22,277 - Stocklogger - INFO - INFO: Agent 1 decide not to action
+2024-02-11 18:23:24,932 - Stocklogger - INFO - INFO: Agent 3 decide not to action
+2024-02-11 18:23:26,958 - Stocklogger - INFO - INFO: Agent 2 decide not to action
+2024-02-11 18:23:26,959 - Stocklogger - DEBUG - SESSION 3
+2024-02-11 18:23:29,138 - Stocklogger - INFO - INFO: Agent 0 decide not to action
+2024-02-11 18:23:31,006 - Stocklogger - INFO - INFO: Agent 1 decide not to action
+2024-02-11 18:23:32,784 - Stocklogger - INFO - INFO: Agent 4 decide not to action
+2024-02-11 18:23:35,142 - Stocklogger - INFO - INFO: Agent 3 decide not to action
+2024-02-11 18:23:37,226 - Stocklogger - INFO - INFO: Agent 2 decide not to action
+2024-02-11 18:23:37,226 - Stocklogger - DEBUG - DAY 2 ends, display forum messages...
+2024-02-11 18:23:46,277 - Stocklogger - INFO - Agent 0 says: 今天的交易日再次展现了市场的不确定性和挑战性。尽管我对B股票进行了一次买入尝试，但整体而言，我选择了保持观望的策略。我注意到，尽管市场上对B股票的兴趣似乎在增加，但A股票的稳定性仍然吸引着我。在这种情况下，我认为最重要的是保持耐心，等待更明确的市场信号。投资不仅仅是关于捕捉机会，更多的是关于风险管理和长期战略规划。我期待在接下来的交易日中，能够更好地理解市场动态，做出更明智的投资决策。
+2024-02-11 18:23:56,142 - Stocklogger - INFO - Agent 1 says: 今天的交易日再次展现了市场的不确定性和复杂性。尽管A股和B股的买卖盘相对平静，但这并不意味着市场缺乏机会。作为一名稳健型投资者，我今天选择了保持观望，没有进行任何交易操作。我认为，在当前的市场环境下，耐心和谨慎是非常重要的。通过观察市场动态和其他交易员的行为，我试图更好地理解市场趋势，以便在未来做出更明智的投资决策。期待未来的交易日能够提供更清晰的市场方向和更多的投资机会。
+2024-02-11 18:24:07,641 - Stocklogger - INFO - Agent 2 says: 今天的交易日再次证明了市场的不可预测性和复杂性。尽管我今天没有进行任何交易，但我仔细观察了市场的动态，特别是对B股票的关注。我注意到了对B股票的买盘兴趣，这可能表明市场对这只新上市股票的看法正在逐渐变化。然而，我选择保持我的资金不动，因为我认为在做出投资决策之前，更多的观察和分析是必要的。
+
+我相信，作为一名激进型投资者，找到正确的时机进入市场是成功的关键。虽然今天我没有采取行动，但我正在寻找那些能够提供良好回报的机会。我鼓励其他交易员也保持耐心，仔细分析市场趋势，不要急于做出决定。
+
+期待未来的交易日，我希望能够捕捉到合适的机会，实现盈利。同时，我也期待看到其他交易员的策略和决策，我们可以通过分享和讨论来共同进步。让我们继续保持警惕，寻找市场中的机会。
+2024-02-11 18:24:21,983 - Stocklogger - INFO - Agent 3 says: 今天的交易日再次证明了市场的不可预测性和复杂性。尽管我今天没有进行任何交易，但我密切关注了市场的动态，特别是对B股的买盘情况。我注意到有一定的买盘对B股表现出了兴趣，这可能是因为市场参与者对于新上市股票的风险和收益有着不同的看法和预期。
+
+作为一名稳健型投资者，我认为在没有充分信息和信心的情况下保持观望是明智的。市场总是充满了机会，但同时也伴随着风险。耐心等待，寻找更加确定的机会，分析市场趋势和个股表现，将是我接下来的策略。
+
+我也注意到了其他交易员在论坛上分享的心得，这让我意识到每个人都有自己独特的视角和策略。分享和学习他人的观点和经验，对于提高自己的交易技巧和市场理解是非常有价值的。
+
+期待明天的交易日，希望能够捕捉到更多的机会，并做出明智的投资决策。
+2024-02-11 18:24:30,026 - Stocklogger - INFO - Agent 4 says: 第二个交易日的市场相对平静，A和B两只股票的买卖盘都没有太大的变动。我今天没有进行任何交易操作，选择保持观望，主要是因为我目前的现金余额几乎为零，而且我对市场的未来走向还持有一定的观望态度。我注意到有一定的买盘对B股票感兴趣，但没有足够的动力让我去参与。保持流动性对于应对未来可能的市场波动非常重要，尤其是在当前这种不确定性较高的市场环境下。希望我的这些心得能给其他交易员带来一些思考。期待市场的下一步动向。
+2024-02-11 18:24:30,027 - Stocklogger - DEBUG - --------DAY 3---------
+2024-02-11 18:24:32,349 - Stocklogger - INFO - INFO: Agent 0 decide not to loan
+2024-02-11 18:24:35,034 - Stocklogger - INFO - INFO: Agent 1 decide not to loan
+2024-02-11 18:24:37,826 - Stocklogger - INFO - INFO: Agent 2 decide not to loan
+2024-02-11 18:24:40,907 - Stocklogger - INFO - INFO: Agent 3 decide not to loan
+2024-02-11 18:24:40,907 - Stocklogger - DEBUG - SESSION 1
+2024-02-11 18:24:44,011 - Stocklogger - INFO - INFO: Agent 3 decide not to action
+2024-02-11 18:24:46,735 - Stocklogger - INFO - INFO: Agent 2 decide not to action
+2024-02-11 18:24:48,874 - Stocklogger - INFO - INFO: Agent 4 decide not to action
+2024-02-11 18:24:51,538 - Stocklogger - INFO - INFO: Agent 1 decide not to action
+2024-02-11 18:24:53,802 - Stocklogger - INFO - INFO: Agent 0 decide not to action
+2024-02-11 18:24:53,802 - Stocklogger - DEBUG - SESSION 2
+2024-02-11 18:24:56,680 - Stocklogger - INFO - INFO: Agent 2 decide not to action
+2024-02-11 18:24:58,932 - Stocklogger - INFO - INFO: Agent 4 decide not to action
+2024-02-11 18:25:01,676 - Stocklogger - INFO - INFO: Agent 1 decide not to action
+2024-02-11 18:25:03,832 - Stocklogger - INFO - INFO: Agent 3 decide not to action
+2024-02-11 18:25:09,075 - Stocklogger - INFO - INFO: Agent 0 decide not to action
+2024-02-11 18:25:09,075 - Stocklogger - DEBUG - SESSION 3
+2024-02-11 18:27:09,224 - Stocklogger - DEBUG - --------Simulation Start!--------
+2024-02-11 18:27:09,224 - Stocklogger - DEBUG - --------DAY 1---------
+2024-02-11 18:27:11,108 - Stocklogger - INFO - INFO: Agent 0 decide not to loan
+2024-02-11 18:27:12,915 - Stocklogger - INFO - INFO: Agent 1 decide not to loan
+2024-02-11 18:29:37,645 - Stocklogger - DEBUG - --------Simulation Start!--------
+2024-02-11 18:29:37,646 - Stocklogger - DEBUG - --------DAY 1---------
+2024-02-11 18:29:39,692 - Stocklogger - INFO - INFO: Agent 0 decide not to loan
+2024-02-11 18:29:41,343 - Stocklogger - INFO - INFO: Agent 1 decide to loan: {'loan': 'yes', 'loan_type': 1, 'amount': 4039.240502808122, 'repayment_date': 201}
+2024-02-11 18:29:43,020 - Stocklogger - INFO - INFO: Agent 2 decide not to loan
+2024-02-11 18:29:44,846 - Stocklogger - INFO - INFO: Agent 3 decide to loan: {'loan': 'yes', 'loan_type': 2, 'amount': 8937.348553230913, 'repayment_date': 301}
+2024-02-11 18:29:47,186 - Stocklogger - INFO - INFO: Agent 4 decide to loan: {'loan': 'yes', 'loan_type': 2, 'amount': 5841.447254619041, 'repayment_date': 301}
+2024-02-11 18:29:47,187 - Stocklogger - DEBUG - SESSION 1
+2024-02-11 18:29:49,665 - Stocklogger - INFO - INFO: Agent 1 decide to action: {'action_type': 'buy', 'stock': 'B', 'amount': 700, 'price': 6}
+2024-02-11 18:29:51,291 - Stocklogger - INFO - INFO: Agent 2 decide not to action
+2024-02-11 18:29:53,816 - Stocklogger - INFO - INFO: Agent 3 decide to action: {'action_type': 'buy', 'stock': 'B', 'amount': 700, 'price': 6}
+2024-02-11 18:29:55,252 - Stocklogger - INFO - INFO: Agent 0 decide not to action
+2024-02-11 18:29:57,254 - Stocklogger - INFO - INFO: Agent 4 decide to action: {'action_type': 'buy', 'stock': 'B', 'amount': 1450, 'price': 6}
+2024-02-11 18:29:57,254 - Stocklogger - DEBUG - SESSION 2
+2024-02-11 18:29:59,769 - Stocklogger - INFO - INFO: Agent 3 decide not to action
+2024-02-11 18:30:01,192 - Stocklogger - INFO - INFO: Agent 4 decide not to action
+2024-02-11 18:30:03,745 - Stocklogger - INFO - INFO: Agent 0 decide not to action
+2024-02-11 18:30:05,422 - Stocklogger - INFO - INFO: Agent 2 decide not to action
+2024-02-11 18:30:07,375 - Stocklogger - INFO - INFO: Agent 1 decide not to action
+2024-02-11 18:30:07,375 - Stocklogger - DEBUG - SESSION 3
+2024-02-11 18:30:09,168 - Stocklogger - INFO - INFO: Agent 2 decide not to action
+2024-02-11 18:30:11,491 - Stocklogger - INFO - INFO: Agent 0 decide not to action
+2024-02-11 18:30:13,490 - Stocklogger - INFO - INFO: Agent 4 decide not to action
+2024-02-11 18:30:15,386 - Stocklogger - INFO - INFO: Agent 1 decide to action: {'action_type': 'sell', 'stock': 'A', 'amount': 200, 'price': 10}
+2024-02-11 18:30:18,027 - Stocklogger - INFO - INFO: Agent 3 decide to action: {'action_type': 'sell', 'stock': 'A', 'amount': 200, 'price': 10}
+2024-02-11 18:30:18,027 - Stocklogger - DEBUG - DAY 1 ends, display forum messages...
+2024-02-11 18:30:26,610 - Stocklogger - INFO - Agent 0 says: 今天的交易日相当平静，我决定保持观望态度，没有进行任何买卖操作。市场上对于A和B两只股票的兴趣似乎有所不同，特别是B股，看到了一些买入的动作，但我选择了稳健策略，优先考虑资金安全和长期增值。未来几天，我会继续密切关注市场动态，寻找合适的机会进行操作。希望所有交易员都能做出最佳决策，祝大家交易顺利！
+2024-02-11 18:30:34,984 - Stocklogger - INFO - Agent 1 says: 今天的交易日非常有趣，我注意到B股的买盘相当活跃，这表明市场对其有一定的期待。尽管我没有在这个时段内对B股进行操作，但我密切关注了市场动态。另一方面，我决定出售了一部分A股，以便在未来可能的机会中有更多的流动性。市场总是充满变数，保持灵活和观察市场动态是我的策略。期待明天的交易！
+2024-02-11 18:30:41,448 - Stocklogger - INFO - Agent 2 says: 今天的交易日相当平静，我决定保持观望态度，没有进行任何买卖操作。市场上对于A和B两只股票的兴趣似乎有所不同，特别是B股，虽然风险较大，但看到有不少买盘出现，显示出市场对其潜在收益的期待。我会继续关注市场动态，寻找合适的机会进行操作。保持稳健的投资策略，同时保持对市场变化的敏感，是我一直遵循的原则。希望在接下来的交易日中能找到好的机会。
+2024-02-11 18:30:49,468 - Stocklogger - INFO - Agent 3 says: 今天的交易日非常有趣，我注意到B股的需求明显增加，这让我对其未来的表现保持乐观。同时，我决定出售部分A股以保持资金的流动性，为可能的未来机会做好准备。市场总是充满变数，保持灵活和敏捷是关键。期待明天的交易！
+2024-02-11 18:30:55,370 - Stocklogger - INFO - Agent 4 says: 今天的交易日非常有趣，尤其是对于B公司股票的动态。虽然我最终决定保持观望态度，没有进行任何买卖操作，但是观察市场的买卖盘变化和其他交易员的行为给了我很多洞察。我注意到B公司股票引起了不少关注，这让我对未来的交易日充满期待。保持灵活和谨慎的策略，同时密切关注市场动态，是我接下来计划遵循的原则。期待明天的交易！
+2024-02-11 18:30:55,370 - Stocklogger - DEBUG - --------DAY 2---------
+2024-02-11 18:30:57,434 - Stocklogger - INFO - INFO: Agent 0 decide not to loan
+2024-02-11 18:30:59,838 - Stocklogger - INFO - INFO: Agent 2 decide not to loan
+2024-02-11 18:30:59,838 - Stocklogger - DEBUG - SESSION 1
+2024-02-11 18:31:01,469 - Stocklogger - INFO - INFO: Agent 3 decide not to action
+2024-02-11 18:31:03,474 - Stocklogger - INFO - INFO: Agent 0 decide not to action
+2024-02-11 18:31:05,321 - Stocklogger - INFO - INFO: Agent 4 decide not to action
+2024-02-11 18:31:07,279 - Stocklogger - INFO - INFO: Agent 1 decide not to action
+2024-02-11 18:31:09,451 - Stocklogger - INFO - INFO: Agent 2 decide not to action
+2024-02-11 18:31:09,451 - Stocklogger - DEBUG - SESSION 2
+2024-02-11 18:31:11,505 - Stocklogger - INFO - INFO: Agent 0 decide not to action
+2024-02-11 18:31:13,182 - Stocklogger - INFO - INFO: Agent 3 decide not to action
+2024-02-11 18:31:15,662 - Stocklogger - INFO - INFO: Agent 2 decide not to action
+2024-02-11 18:31:17,570 - Stocklogger - INFO - INFO: Agent 4 decide not to action
+2024-02-11 18:31:23,157 - Stocklogger - DEBUG - --------Simulation Start!--------
+2024-02-11 18:31:23,157 - Stocklogger - DEBUG - --------DAY 1---------
+2024-02-11 18:31:25,087 - Stocklogger - INFO - INFO: Agent 0 decide not to loan
+2024-02-11 18:31:26,608 - Stocklogger - INFO - INFO: Agent 1 decide not to loan
+2024-02-11 18:31:27,964 - Stocklogger - INFO - INFO: Agent 2 decide not to loan
+2024-02-11 18:31:30,135 - Stocklogger - INFO - INFO: Agent 3 decide not to loan
+2024-02-11 18:31:31,934 - Stocklogger - INFO - INFO: Agent 4 decide to loan: {'loan': 'yes', 'loan_type': 2, 'amount': 4705.80198015885, 'repayment_date': 301}
+2024-02-11 18:31:31,934 - Stocklogger - DEBUG - SESSION 1
+2024-02-11 18:31:33,339 - Stocklogger - INFO - INFO: Agent 2 decide not to action
+2024-02-11 18:31:34,872 - Stocklogger - INFO - INFO: Agent 1 decide not to action
+2024-02-11 18:31:37,079 - Stocklogger - INFO - INFO: Agent 4 decide to action: {'action_type': 'buy', 'stock': 'B', 'amount': 869, 'price': 6}
+2024-02-11 18:31:39,032 - Stocklogger - INFO - INFO: Agent 3 decide to action: {'action_type': 'buy', 'stock': 'B', 'amount': 40, 'price': 6}
+2024-02-11 18:31:41,442 - Stocklogger - INFO - INFO: Agent 0 decide to action: {'action_type': 'buy', 'stock': 'B', 'amount': 500, 'price': 6}
+2024-02-11 18:31:41,443 - Stocklogger - DEBUG - SESSION 2
+2024-02-11 18:31:44,768 - Stocklogger - INFO - INFO: Agent 4 decide to action: {'action_type': 'sell', 'stock': 'A', 'amount': 598, 'price': 10}
+2024-02-11 18:31:46,789 - Stocklogger - INFO - INFO: Agent 2 decide to action: {'action_type': 'sell', 'stock': 'A', 'amount': 200, 'price': 10}
+2024-02-11 18:31:48,970 - Stocklogger - INFO - INFO: Agent 0 decide to action: {'action_type': 'sell', 'stock': 'A', 'amount': 300, 'price': 10}
+2024-02-11 18:31:50,807 - Stocklogger - INFO - INFO: Agent 3 decide to action: {'action_type': 'sell', 'stock': 'A', 'amount': 600, 'price': 10}
+2024-02-11 18:31:52,784 - Stocklogger - INFO - INFO: Agent 1 decide not to action
+2024-02-11 18:31:52,784 - Stocklogger - DEBUG - SESSION 3
+2024-02-11 18:31:54,653 - Stocklogger - INFO - INFO: Agent 3 decide not to action
+2024-02-11 18:31:56,866 - Stocklogger - INFO - INFO: Agent 2 decide to action: {'action_type': 'buy', 'stock': 'B', 'amount': 300, 'price': 6}
+2024-02-11 18:31:58,234 - Stocklogger - INFO - INFO: Agent 4 decide not to action
+2024-02-11 18:32:00,162 - Stocklogger - INFO - INFO: Agent 1 decide not to action
+2024-02-11 18:32:01,819 - Stocklogger - INFO - INFO: Agent 0 decide not to action
+2024-02-11 18:32:01,820 - Stocklogger - DEBUG - DAY 1 ends, display forum messages...
+2024-02-11 18:32:09,075 - Stocklogger - INFO - Agent 0 says: 今天的交易日非常有趣，我主要关注了A和B两只股票的动态。A股保持稳定，而B股则显示出了较大的波动性，这与它们的初始评价相符。我尝试通过买入B股来寻求高收益，同时也考虑了在合适的时机卖出A股来实现利润。整体来说，市场的不确定性让交易充满挑战，但也正是这种不确定性带来了交易的机会。我期待在接下来的交易日中继续学习和适应市场，寻找更多的机会。
+2024-02-11 18:33:06,641 - Stocklogger - DEBUG - --------Simulation Start!--------
+2024-02-11 18:33:06,641 - Stocklogger - DEBUG - --------DAY 1---------
+2024-02-11 18:33:08,285 - Stocklogger - INFO - INFO: Agent 0 decide not to loan
+2024-02-11 18:33:09,727 - Stocklogger - INFO - INFO: Agent 1 decide not to loan
+2024-02-11 18:33:11,765 - Stocklogger - INFO - INFO: Agent 2 decide to loan: {'loan': 'yes', 'loan_type': 2, 'amount': 6809.080527712153, 'repayment_date': 301}
+2024-02-11 18:33:13,198 - Stocklogger - INFO - INFO: Agent 3 decide not to loan
+2024-02-11 18:33:14,895 - Stocklogger - INFO - INFO: Agent 4 decide not to loan
+2024-02-11 18:33:14,895 - Stocklogger - DEBUG - SESSION 1
+2024-02-11 18:33:16,779 - Stocklogger - INFO - INFO: Agent 4 decide to action: {'action_type': 'buy', 'stock': 'B', 'amount': 996, 'price': 6}
+2024-02-11 18:33:18,492 - Stocklogger - INFO - INFO: Agent 3 decide not to action
+2024-02-11 18:33:20,031 - Stocklogger - INFO - INFO: Agent 1 decide not to action
+2024-02-11 18:33:22,903 - Stocklogger - INFO - INFO: Agent 0 decide to action: {'action_type': 'buy', 'stock': 'B', 'amount': 1294, 'price': 6}
+2024-02-11 18:33:25,049 - Stocklogger - INFO - INFO: Agent 2 decide to action: {'action_type': 'buy', 'stock': 'B', 'amount': 1000, 'price': 6}
+2024-02-11 18:33:25,049 - Stocklogger - DEBUG - SESSION 2
+2024-02-11 18:33:27,221 - Stocklogger - INFO - INFO: Agent 2 decide to action: {'action_type': 'buy', 'stock': 'B', 'amount': 1200, 'price': 6}
+2024-02-11 18:33:28,756 - Stocklogger - INFO - INFO: Agent 3 decide not to action
+2024-02-11 18:33:30,417 - Stocklogger - INFO - INFO: Agent 4 decide not to action
+2024-02-11 18:33:31,909 - Stocklogger - INFO - INFO: Agent 0 decide not to action
+2024-02-11 18:33:33,404 - Stocklogger - INFO - INFO: Agent 1 decide not to action
+2024-02-11 18:33:33,405 - Stocklogger - DEBUG - SESSION 3
+2024-02-11 18:33:35,155 - Stocklogger - INFO - INFO: Agent 0 decide not to action
+2024-02-11 18:33:36,809 - Stocklogger - INFO - INFO: Agent 2 decide not to action
+2024-02-11 18:33:38,706 - Stocklogger - INFO - INFO: Agent 3 decide not to action
+2024-02-11 18:33:40,413 - Stocklogger - INFO - INFO: Agent 4 decide not to action
+2024-02-11 18:33:42,445 - Stocklogger - INFO - INFO: Agent 1 decide to action: {'action_type': 'buy', 'stock': 'B', 'amount': 116, 'price': 6}
+2024-02-11 18:33:42,445 - Stocklogger - DEBUG - SESSION 4
+2024-02-11 18:33:44,487 - Stocklogger - INFO - INFO: Agent 0 decide not to action
+2024-02-11 18:33:46,593 - Stocklogger - INFO - INFO: Agent 4 decide not to action
+2024-02-11 18:33:48,347 - Stocklogger - INFO - INFO: Agent 1 decide not to action
+2024-02-11 18:33:49,802 - Stocklogger - INFO - INFO: Agent 2 decide not to action
+2024-02-11 18:33:51,327 - Stocklogger - INFO - INFO: Agent 3 decide not to action
+2024-02-11 18:33:51,327 - Stocklogger - DEBUG - SESSION 5
+2024-02-11 18:33:53,203 - Stocklogger - INFO - INFO: Agent 1 decide not to action
+2024-02-11 18:33:55,455 - Stocklogger - INFO - INFO: Agent 4 decide not to action
+2024-02-11 18:33:57,682 - Stocklogger - INFO - INFO: Agent 3 decide not to action
+2024-02-11 18:33:59,240 - Stocklogger - INFO - INFO: Agent 2 decide not to action
+2024-02-11 18:34:01,222 - Stocklogger - INFO - INFO: Agent 0 decide not to action
+2024-02-11 18:34:01,222 - Stocklogger - DEBUG - SESSION 6
+2024-02-11 18:34:03,181 - Stocklogger - INFO - INFO: Agent 0 decide not to action
+2024-02-11 18:34:04,890 - Stocklogger - INFO - INFO: Agent 3 decide not to action
+2024-02-11 18:34:07,411 - Stocklogger - INFO - INFO: Agent 4 decide not to action
+2024-02-11 18:34:09,464 - Stocklogger - INFO - INFO: Agent 2 decide not to action
+2024-02-11 18:34:12,019 - Stocklogger - INFO - INFO: Agent 1 decide not to action
+2024-02-11 18:34:12,019 - Stocklogger - DEBUG - SESSION 7
+2024-02-11 18:34:14,542 - Stocklogger - INFO - INFO: Agent 2 decide not to action
+2024-02-11 18:34:16,967 - Stocklogger - INFO - INFO: Agent 4 decide not to action
+2024-02-11 18:34:19,630 - Stocklogger - INFO - INFO: Agent 0 decide not to action
+2024-02-11 18:34:22,158 - Stocklogger - INFO - INFO: Agent 3 decide not to action
+2024-02-11 18:34:24,593 - Stocklogger - INFO - INFO: Agent 1 decide not to action
+2024-02-11 18:34:24,593 - Stocklogger - DEBUG - SESSION 8
+2024-02-11 18:34:26,938 - Stocklogger - INFO - INFO: Agent 0 decide not to action
+2024-02-11 18:34:29,544 - Stocklogger - INFO - INFO: Agent 4 decide not to action
+2024-02-11 18:34:31,579 - Stocklogger - INFO - INFO: Agent 2 decide not to action
+2024-02-11 18:34:34,168 - Stocklogger - INFO - INFO: Agent 1 decide not to action
+2024-02-11 18:34:39,515 - Stocklogger - DEBUG - --------Simulation Start!--------
+2024-02-11 18:34:39,515 - Stocklogger - DEBUG - --------DAY 1---------
+2024-02-11 18:34:41,129 - Stocklogger - INFO - INFO: Agent 0 decide not to loan
+2024-02-11 18:34:42,305 - Stocklogger - INFO - INFO: Agent 1 decide not to loan
+2024-02-11 18:34:43,575 - Stocklogger - INFO - INFO: Agent 2 decide not to loan
+2024-02-11 18:34:45,689 - Stocklogger - INFO - INFO: Agent 3 decide to loan: {'loan': 'yes', 'loan_type': 1, 'amount': 6359.871240447483, 'repayment_date': 201}
+2024-02-11 18:34:47,255 - Stocklogger - INFO - INFO: Agent 4 decide not to loan
+2024-02-11 18:34:47,256 - Stocklogger - DEBUG - SESSION 1
+2024-02-11 18:34:50,032 - Stocklogger - INFO - INFO: Agent 3 decide to action: {'action_type': 'buy', 'stock': 'B', 'amount': 2000, 'price': 6}
+2024-02-11 18:34:52,758 - Stocklogger - INFO - INFO: Agent 1 decide to action: {'action_type': 'buy', 'stock': 'B', 'amount': 136, 'price': 6}
+2024-02-11 18:34:54,990 - Stocklogger - INFO - INFO: Agent 4 decide to action: {'action_type': 'buy', 'stock': 'B', 'amount': 291, 'price': 6}
+2024-02-11 18:34:56,496 - Stocklogger - INFO - INFO: Agent 0 decide not to action
+2024-02-11 18:34:57,956 - Stocklogger - INFO - INFO: Agent 2 decide not to action
+2024-02-11 18:34:57,957 - Stocklogger - DEBUG - SESSION 2
+2024-02-11 18:35:00,648 - Stocklogger - INFO - INFO: Agent 0 decide to action: {'action_type': 'buy', 'stock': 'B', 'amount': 446, 'price': 6}
+2024-02-11 18:35:02,500 - Stocklogger - INFO - INFO: Agent 1 decide not to action
+2024-02-11 18:35:04,341 - Stocklogger - INFO - INFO: Agent 4 decide not to action
+2024-02-11 18:35:06,136 - Stocklogger - INFO - INFO: Agent 2 decide not to action
+2024-02-11 18:35:08,431 - Stocklogger - INFO - INFO: Agent 3 decide to action: {'action_type': 'sell', 'stock': 'A', 'amount': 262, 'price': 10}
+2024-02-11 18:35:08,432 - Stocklogger - DEBUG - SESSION 3
+2024-02-11 18:35:10,358 - Stocklogger - INFO - INFO: Agent 0 decide not to action
+2024-02-11 18:35:12,262 - Stocklogger - INFO - INFO: Agent 3 decide not to action
+2024-02-11 18:35:15,386 - Stocklogger - INFO - INFO: Agent 1 decide to action: {'action_type': 'sell', 'stock': 'A', 'amount': 70, 'price': 10}
+2024-02-11 18:35:17,102 - Stocklogger - INFO - INFO: Agent 2 decide not to action
+2024-02-11 18:35:19,190 - Stocklogger - INFO - INFO: Agent 4 decide to action: {'action_type': 'sell', 'stock': 'A', 'amount': 544, 'price': 10}
+2024-02-11 18:35:19,190 - Stocklogger - DEBUG - SESSION 4
+2024-02-11 18:35:21,111 - Stocklogger - INFO - INFO: Agent 0 decide not to action
+2024-02-11 18:35:22,697 - Stocklogger - INFO - INFO: Agent 2 decide not to action
+2024-02-11 18:35:24,786 - Stocklogger - INFO - INFO: Agent 3 decide to action: {'action_type': 'buy', 'stock': 'B', 'amount': 2000, 'price': 6}
+2024-02-11 18:35:26,537 - Stocklogger - INFO - INFO: Agent 1 decide not to action
+2024-02-11 18:35:28,329 - Stocklogger - INFO - INFO: Agent 4 decide not to action
+2024-02-11 18:35:28,329 - Stocklogger - DEBUG - SESSION 5
+2024-02-11 18:35:30,241 - Stocklogger - INFO - INFO: Agent 4 decide not to action
+2024-02-11 18:35:32,272 - Stocklogger - INFO - INFO: Agent 0 decide not to action
+2024-02-11 18:35:35,270 - Stocklogger - INFO - INFO: Agent 1 decide not to action
+2024-02-11 18:35:37,387 - Stocklogger - INFO - INFO: Agent 3 decide not to action
+2024-02-11 18:35:39,404 - Stocklogger - INFO - INFO: Agent 2 decide not to action
+2024-02-11 18:35:39,405 - Stocklogger - DEBUG - SESSION 6
+2024-02-11 18:35:41,757 - Stocklogger - INFO - INFO: Agent 3 decide not to action
+2024-02-11 18:35:44,139 - Stocklogger - INFO - INFO: Agent 1 decide not to action
+2024-02-11 18:35:46,273 - Stocklogger - INFO - INFO: Agent 4 decide not to action
+2024-02-11 18:35:48,491 - Stocklogger - INFO - INFO: Agent 0 decide not to action
+2024-02-11 18:35:52,006 - Stocklogger - INFO - INFO: Agent 2 decide not to action
+2024-02-11 18:35:52,006 - Stocklogger - DEBUG - SESSION 7
+2024-02-11 18:35:54,340 - Stocklogger - INFO - INFO: Agent 3 decide not to action
+2024-02-11 18:35:56,791 - Stocklogger - INFO - INFO: Agent 4 decide not to action
+2024-02-11 18:35:58,991 - Stocklogger - INFO - INFO: Agent 0 decide not to action
+2024-02-11 18:36:01,388 - Stocklogger - INFO - INFO: Agent 2 decide not to action
+2024-02-11 18:36:03,151 - Stocklogger - INFO - INFO: Agent 1 decide not to action
+2024-02-11 18:36:03,151 - Stocklogger - DEBUG - SESSION 8
+2024-02-11 18:36:05,387 - Stocklogger - INFO - INFO: Agent 2 decide not to action
+2024-02-11 18:36:07,395 - Stocklogger - INFO - INFO: Agent 4 decide not to action
+2024-02-11 18:36:09,875 - Stocklogger - INFO - INFO: Agent 1 decide not to action
+2024-02-11 18:36:11,703 - Stocklogger - INFO - INFO: Agent 3 decide not to action
+2024-02-11 18:36:14,344 - Stocklogger - INFO - INFO: Agent 0 decide not to action
+2024-02-11 18:36:14,345 - Stocklogger - DEBUG - SESSION 9
+2024-02-11 18:36:16,713 - Stocklogger - INFO - INFO: Agent 2 decide not to action
+2024-02-11 18:36:19,141 - Stocklogger - INFO - INFO: Agent 1 decide not to action
+2024-02-11 18:36:21,467 - Stocklogger - INFO - INFO: Agent 4 decide not to action
+2024-02-11 18:36:23,994 - Stocklogger - INFO - INFO: Agent 3 decide not to action
+2024-02-11 18:36:26,644 - Stocklogger - INFO - INFO: Agent 0 decide not to action
+2024-02-11 18:36:26,644 - Stocklogger - DEBUG - SESSION 10
+2024-02-11 18:36:29,218 - Stocklogger - INFO - INFO: Agent 2 decide not to action
+2024-02-11 18:36:32,009 - Stocklogger - INFO - INFO: Agent 3 decide not to action
+2024-02-11 18:36:33,832 - Stocklogger - INFO - INFO: Agent 4 decide not to action

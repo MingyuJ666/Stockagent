@@ -20,6 +20,8 @@ class Stock:
         self.session_deal.append(price_and_amount)
 
     def update_price(self, date):
+        if len(self.session_deal) == 0:
+            return
         self.price = self.session_deal[-1]["price"]
         self.history[date] = self.session_deal
         self.session_deal.clear()
