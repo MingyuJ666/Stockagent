@@ -1,3 +1,4 @@
+from utils import *
 
 class Stock:
     def __init__(self, name, initial_price, initial_stock, is_new=False):
@@ -8,13 +9,9 @@ class Stock:
         self.history = {}   # {date: session_deal}
         self.session_deal = [] # [{"price", "amount"}]
 
-    def gen_financial_report(self):
-        # todo 生成季度财报
-        return {
-            "name": self.name,
-            "price": self.price,
-            "history": self.history
-        }
+    def gen_financial_report(self, index):
+        if self.name == "A":
+            return FINANCIAL_REPORT_A[index]
 
     def add_session_deal(self, price_and_amount):
         self.session_deal.append(price_and_amount)

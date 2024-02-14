@@ -3,6 +3,7 @@ import os
 import openai
 from log.custom_logger import log
 
+
 def run_api(model, prompt, temperature: float = 0):
     openai.api_key = ""
     client = openai.OpenAI(api_key=openai.api_key)
@@ -31,6 +32,7 @@ class Secretary:
         {{{{"loan" : "no"}}}}
         :returns: loan_format_check, fail_response, loan
     """
+
     def check_loan(self, resp, max_loan) -> (bool, str, dict):
         # format check
         if resp.count('{') == 1 and resp.count('}') == 1:
@@ -41,7 +43,7 @@ class Secretary:
             fail_response = "Wrong json format, there is no {} or more than one {} in response."
             return False, fail_response, None
 
-        action_json = resp[start_idx : end_idx + 1]
+        action_json = resp[start_idx: end_idx + 1]
         action_json = action_json.replace("\n", "").replace(" ", "")
         try:
             parsed_json = json.loads(action_json)
@@ -91,7 +93,6 @@ class Secretary:
     def check_action(self, resp, cash, stock_a_amount,
                      stock_b_amount, stock_a_price, stock_b_price) -> (bool, str, dict):
         # format check
-        assert '{' in resp
         if resp.count('{') == 1 and resp.count('}') == 1:
             start_idx = resp.index('{')
             end_idx = resp.index('}')
@@ -100,7 +101,7 @@ class Secretary:
             fail_response = "Wrong json format, there is no {} or more than one {} in response."
             return False, fail_response, None
 
-        action_json = resp[start_idx : end_idx + 1]
+        action_json = resp[start_idx: end_idx + 1]
         action_json = action_json.replace("\n", "").replace(" ", "")
         try:
             parsed_json = json.loads(action_json)
@@ -173,3 +174,37 @@ class Secretary:
             log.logger.error("UNSOLVED ACTION JSON RESPONSE:{}".format(parsed_json))
             return False, "", None
 
+    def check_estimate(self, resp):
+        # format check
+        if resp.count('{') == 1 and resp.count('}') == 1:
+            start_idx = resp.index('{')
+            end_idx = resp.index('}')
+        else:
+            log.logger.debug("Wrong json content in response: {}".format(resp))
+            fail_response = "Wrong json format, there is no {} or more than one {} in response."
+            return False, fail_response, None
+
+        action_json = resp[start_idx: end_idx + 1]
+        action_json = action_json.replace("\n", "").replace(" ", "")
+        try:
+            parsed_json = json.loads(action_json)
+        except json.JSONDecodeError as e:
+            print(e)
+            log.logger.debug("Illegal json content in response: {}".format(resp))
+            fail_response = "Illegal json format."
+            return False, fail_response, None
+
+        # content check
+        if "buy_A" not in parsed_json or "buy_B" not in parsed_json \
+                or "sell_A" not in parsed_json or "sell_B" not in parsed_json \
+                or "loan" not in parsed_json:
+            log.logger.debug("Wrong json content in response: {}".format(resp))
+            fail_response = "Key 'buy_A', 'buy_B', 'sell_A', 'sell_B' and 'loan' should in response."
+            return False, fail_response, None
+
+        for key, item in parsed_json.items():
+            if item not in ['yes', 'no']:
+                log.logger.debug("Wrong json content in response: {}".format(resp))
+                fail_response = "Value of all keys should be 'yes' or 'no'."
+                return False, fail_response, None
+        return True, "", parsed_json

@@ -101,3 +101,23 @@ POST_MESSAGE_PROMPT = NamedBlock(
     content="""
     当前交易日结束了，请在论坛上简短地发表你的交易心得，并将其发布在论坛上。你发布的内容将对所有交易员公开可见。回答中只包含需要发布的内容。"""
 )
+
+NEXT_DAY_ESTIMATE_PROMPT = NamedBlock(
+    refname="next_day_estimate",
+    name="Instruction",
+    content="""
+    请根据当前交易日的大盘信息和论坛信息，预估明天你是否会买入、卖出股票A和股票B，以及是否会选择贷款。预计会进行的行动标记为yes，不会进行标记为no。
+    用json格式返回结果，例如：
+    {{"buy_A":"yes", "buy_B":"no", "sell_A":"yes", "sell_B": "no", "loan": "yes"}}
+    """
+)
+
+NEXT_DAY_ESTIMATE_RETRY = NamedBlock(
+    refname="next_day_estimate_retry",
+    name="Instruction",
+    content="""
+    The following questions appeared in the JSON format you last answered: {fail_response}.
+    用json格式返回结果，例如：
+    {{"buy_A":"yes", "buy_B":"no", "sell_A":"yes", "sell_B": "no", "loan": "yes"}}
+    """
+)

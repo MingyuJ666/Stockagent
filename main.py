@@ -1,14 +1,16 @@
 import argparse
 import random
+import pandas as pd
 
 from utils import *
 from agent import Agent
 from secretary import Secretary
 from stock import Stock
 from log.custom_logger import log
+from record import create_stock_record, create_trade_record, AgentRecordDaily, create_agentses_record
 
 
-def handle_action(action, stock_deals, all_agents, stock):
+def handle_action(action, stock_deals, all_agents, stock, session):
     # action = JSON{"agent": 1, "action_type": "buy"|"sell", "stock": "A"|"B", "amount": 10, "price": 10}
     if action["action_type"] == "buy":
         for sell_action in stock_deals["sell"][:]:
@@ -16,9 +18,11 @@ def handle_action(action, stock_deals, all_agents, stock):
                 # 交易成交
                 close_amount = min(action["amount"], sell_action["amount"])
                 all_agents[action["agent"]].buy_stock(stock.name, close_amount, action["price"])
-                if not sell_action["agent"] == -1: # B发行
+                if not sell_action["agent"] == -1:  # B发行
                     all_agents[sell_action["agent"]].sell_stock(stock.name, close_amount, action["price"])
                 stock.add_session_deal({"price": action["price"], "amount": close_amount})
+                create_trade_record(action["date"], session, stock.name, action["agent"], sell_action["agent"],
+                                    close_amount, action["price"])
 
                 if action["amount"] > close_amount:  # 买单未结束，卖单结束，继续循环
                     log.logger.info(f"ACTION - BUY:{action['agent']}, SELL:{sell_action['agent']}, "
@@ -41,6 +45,8 @@ def handle_action(action, stock_deals, all_agents, stock):
                 all_agents[action["agent"]].sell_stock(stock.name, close_amount, action["price"])
                 all_agents[buy_action["agent"]].buy_stock(stock.name, close_amount, action["price"])
                 stock.add_session_deal({"price": action["price"], "amount": close_amount})
+                create_trade_record(action["date"], session, stock.name, buy_action["agent"], action["agent"],
+                                    close_amount, action["price"])
 
                 if action["amount"] > close_amount:  # 卖单未结束，买单结束，继续循环
                     log.logger.info(f"ACTION - BUY:{buy_action['agent']}, SELL:{action['agent']}, "
@@ -61,10 +67,11 @@ def simulation(args):
     stock_a = Stock("A", STOCK_A_INITIAL_PRICE, 0, is_new=False)
     stock_b = Stock("B", STOCK_B_INITIAL_PRICE, STOCK_B_PUBLISH, is_new=True)
     all_agents = []
+    log.logger.debug("Agents initial...")
     for i in range(0, AGENTS_NUM):  # agents start from 0, -1 refers to stock_b
         agent = Agent(i, stock_a.get_price(), secretary, args.model)
         all_agents.append(agent)
-        print("cash: {}, stock a: {}, debt: {}".format(agent.cash, agent.stock_a_amount, agent.loans))
+        log.logger.debug("cash: {}, stock a: {}, debt: {}".format(agent.cash, agent.stock_a_amount, agent.loans))
 
     # start simulation
     last_day_forum_message = []
@@ -92,6 +99,7 @@ def simulation(args):
 
         # check if an agent needs to repay loans
         for agent in all_agents[:]:
+            agent.chat_history.clear()  # 只保存当天的聊天记录
             agent.loan_repayment(date)
 
         # repayment days
@@ -102,8 +110,10 @@ def simulation(args):
         # todo if date in 特定事件日（预先定义）
 
         # agent decide whether to loan
+        daily_agent_records = []
         for agent in all_agents:
-            agent.plan_loan(date, stock_a.get_price(), stock_b.get_price(), last_day_forum_message)
+            loan = agent.plan_loan(date, stock_a.get_price(), stock_b.get_price(), last_day_forum_message)
+            daily_agent_records.append(AgentRecordDaily(date, agent.order, loan))
 
         for session in range(1, TOTAL_SESSION + 1):
             log.logger.debug(f"SESSION {session}")
@@ -116,24 +126,32 @@ def simulation(args):
                     continue
 
                 action = agent.plan_stock(date, session, stock_a, stock_b, stock_a_deals, stock_b_deals)
-                if action is None:
-                    continue
+                proper, cash, valua_a, value_b = agent.get_proper_cash_value(stock_a.get_price(), stock_b.get_price())
+                create_agentses_record(agent.order, date, session, proper, cash, valua_a, value_b, action)
                 action["agent"] = agent.order
                 if not action["action_type"] == "no":
                     if action["stock"] == 'A':
-                        handle_action(action, stock_a_deals, all_agents, stock_a)
+                        handle_action(action, stock_a_deals, all_agents, stock_a, session)
                     else:
-                        handle_action(action, stock_b_deals, all_agents, stock_b)
+                        handle_action(action, stock_b_deals, all_agents, stock_b, session)
 
             # 交易时段结束，更新股票价格
             stock_a.update_price(date)
             stock_b.update_price(date)
+            create_stock_record(date, session, stock_a.get_price(), stock_b.get_price())
 
         # deal with cash<0 agents
         for agent in all_agents[:]:
             quit_sig = agent.bankrupt_process(stock_a.get_price(), stock_b.get_price())
             if quit_sig:
                 all_agents.remove(agent)
+
+        # agent预测明天行动
+        for idx, agent in enumerate(all_agents):
+            estimation = agent.next_day_estimate()
+            daily_agent_records[idx].add_estimate(estimation)
+            daily_agent_records[idx].write_to_excel()
+        daily_agent_records.clear()
 
         # 交易日结束，论坛信息更新
         last_day_forum_message.clear()
@@ -145,17 +163,17 @@ def simulation(args):
 
     log.logger.debug("--------Simulation finished!--------")
     log.logger.debug("--------Agents action history--------")
-    for agent in all_agents:
-        log.logger.debug(f"Agent {agent.order} action history:")
-        log.logger.info(agent.action_history)
-    log.logger.debug("--------Stock deal history--------")
-    for stock in [stock_a, stock_b]:
-        log.logger.debug(f"Stock {stock.name} deal history:")
-        log.logger.info(stock.history)
+    # for agent in all_agents:
+    #     log.logger.debug(f"Agent {agent.order} action history:")
+    #     log.logger.info(agent.action_history)
+    # log.logger.debug("--------Stock deal history--------")
+    # for stock in [stock_a, stock_b]:
+    #     log.logger.debug(f"Stock {stock.name} deal history:")
+    #     log.logger.info(stock.history)
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model", type=str, default="gpt-4-turbo-preview", help="model name")
+    parser.add_argument("--model", type=str, default="gpt-3.5-turbo", help="model name")
     args = parser.parse_args()
     simulation(args)
