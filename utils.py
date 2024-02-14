@@ -34,9 +34,9 @@ FINANCIAL_REPORT_B = ["Q1", "Q2", "Q3", "Q4"]
 
 # 特殊事件
 EVENT_1_DAY = 131
-EVENT_1_MESSAGE = "放在论坛里的事件信息"
+EVENT_1_MESSAGE = "放在论坛里的事件信息" # 但是这样操作时，特殊事件发生的第二天，特殊事件就不再保留在prompt种了。如果必须保留，需要修改代码。
 EVENT_1_LOAN_RATE = [0.040, 0.043, 0.045] # 降准后的利率放在这里
 
 EVENT_2_DAY = 391
 EVENT_2_MESSAGE = "放在论坛里的事件信息"
-EVENT_A_LOAN_RATE = [0.045, 0.048, 0.050]
+EVENT_2_LOAN_RATE = [0.045, 0.048, 0.050]

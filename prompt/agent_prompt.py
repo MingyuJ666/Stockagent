@@ -1,5 +1,4 @@
 from procoder.prompt import *
-from utils import *
 
 BACKGROUND_PROMPT = NamedBlock(
     name="Background",
@@ -22,9 +21,9 @@ LOAN_TYPE_PROMPT = NamedVariable(
     refname="loan_type_prompt",
     name="Loan Type",
     content="""
-    0. 1年期，基准利率0.042
-    1. 2年期，基准利率0.045
-    2. 3年期，基准利率0.047
+    0. 1年期，基准利率{loan_rate1}
+    1. 2年期，基准利率{loan_rate2}
+    2. 3年期，基准利率{loan_rate3}
     """
 )
 

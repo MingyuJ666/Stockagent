@@ -4,27 +4,28 @@ import openai
 import tiktoken
 import random
 
+import utils
 from log.custom_logger import log
 
 from prompt.agent_prompt import *
 from procoder.functional import format_prompt
 from procoder.prompt import *
-from utils import *
+
 
 
 def random_init(stock_initial_price):
     stock, cash, debt_amount = 0.0, 0.0, 0.0
-    while stock * stock_initial_price + cash < MIN_INITIAL_PROPERTY \
-            or stock * stock_initial_price + cash > MAX_INITIAL_PROPERTY \
+    while stock * stock_initial_price + cash < utils.MIN_INITIAL_PROPERTY \
+            or stock * stock_initial_price + cash > utils.MAX_INITIAL_PROPERTY \
             or debt_amount > stock * stock_initial_price + cash:
-        stock = int(random.uniform(0, MAX_INITIAL_PROPERTY / stock_initial_price))
-        cash = random.uniform(0, MAX_INITIAL_PROPERTY)
-        debt_amount = random.uniform(0, MAX_INITIAL_PROPERTY)
+        stock = int(random.uniform(0, utils.MAX_INITIAL_PROPERTY / stock_initial_price))
+        cash = random.uniform(0, utils.MAX_INITIAL_PROPERTY)
+        debt_amount = random.uniform(0, utils.MAX_INITIAL_PROPERTY)
     debt = {
         "loan": "yes",
         "amount": debt_amount,
-        "loan_type": random.randint(0, len(LOAN_TYPE)),
-        "repayment_date": random.choice(REPAYMENT_DAYS)
+        "loan_type": random.randint(0, len(utils.LOAN_TYPE)),
+        "repayment_date": random.choice(utils.REPAYMENT_DAYS)
     }
     return stock, cash, debt
 
@@ -40,14 +41,14 @@ class Agent:
         self.stock_b_amount = 0  # stock 以手为单位存储，一手=10股，股价其实是一手的价格
         self.init_proper = self.get_total_proper(stock_a_price, 0)  # 初始资产 后续借贷不超过初始资产
 
-        self.action_history = [[] for _ in range(TOTAL_DATE)]
+        self.action_history = [[] for _ in range(utils.TOTAL_DATE)]
         self.chat_history = []
         self.loans = [init_debt]
         self.is_bankrupt = False
 
     def run_api(self, prompt, temperature: float = 0):
         encoding = tiktoken.encoding_for_model('gpt-3.5-turbo')
-        openai.api_key = OPENAI_API_KEY
+        openai.api_key = utils.OPENAI_API_KEY
         client = openai.OpenAI(api_key=openai.api_key)
         self.chat_history.append({"role": "user", "content": prompt})
         max_retry = 2
@@ -103,7 +104,10 @@ class Agent:
                 'stock_b': self.stock_b_amount,
                 'cash': self.cash,
                 'debt': self.loans,
-                'max_loan': max_loan
+                'max_loan': max_loan,
+                'loan_rate1': utils.LOAN_RATE[0],
+                'loan_rate2': utils.LOAN_RATE[1],
+                'loan_rate3': utils.LOAN_RATE[2],
             }
 
         # other days action : prompt with last day forum message & stock price
@@ -124,7 +128,10 @@ class Agent:
                 "max_loan": max_loan,
                 "stock_a_price": stock_a_price,
                 "stock_b_price": stock_b_price,
-                "lastday_forum_message": lastday_forum_message
+                "lastday_forum_message": lastday_forum_message,
+                'loan_rate1': utils.LOAN_RATE[0],
+                'loan_rate2': utils.LOAN_RATE[1],
+                'loan_rate3': utils.LOAN_RATE[2],
             }
         if max_loan == 0:
             return {"loan": "no"}
@@ -151,7 +158,7 @@ class Agent:
             loan_format_check, fail_response, loan = self.secretary.check_loan(date, resp)
 
         if loan["loan"] == "yes":
-            loan["repayment_date"] = date + LOAN_TYPE_DATE[loan["loan_type"]]  # add loan repayment_date
+            loan["repayment_date"] = date + utils.LOAN_TYPE_DATE[loan["loan_type"]]  # add loan repayment_date
             self.loans.append(loan)
             self.action_history[date].append(loan)
             self.cash += loan["amount"]
@@ -176,8 +183,8 @@ class Agent:
                 "stock_b_deals": stock_b_deals,
                 "cash": self.cash
             }
-        elif date in SEASON_REPORT_DAYS:
-            index = SEASON_REPORT_DAYS.index(date)
+        elif date in utils.SEASON_REPORT_DAYS:
+            index = utils.SEASON_REPORT_DAYS.index(date)
             prompt = Collection(SEASONAL_FINANCIAL_REPORT,
                                 DECIDE_BUY_STOCK_PROMPT).set_indexing_method(sharp2_indexing).set_sep("\n")
             inputs = {
@@ -279,7 +286,7 @@ class Agent:
         to_del = []
         for idx, loan in enumerate(self.loans):
             if loan["repayment_date"] == date:
-                self.cash -= loan["amount"] * (1 + LOAN_RATE[loan["loan_type"]])
+                self.cash -= loan["amount"] * (1 + utils.LOAN_RATE[loan["loan_type"]])
                 to_del.append(idx)
         if self.cash < 0:
             self.is_bankrupt = True
@@ -289,7 +296,7 @@ class Agent:
     def interest_payment(self):
         # 贷款付息日付息
         for loan in self.loans:
-            self.cash -= loan["amount"] * LOAN_RATE[loan["loan_type"]] / 4
+            self.cash -= loan["amount"] * utils.LOAN_RATE[loan["loan_type"]] / 4
             if self.cash < 0:
                 self.is_bankrupt = True
 

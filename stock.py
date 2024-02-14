@@ -1,4 +1,4 @@
-from utils import *
+import utils
 
 class Stock:
     def __init__(self, name, initial_price, initial_stock, is_new=False):
@@ -11,7 +11,9 @@ class Stock:
 
     def gen_financial_report(self, index):
         if self.name == "A":
-            return FINANCIAL_REPORT_A[index]
+            return utils.FINANCIAL_REPORT_A[index]
+        elif self.name == "B":
+            return utils.FINANCIAL_REPORT_B[index]
 
     def add_session_deal(self, price_and_amount):
         self.session_deal.append(price_and_amount)

@@ -2,7 +2,7 @@ import argparse
 import random
 import pandas as pd
 
-from utils import *
+import utils
 from agent import Agent
 from secretary import Secretary
 from stock import Stock
@@ -64,11 +64,11 @@ def handle_action(action, stock_deals, all_agents, stock, session):
 def simulation(args):
     # init
     secretary = Secretary(args.model)
-    stock_a = Stock("A", STOCK_A_INITIAL_PRICE, 0, is_new=False)
-    stock_b = Stock("B", STOCK_B_INITIAL_PRICE, STOCK_B_PUBLISH, is_new=True)
+    stock_a = Stock("A", utils.STOCK_A_INITIAL_PRICE, 0, is_new=False)
+    stock_b = Stock("B", utils.STOCK_B_INITIAL_PRICE, utils.STOCK_B_PUBLISH, is_new=True)
     all_agents = []
     log.logger.debug("Agents initial...")
-    for i in range(0, AGENTS_NUM):  # agents start from 0, -1 refers to stock_b
+    for i in range(0, utils.AGENTS_NUM):  # agents start from 0, -1 refers to stock_b
         agent = Agent(i, stock_a.get_price(), secretary, args.model)
         all_agents.append(agent)
         log.logger.debug("cash: {}, stock a: {}, debt: {}".format(agent.cash, agent.stock_a_amount, agent.loans))
@@ -78,10 +78,10 @@ def simulation(args):
     stock_a_deals = {"sell": [], "buy": []}
     stock_b_deals = {"sell": [], "buy": []}
     # stock b publish
-    stock_b_deals["sell"].append({"agent": -1, "amount": STOCK_B_PUBLISH, "price": STOCK_B_INITIAL_PRICE})
+    stock_b_deals["sell"].append({"agent": -1, "amount": utils.STOCK_B_PUBLISH, "price": utils.STOCK_B_INITIAL_PRICE})
 
     log.logger.debug("--------Simulation Start!--------")
-    for date in range(1, TOTAL_DATE + 1):
+    for date in range(1, utils.TOTAL_DATE + 1):
 
         log.logger.debug(f"--------DAY {date}---------")
         # 除b发行外，删除前一天的所有交易
@@ -103,11 +103,17 @@ def simulation(args):
             agent.loan_repayment(date)
 
         # repayment days
-        if date in REPAYMENT_DAYS:
+        if date in utils.REPAYMENT_DAYS:
             for agent in all_agents[:]:
                 agent.interest_payment()
 
-        # todo if date in 特定事件日（预先定义）
+        # special events
+        if date == utils.EVENT_1_DAY:
+            utils.LOAN_RATE = utils.EVENT_1_LOAN_RATE
+            last_day_forum_message.append({"name": -1, "message": utils.EVENT_1_MESSAGE})
+        if date == utils.EVENT_2_DAY:
+            utils.LOAN_RATE = utils.EVENT_2_LOAN_RATE
+            last_day_forum_message.append({"name": -1, "message": utils.EVENT_2_MESSAGE})
 
         # agent decide whether to loan
         daily_agent_records = []
@@ -115,7 +121,7 @@ def simulation(args):
             loan = agent.plan_loan(date, stock_a.get_price(), stock_b.get_price(), last_day_forum_message)
             daily_agent_records.append(AgentRecordDaily(date, agent.order, loan))
 
-        for session in range(1, TOTAL_SESSION + 1):
+        for session in range(1, utils.TOTAL_SESSION + 1):
             log.logger.debug(f"SESSION {session}")
             # 随机定义交易顺序
             sequence = list(range(len(all_agents)))
