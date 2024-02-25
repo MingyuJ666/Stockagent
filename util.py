@@ -43,6 +43,12 @@ EVENT_1_MESSAGE = "The government has announced a reduction in the reserve requi
                   "The lending interest rates have been lowered."
 EVENT_1_LOAN_RATE = [0.024, 0.027, 0.030] # 降准后的利率放在这里
 
+<<<<<<< HEAD
 EVENT_2_DAY = 144
 EVENT_2_MESSAGE = "The government has announced an increase in interest rates."
 EVENT_2_LOAN_RATE = [0.0255, 0.0285, 0.0315]
+=======
+EVENT_2_DAY = 391
+EVENT_2_MESSAGE = "放在论坛里的事件信息"
+EVENT_2_LOAN_RATE = [0.045, 0.048, 0.050]
+>>>>>>> b00ca4a449ea2579645ba83750ca51e536ff4edf

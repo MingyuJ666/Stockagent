@@ -136,7 +136,7 @@ DECIDE_BUY_STOCK_PROMPT = NamedBlock(
     The quantity must be an integer.
     We encourage you buy and sell as much as you can. Try to avoid giving a response with no action.
     Return the result as json, for example:
-    {{"action_type":"buy"|"sell", "stock":"A"|"B", amount: 100, price : 30}}
+    {{"action_type":"buy"|"sell", "stock":"A"|"B", amount: 100, price : 30.1}}
     If neither buy nor sell, return:
     {{"action_type" : "no"}}
     """
@@ -158,7 +158,7 @@ BUY_STOCK_RETRY_PROMPT = NamedBlock(
     content="""
     The following questions appeared in the action format you last answered: {fail_response}.
     You should return the result as json, for example:
-    {{"action_type":"buy"|"sell", "stock":"A"|"B", amount: 100, price: 30}}
+    {{"action_type":"buy"|"sell", "stock":"A"|"B", amount: 100, price: 30.1}}
     If neither buy nor sell, return:
     {{"action_type" : "no"}}
     Please answer again.
