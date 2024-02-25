@@ -81,7 +81,7 @@ class Agent:
         while retry < max_retry:
             try:
                 response = model.generate_content(contents=self.chat_history, generation_config=generation_config)
-                new_message_dict = {"role": 'model', "content": [response.text]}
+                new_message_dict = {"role": 'model', "parts": [response.text]}
                 self.chat_history.append(new_message_dict)
                 return response.text
             except Exception as e:
@@ -181,7 +181,7 @@ class Agent:
         if max_loan <= 0:
             return {"loan": "no"}
         try_times = 0
-        MAX_TRY_TIMES = 10
+        MAX_TRY_TIMES = 5
         resp = self.run_api(format_prompt(prompt, inputs))
         # print(resp)
         if resp == "":
@@ -262,7 +262,7 @@ class Agent:
 
 
         try_times = 0
-        MAX_TRY_TIMES = 10
+        MAX_TRY_TIMES = 5
         resp = self.run_api(format_prompt(prompt, inputs))
         # print(resp)
         if resp == "":

@@ -134,7 +134,7 @@ DECIDE_BUY_STOCK_PROMPT = NamedBlock(
     You need to decide whether to buy/sell shares of Company A or Company B, and how much to buy/sell and at what price.
     You can refer to the current share price and the market to determine the price yourself, not the current share price. 
     The quantity must be an integer.
-    Try to avoid giving a response with no action. You can only answer one json action.
+    We encourage you to buy and sell more. You can only answer one json action.
     Return the result as json, for example:
     {{"action_type":"buy"|"sell", "stock":"A"|"B", amount: 100, price : 30.1}}
     If neither buy nor sell, return:
