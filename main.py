@@ -111,6 +111,13 @@ def simulation(args):
             for agent in all_agents[:]:
                 agent.interest_payment()
 
+        # deal with cash<0 agents
+        for agent in all_agents[:]:
+            if agent.is_bankrupt:
+                quit_sig = agent.bankrupt_process(stock_a.get_price(), stock_b.get_price())
+                if quit_sig:
+                    all_agents.remove(agent)
+
         # special events
         if date == util.EVENT_1_DAY:
             util.LOAN_RATE = util.EVENT_1_LOAN_RATE
@@ -122,8 +129,6 @@ def simulation(args):
         # agent decide whether to loan
         daily_agent_records = []
         for agent in all_agents:
-            if agent.is_bankrupt:
-                continue
             loan = agent.plan_loan(date, stock_a.get_price(), stock_b.get_price(), last_day_forum_message)
             daily_agent_records.append(AgentRecordDaily(date, agent.order, loan))
 
@@ -134,8 +139,8 @@ def simulation(args):
             random.shuffle(sequence)
             for i in sequence:
                 agent = all_agents[i]
-                if agent.is_bankrupt:  # cash<0的当天停止交易，交易时段结束后贩卖股票
-                    continue
+                # if agent.is_bankrupt:  # cash<0的当天停止交易，交易时段结束后贩卖股票
+                #     continue
 
                 action = agent.plan_stock(date, session, stock_a, stock_b, stock_a_deals, stock_b_deals)
                 proper, cash, valua_a, value_b = agent.get_proper_cash_value(stock_a.get_price(), stock_b.get_price())
@@ -153,16 +158,13 @@ def simulation(args):
             stock_b.update_price(date)
             create_stock_record(date, session, stock_a.get_price(), stock_b.get_price())
 
-        # deal with cash<0 agents
-        for agent in all_agents[:]:
-            quit_sig = agent.bankrupt_process(stock_a.get_price(), stock_b.get_price())
-            if quit_sig:
-                all_agents.remove(agent)
 
         # agent预测明天行动
         for idx, agent in enumerate(all_agents):
             estimation = agent.next_day_estimate()
             log.logger.info("Agent {} tomorrow estimation: {}".format(agent.order, estimation))
+            if idx >= len(daily_agent_records):
+                break
             daily_agent_records[idx].add_estimate(estimation)
             daily_agent_records[idx].write_to_excel()
         daily_agent_records.clear()

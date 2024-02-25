@@ -35,7 +35,7 @@ class Secretary:
 
     def check_loan(self, resp, max_loan) -> (bool, str, dict):
         # format check
-        if resp.count('{') == 1 and resp.count('}') == 1:
+        if isinstance(resp, str) and resp.count('{') == 1 and resp.count('}') == 1:
             start_idx = resp.index('{')
             end_idx = resp.index('}')
         else:
@@ -93,7 +93,7 @@ class Secretary:
     def check_action(self, resp, cash, stock_a_amount,
                      stock_b_amount, stock_a_price, stock_b_price) -> (bool, str, dict):
         # format check
-        if resp.count('{') == 1 and resp.count('}') == 1:
+        if isinstance(resp, str) and resp.count('{') == 1 and resp.count('}') == 1:
             start_idx = resp.index('{')
             end_idx = resp.index('}')
         else:
@@ -176,7 +176,7 @@ class Secretary:
 
     def check_estimate(self, resp):
         # format check
-        if resp.count('{') == 1 and resp.count('}') == 1:
+        if isinstance(resp, str) and resp.count('{') == 1 and resp.count('}') == 1:
             start_idx = resp.index('{')
             end_idx = resp.index('}')
         else:

@@ -91,8 +91,6 @@ class Agent:
         log.logger.error("ERROR: OPENAI API FAILED. SKIP THIS INTERACTION.")
         return ""
 
-
-
     def get_total_proper(self, stock_a_price, stock_b_price):
         return self.stock_a_amount * stock_a_price + self.stock_b_amount * stock_b_price + self.cash
 
@@ -340,7 +338,7 @@ class Agent:
 
         if self.stock_a_amount < 0 or self.stock_b_amount < 0 or self.cash < 0:
             raise RuntimeError("ERROR: WRONG BANKRUPT PROCESS")
-
+        self.is_bankrupt = False
         return False
 
     def post_message(self):
