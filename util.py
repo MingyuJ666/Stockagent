@@ -23,7 +23,7 @@ LOAN_TYPE = ["one-month", "two-month", "three-month"]
 LOAN_TYPE_DATE = [22, 44, 66]  # 贷款时长
 LOAN_RATE = [0.027, 0.03, 0.033] # 贷款利率
 
-REPAYMENT_DAYS = [22, 44, 66, 88, 110, 132, 154, ]  # 付息日
+REPAYMENT_DAYS = [22, 44, 66, 88, 110, 132, 154, 176, 198, 220, 242, 264]  # 付息日
 
 # 财报
 SEASONAL_DAYS = 66 # 一季度的时间
@@ -38,17 +38,12 @@ FINANCIAL_REPORT_B = ["Last quarter's financial report of Company B. Revenue gro
                       "Last quarter's financial report of Company B. Revenue growth rate (YoY): 15.98%, Revenue million: 1075.13, Gross margin: 32.41%, Income Tax as a percentage of Revenue: 1.08%, Selling Expense Rate:3.79%, Management Expense Rate: 10.70%, Net profit million: 181.1602, Depreciation and Amortization: 1.09%, Capital Expenditures: 2.28%, Changes in working capital: 0.67%, Cash Flow(million): 161.1985"]
 
 # 特殊事件
+
 EVENT_1_DAY = 78
 EVENT_1_MESSAGE = "The government has announced a reduction in the reserve requirement ratio. " \
                   "The lending interest rates have been lowered."
 EVENT_1_LOAN_RATE = [0.024, 0.027, 0.030] # 降准后的利率放在这里
 
-<<<<<<< HEAD
 EVENT_2_DAY = 144
 EVENT_2_MESSAGE = "The government has announced an increase in interest rates."
 EVENT_2_LOAN_RATE = [0.0255, 0.0285, 0.0315]
-=======
-EVENT_2_DAY = 391
-EVENT_2_MESSAGE = "放在论坛里的事件信息"
-EVENT_2_LOAN_RATE = [0.045, 0.048, 0.050]
->>>>>>> b00ca4a449ea2579645ba83750ca51e536ff4edf
