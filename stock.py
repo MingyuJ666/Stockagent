@@ -11,9 +11,9 @@ class Stock:
 
     def gen_financial_report(self, index):
         if self.name == "A":
-            return utils.FINANCIAL_REPORT_A[index]
+            return util.FINANCIAL_REPORT_A[index]
         elif self.name == "B":
-            return utils.FINANCIAL_REPORT_B[index]
+            return util.FINANCIAL_REPORT_B[index]
 
     def add_session_deal(self, price_and_amount):
         self.session_deal.append(price_and_amount)
