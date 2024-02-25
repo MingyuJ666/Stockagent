@@ -4,6 +4,7 @@ import openai
 import tiktoken
 import random
 import requests
+import google.generativeai as genai
 
 import util
 from log.custom_logger import log
@@ -63,6 +64,35 @@ class Agent:
         self.is_bankrupt = False
 
     def run_api(self, prompt, temperature: float = 1):
+        if 'gpt' in self.model:
+            return self.run_api_gpt(prompt, temperature)
+        elif 'gemini' in self.model:
+            return self.run_api_gemini(prompt, temperature)
+
+    def run_api_gemini(self, prompt, temperature: float = 1):
+        genai.configure(api_key=util.GOOGLE_API_KEY, transport='rest')
+        generation_config = genai.types.GenerationConfig(
+            candidate_count=1,
+            temperature=temperature)
+        model = genai.GenerativeModel(self.model)
+        self.chat_history.append({"role": "user", "parts": [prompt]})
+        max_retry = 2
+        retry = 0
+        while retry < max_retry:
+            try:
+                response = model.generate_content(contents=self.chat_history, generation_config=generation_config)
+                new_message_dict = {"role": 'model', "content": [response.text]}
+                self.chat_history.append(new_message_dict)
+                return response.text
+            except Exception as e:
+                log.logger.warning("Gemini api retry...{}".format(e))
+                retry += 1
+                time.sleep(1)
+        log.logger.error("ERROR: GEMINI API FAILED. SKIP THIS INTERACTION.")
+        return ""
+
+
+    def run_api_gpt(self, prompt, temperature: float = 1):
         openai.api_key = util.OPENAI_API_KEY
         client = openai.OpenAI(api_key=openai.api_key)
         self.chat_history.append({"role": "user", "content": prompt})
@@ -112,7 +142,6 @@ class Agent:
             prompt = Collection(BACKGROUND_PROMPT,
                                 LOAN_TYPE_PROMPT,
                                 DECIDE_IF_LOAN_PROMPT).set_indexing_method(sharp2_indexing).set_sep("\n")
-            assert self.init_proper >= self.get_total_loan()
             max_loan = self.init_proper - self.get_total_loan()
             inputs = {
                 'date': date,
@@ -133,7 +162,6 @@ class Agent:
                                 LASTDAY_FORUM_AND_STOCK_PROMPT,
                                 LOAN_TYPE_PROMPT,
                                 DECIDE_IF_LOAN_PROMPT).set_indexing_method(sharp2_indexing).set_sep("\n")
-            assert self.init_proper >= self.get_total_loan()
             max_loan = self.init_proper - self.get_total_loan()
             inputs = {
                 "date": date,
@@ -150,7 +178,7 @@ class Agent:
                 'loan_rate2': util.LOAN_RATE[1],
                 'loan_rate3': util.LOAN_RATE[2],
             }
-        if max_loan == 0:
+        if max_loan <= 0:
             return {"loan": "no"}
         try_times = 0
         MAX_TRY_TIMES = 10
