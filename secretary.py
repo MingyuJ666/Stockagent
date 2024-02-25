@@ -155,7 +155,7 @@ class Secretary:
             price = parsed_json["price"]
             if parsed_json["action_type"].lower() == "buy":
                 if parsed_json["amount"] <= 0 or parsed_json["amount"] * price > cash:
-                    log.logger.debug("Wrong json content in response: {}".format(resp))
+                    log.logger.debug("Buy more than cash: {}".format(resp))
                     fail_response = f"The cash you have now is {cash}, " \
                                     f"the value of 'amount' * 'price'  " \
                                     f"should be positive and not exceed cash."
@@ -164,7 +164,7 @@ class Secretary:
             hold_amount = holds[parsed_json["stock"]]
             if parsed_json["action_type"].lower() == "sell":
                 if parsed_json["amount"] <= 0 or parsed_json["amount"] > hold_amount:
-                    log.logger.debug("Wrong json content in response: {}".format(resp))
+                    log.logger.debug("Sell more than hold: {}".format(resp))
                     fail_response = f"The amount of stock you hold is {hold_amount}, " \
                                     f"the value of 'amount' should be positive and not exceed the " \
                                     f"amount of stock you hold."

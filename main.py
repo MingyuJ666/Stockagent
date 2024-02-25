@@ -67,20 +67,22 @@ def simulation(args):
     # init
     secretary = Secretary(args.model)
     stock_a = Stock("A", util.STOCK_A_INITIAL_PRICE, 0, is_new=False)
-    stock_b = Stock("B", util.STOCK_B_INITIAL_PRICE, util.STOCK_B_PUBLISH, is_new=True)
+    #stock_b = Stock("B", util.STOCK_B_INITIAL_PRICE, util.STOCK_B_PUBLISH, is_new=True)
+    stock_b = Stock("B", util.STOCK_B_INITIAL_PRICE, 0, is_new=False)
     all_agents = []
     log.logger.debug("Agents initial...")
-    for i in range(0, util.AGENTS_NUM):  # agents start from 0, -1 refers to stock_b
-        agent = Agent(i, stock_a.get_price(), secretary, args.model)
+    for i in range(0, util.AGENTS_NUM):  # agents start from 0, -1 refers to admin
+        agent = Agent(i, stock_a.get_price(), stock_b.get_price(), secretary, args.model)
         all_agents.append(agent)
-        log.logger.debug("cash: {}, stock a: {}, debt: {}".format(agent.cash, agent.stock_a_amount, agent.loans))
+        log.logger.debug("cash: {}, stock a: {}, stock b:{}, debt: {}".format(agent.cash, agent.stock_a_amount,
+                                                                              agent.stock_b_amount, agent.loans))
 
     # start simulation
     last_day_forum_message = []
     stock_a_deals = {"sell": [], "buy": []}
     stock_b_deals = {"sell": [], "buy": []}
     # stock b publish
-    stock_b_deals["sell"].append({"agent": -1, "amount": util.STOCK_B_PUBLISH, "price": util.STOCK_B_INITIAL_PRICE})
+    # stock_b_deals["sell"].append({"agent": -1, "amount": util.STOCK_B_PUBLISH, "price": util.STOCK_B_INITIAL_PRICE})
 
     log.logger.debug("--------Simulation Start!--------")
     for date in range(1, util.TOTAL_DATE + 1):
@@ -91,13 +93,13 @@ def simulation(args):
         stock_a_deals["buy"].clear()
         stock_b_deals["buy"].clear()
 
-        tmp_action = next((action for action in stock_b_deals["sell"] if action["agent"] == 0), None)
+        # tmp_action = next((action for action in stock_b_deals["sell"] if action["agent"] == -1), None)
         stock_b_deals["sell"].clear()
-        if tmp_action:
-            tmp_action["price"] *= 0.9  # B发行折价
-            if tmp_action["price"] < 1:
-                log.logger.warning("WARNING: STOCK B WITHDRAW FROM MARKET!!!")
-            stock_b_deals["sell"].append(tmp_action)
+        # if tmp_action:
+        #     tmp_action["price"] *= 0.9  # B发行折价
+        #     if tmp_action["price"] < 1:
+        #         log.logger.warning("WARNING: STOCK B WITHDRAW FROM MARKET!!!")
+        #     stock_b_deals["sell"].append(tmp_action)
 
         # check if an agent needs to repay loans
         for agent in all_agents[:]:
@@ -120,6 +122,8 @@ def simulation(args):
         # agent decide whether to loan
         daily_agent_records = []
         for agent in all_agents:
+            if agent.is_bankrupt:
+                continue
             loan = agent.plan_loan(date, stock_a.get_price(), stock_b.get_price(), last_day_forum_message)
             daily_agent_records.append(AgentRecordDaily(date, agent.order, loan))
 
@@ -137,6 +141,7 @@ def simulation(args):
                 proper, cash, valua_a, value_b = agent.get_proper_cash_value(stock_a.get_price(), stock_b.get_price())
                 create_agentses_record(agent.order, date, session, proper, cash, valua_a, value_b, action)
                 action["agent"] = agent.order
+                action["date"] = date
                 if not action["action_type"] == "no":
                     if action["stock"] == 'A':
                         handle_action(action, stock_a_deals, all_agents, stock_a, session)
@@ -157,6 +162,7 @@ def simulation(args):
         # agent预测明天行动
         for idx, agent in enumerate(all_agents):
             estimation = agent.next_day_estimate()
+            log.logger.info("Agent {} tomorrow estimation: {}".format(agent.order, estimation))
             daily_agent_records[idx].add_estimate(estimation)
             daily_agent_records[idx].write_to_excel()
         daily_agent_records.clear()

@@ -3,6 +3,7 @@ import time
 import openai
 import tiktoken
 import random
+import requests
 
 import util
 from log.custom_logger import log
@@ -12,13 +13,13 @@ from procoder.functional import format_prompt
 from procoder.prompt import *
 
 
-
-def random_init(stock_initial_price):
-    stock, cash, debt_amount = 0.0, 0.0, 0.0
-    while stock * stock_initial_price + cash < util.MIN_INITIAL_PROPERTY \
-            or stock * stock_initial_price + cash > util.MAX_INITIAL_PROPERTY \
-            or debt_amount > stock * stock_initial_price + cash:
-        stock = int(random.uniform(0, util.MAX_INITIAL_PROPERTY / stock_initial_price))
+def random_init(stock_a_initial, stock_b_initial):
+    stock_a, stock_b, cash, debt_amount = 0.0, 0.0, 0.0, 0.0
+    while stock_a * stock_a_initial + stock_b * stock_b_initial + cash < util.MIN_INITIAL_PROPERTY \
+            or stock_a * stock_a_initial + stock_b * stock_b_initial + cash > util.MAX_INITIAL_PROPERTY \
+            or debt_amount > stock_a * stock_a_initial + stock_b * stock_b_initial + cash:
+        stock_a = int(random.uniform(0, util.MAX_INITIAL_PROPERTY / stock_a_initial))
+        stock_b = int(random.uniform(0, util.MAX_INITIAL_PROPERTY / stock_b_initial))
         cash = random.uniform(0, util.MAX_INITIAL_PROPERTY)
         debt_amount = random.uniform(0, util.MAX_INITIAL_PROPERTY)
     debt = {
@@ -27,26 +28,41 @@ def random_init(stock_initial_price):
         "loan_type": random.randint(0, len(util.LOAN_TYPE)),
         "repayment_date": random.choice(util.REPAYMENT_DAYS)
     }
-    return stock, cash, debt
+    return stock_a, stock_b, cash, debt
+# def random_init(stock_initial_price):
+#     stock, cash, debt_amount = 0.0, 0.0, 0.0
+#     while stock * stock_initial_price + cash < util.MIN_INITIAL_PROPERTY \
+#             or stock * stock_initial_price + cash > util.MAX_INITIAL_PROPERTY \
+#             or debt_amount > stock * stock_initial_price + cash:
+#         stock = int(random.uniform(0, util.MAX_INITIAL_PROPERTY / stock_initial_price))
+#         cash = random.uniform(0, util.MAX_INITIAL_PROPERTY)
+#         debt_amount = random.uniform(0, util.MAX_INITIAL_PROPERTY)
+#     debt = {
+#         "loan": "yes",
+#         "amount": debt_amount,
+#         "loan_type": random.randint(0, len(util.LOAN_TYPE)),
+#         "repayment_date": random.choice(util.REPAYMENT_DAYS)
+#     }
+#     return stock, cash, debt
 
 
 class Agent:
-    def __init__(self, i, stock_a_price, secretary, model):
+    def __init__(self, i, stock_a_price, stock_b_price, secretary, model):
         self.order = i
         self.secretary = secretary
         self.model = model
-        self.character = random.choice(["稳健型", "激进型"])
+        self.character = random.choice(["Conservative", "Aggressive", "Balanced", "Growth-Oriented"])
 
-        self.stock_a_amount, self.cash, init_debt = random_init(stock_a_price)
-        self.stock_b_amount = 0  # stock 以手为单位存储，一手=10股，股价其实是一手的价格
-        self.init_proper = self.get_total_proper(stock_a_price, 0)  # 初始资产 后续借贷不超过初始资产
+        self.stock_a_amount, self.stock_b_amount, self.cash, init_debt = random_init(stock_a_price, stock_b_price)
+        #self.stock_b_amount = 0  # stock 以手为单位存储，一手=10股，股价其实是一手的价格
+        self.init_proper = self.get_total_proper(stock_a_price, stock_b_price)  # 初始资产 后续借贷不超过初始资产
 
         self.action_history = [[] for _ in range(util.TOTAL_DATE)]
         self.chat_history = []
         self.loans = [init_debt]
         self.is_bankrupt = False
 
-    def run_api(self, prompt, temperature: float = 0):
+    def run_api(self, prompt, temperature: float = 1):
         openai.api_key = util.OPENAI_API_KEY
         client = openai.OpenAI(api_key=openai.api_key)
         self.chat_history.append({"role": "user", "content": prompt})
@@ -74,6 +90,8 @@ class Agent:
                 time.sleep(1)
         log.logger.error("ERROR: OPENAI API FAILED. SKIP THIS INTERACTION.")
         return ""
+
+
 
     def get_total_proper(self, stock_a_price, stock_b_price):
         return self.stock_a_amount * stock_a_price + self.stock_b_amount * stock_b_price + self.cash
@@ -153,7 +171,7 @@ class Agent:
                 loan = {"loan": "no"}
                 break
 
-            resp = self.run_api(format_prompt(LOAN_RETRY_PROMPT, {"fail_response": fail_response}), temperature=0)
+            resp = self.run_api(format_prompt(LOAN_RETRY_PROMPT, {"fail_response": fail_response}))
             if resp == "":
                 return {"loan": "no"}
             loan_format_check, fail_response, loan = self.secretary.check_loan(date, resp)
@@ -169,24 +187,11 @@ class Agent:
         return loan
 
     # date=交易日, time=当前交易时段
+    # 设置
     def plan_stock(self, date, time, stock_a, stock_b, stock_a_deals, stock_b_deals):
-        if date == 1:
-            prompt = Collection(FIRST_DAY_FINANCIAL_REPORT,
-                                DECIDE_BUY_STOCK_PROMPT).set_indexing_method(sharp2_indexing).set_sep("\n")
-            inputs = {
-                "date": date,
-                "time": time,
-                "stock_a": self.stock_a_amount,
-                "stock_b": self.stock_b_amount,
-                "stock_a_price": stock_a.get_price(),
-                "stock_b_price": stock_b.get_price(),
-                "stock_a_deals": stock_a_deals,
-                "stock_b_deals": stock_b_deals,
-                "cash": self.cash
-            }
-        elif date in util.SEASON_REPORT_DAYS:
+        if date in util.SEASON_REPORT_DAYS and time == 1:
             index = util.SEASON_REPORT_DAYS.index(date)
-            prompt = Collection(SEASONAL_FINANCIAL_REPORT,
+            prompt = Collection(FIRST_DAY_FINANCIAL_REPORT, FIRST_DAY_BACKGROUND_KNOWLEDGE, SEASONAL_FINANCIAL_REPORT,
                                 DECIDE_BUY_STOCK_PROMPT).set_indexing_method(sharp2_indexing).set_sep("\n")
             inputs = {
                 "date": date,
@@ -201,6 +206,20 @@ class Agent:
                 "stock_a_report": stock_a.gen_financial_report(index),
                 "stock_b_report": stock_b.gen_financial_report(index)
             }
+        elif time == 1:
+            prompt = Collection(FIRST_DAY_FINANCIAL_REPORT, FIRST_DAY_BACKGROUND_KNOWLEDGE,
+                                DECIDE_BUY_STOCK_PROMPT).set_indexing_method(sharp2_indexing).set_sep("\n")
+            inputs = {
+                "date": date,
+                "time": time,
+                "stock_a": self.stock_a_amount,
+                "stock_b": self.stock_b_amount,
+                "stock_a_price": stock_a.get_price(),
+                "stock_b_price": stock_b.get_price(),
+                "stock_a_deals": stock_a_deals,
+                "stock_b_deals": stock_b_deals,
+                "cash": self.cash
+            }
         else:
             prompt = DECIDE_BUY_STOCK_PROMPT
             inputs = {
@@ -214,6 +233,8 @@ class Agent:
                 "stock_b_deals": stock_b_deals,
                 "cash": self.cash
             }
+
+
         try_times = 0
         MAX_TRY_TIMES = 10
         resp = self.run_api(format_prompt(prompt, inputs))
@@ -231,7 +252,7 @@ class Agent:
                 action = {"action_type": "no"}
                 break
 
-            resp = self.run_api(format_prompt(BUY_STOCK_RETRY_PROMPT, {"fail_response": fail_response}), temperature=0)
+            resp = self.run_api(format_prompt(BUY_STOCK_RETRY_PROMPT, {"fail_response": fail_response}))
             if resp == "":
                 return {"action_type": "no"}
             action_format_check, fail_response, action = self.secretary.check_action(
@@ -297,7 +318,7 @@ class Agent:
     def interest_payment(self):
         # 贷款付息日付息
         for loan in self.loans:
-            self.cash -= loan["amount"] * util.LOAN_RATE[loan["loan_type"]] / 4
+            self.cash -= loan["amount"] * util.LOAN_RATE[loan["loan_type"]] / 12
             if self.cash < 0:
                 self.is_bankrupt = True
 
@@ -341,7 +362,7 @@ class Agent:
                 log.logger.warning("WARNING: Estimation format try times > MAX_TRY_TIMES. Skip as all 'no' today.")
                 estimate = {"buy_A": "no", "buy_B": "no", "sell_A": "no", "sell_B": "no", "loan": "no"}
                 break
-            resp = self.run_api(format_prompt(NEXT_DAY_ESTIMATE_RETRY, {"fail_response": fail_response}), temperature=0)
+            resp = self.run_api(format_prompt(NEXT_DAY_ESTIMATE_RETRY, {"fail_response": fail_response}))
             if resp == "":
                 return {"buy_A": "no", "buy_B": "no", "sell_A": "no", "sell_B": "no", "loan": "no"}
             format_check, fail_response, estimate = self.secretary.check_estimate(resp)
