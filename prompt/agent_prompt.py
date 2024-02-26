@@ -49,9 +49,9 @@ LOAN_TYPE_PROMPT = NamedVariable(
     refname="loan_type_prompt",
     name="Loan Type",
     content="""
-    0. 1 year, the benchmark interest rate {loan_rate1}
-    1. 2 years, the benchmark interest rate {loan_rate2}
-    2. 3 years, the benchmark interest rate {loan_rate3}
+    0. 22days, the benchmark interest rate {loan_rate1}
+    1. 44days, the benchmark interest rate {loan_rate2}
+    2. 66days, the benchmark interest rate {loan_rate3}
     """
 )
 
