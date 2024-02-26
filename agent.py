@@ -181,7 +181,7 @@ class Agent:
         if max_loan <= 0:
             return {"loan": "no"}
         try_times = 0
-        MAX_TRY_TIMES = 5
+        MAX_TRY_TIMES = 3
         resp = self.run_api(format_prompt(prompt, inputs))
         # print(resp)
         if resp == "":
@@ -262,7 +262,7 @@ class Agent:
 
 
         try_times = 0
-        MAX_TRY_TIMES = 5
+        MAX_TRY_TIMES = 3
         resp = self.run_api(format_prompt(prompt, inputs))
         # print(resp)
         if resp == "":
@@ -312,22 +312,32 @@ class Agent:
         return {"action_type": "no"}
 
     def buy_stock(self, stock_name, price, amount):
+        if self.cash < price * amount or stock_name not in ['A', 'B']:
+            log.logger.warning("ILLEGAL STOCK BUY BEHAVIOR: remain cash {}".format(self.cash))
+            return False
         self.cash -= price * amount
-        if self.cash < 0 or stock_name not in ['A', 'B']:
-            raise RuntimeError("ERROR: ILLEGAL STOCK BUY BEHAVIOR")
         if stock_name == 'A':
             self.stock_a_amount += amount
         elif stock_name == 'B':
             self.stock_b_amount += amount
 
+        return True
+
     def sell_stock(self, stock_name, price, amount):
+        if stock_name == 'B' and self.stock_b_amount < amount:
+            log.logger.warning("ILLEGAL STOCK SELL BEHAVIOR: remain stock_b {}, amount {}".format(self.stock_b_amount,
+                                                                                                  amount))
+            return False
+        elif stock_name == 'A' and self.stock_a_amount < amount:
+            log.logger.warning("ILLEGAL STOCK SELL BEHAVIOR: remain stock_a {}, amount {}".format(self.stock_a_amount,
+                                                                                                  amount))
+            return False
         if stock_name == 'A':
             self.stock_a_amount -= amount
         elif stock_name == 'B':
             self.stock_b_amount -= amount
-        if self.stock_b_amount < 0 or self.stock_a_amount < 0:
-            raise RuntimeError("ERROR: ILLEGAL STOCK SELL BEHAVIOR")
         self.cash += price * amount
+        return True
 
     def loan_repayment(self, date):
         # check是否贷款还款日，还款，破产检查
@@ -381,7 +391,7 @@ class Agent:
             return {"buy_A": "no", "buy_B": "no", "sell_A": "no", "sell_B": "no", "loan": "no"}
         format_check, fail_response, estimate = self.secretary.check_estimate(resp)
         try_times = 0
-        MAX_TRY_TIMES = 10
+        MAX_TRY_TIMES = 3
         while not format_check:
             try_times += 1
             if try_times > MAX_TRY_TIMES:
