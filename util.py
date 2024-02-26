@@ -2,7 +2,7 @@
 DONT FORGET TO DELETE!!!
 """
 OPENAI_API_KEY = ""
-GOOGLE_API_KEY = ""
+GOOGLE_API_KEY = "AIzaSyBHQK2qJjas748vVVKlwuhfRKJ_fCqqDzQ"
 
 # 基础设置
 AGENTS_NUM = 50  # 交易员数量
