@@ -12,6 +12,8 @@ from log.custom_logger import log
 from prompt.agent_prompt import *
 from procoder.functional import format_prompt
 from procoder.prompt import *
+from secretary import Secretary
+from stock import Stock
 
 
 def random_init(stock_a_initial, stock_b_initial):
@@ -26,7 +28,7 @@ def random_init(stock_a_initial, stock_b_initial):
     debt = {
         "loan": "yes",
         "amount": debt_amount,
-        "loan_type": random.randint(0, len(util.LOAN_TYPE)),
+        "loan_type": random.randint(0, len(util.LOAN_TYPE) - 1),
         "repayment_date": random.choice(util.REPAYMENT_DAYS)
     }
     return stock_a, stock_b, cash, debt
@@ -404,13 +406,4 @@ class Agent:
             format_check, fail_response, estimate = self.secretary.check_estimate(resp)
         return estimate
 
-# test
-# secretary = Secretary("gpt-3.5-turbo")
-# agent = Agent(1, 123, secretary, "gpt-3.5-turbo")
-# stocka = Stock("a", 5, 100, [])
-# stockb = Stock("b", 7, 100, [])
-# agent.plan_stock(33, 1, stocka, stockb, "", "")
 
-
-# plan = '{"action_type": "sell", "stock": "B", "amount": 10}'
-# print(secretary.check_action(plan, 100, 0, 20, stocka.get_price(), stockb.get_price()))
