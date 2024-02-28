@@ -11,56 +11,65 @@ from stock import Stock
 from log.custom_logger import log
 from record import create_stock_record, create_trade_record, AgentRecordDaily, create_agentses_record
 
+def get_agent(all_agents, order):
+    for agent in all_agents:
+        if agent.order == order:
+            return agent
+    return None
 
 def handle_action(action, stock_deals, all_agents, stock, session):
     # action = JSON{"agent": 1, "action_type": "buy"|"sell", "stock": "A"|"B", "amount": 10, "price": 10}
-    if action["action_type"] == "buy":
-        for sell_action in stock_deals["sell"][:]:
-            if action["price"] == sell_action["price"]:
-                # 交易成交
-                close_amount = min(action["amount"], sell_action["amount"])
-                all_agents[action["agent"]].buy_stock(stock.name, close_amount, action["price"])
-                if not sell_action["agent"] == -1:  # B发行
-                    all_agents[sell_action["agent"]].sell_stock(stock.name, close_amount, action["price"])
-                stock.add_session_deal({"price": action["price"], "amount": close_amount})
-                create_trade_record(action["date"], session, stock.name, action["agent"], sell_action["agent"],
-                                    close_amount, action["price"])
+    try:
+        if action["action_type"] == "buy":
+            for sell_action in stock_deals["sell"][:]:
+                if action["price"] == sell_action["price"]:
+                    # 交易成交
+                    close_amount = min(action["amount"], sell_action["amount"])
+                    get_agent(all_agents, action["agent"]).buy_stock(stock.name, close_amount, action["price"])
+                    if not sell_action["agent"] == -1:  # B发行
+                        get_agent(all_agents, sell_action["agent"]).sell_stock(stock.name, close_amount, action["price"])
+                    stock.add_session_deal({"price": action["price"], "amount": close_amount})
+                    create_trade_record(action["date"], session, stock.name, action["agent"], sell_action["agent"],
+                                        close_amount, action["price"])
 
-                if action["amount"] > close_amount:  # 买单未结束，卖单结束，继续循环
-                    log.logger.info(f"ACTION - BUY:{action['agent']}, SELL:{sell_action['agent']}, "
-                                    f"STOCK:{stock.name}, PRICE:{action['price']}, AMOUNT:{close_amount}")
-                    stock_deals["sell"].remove(sell_action)
-                    action["amount"] -= close_amount
-                else:  # 卖单未结束，买单结束
-                    log.logger.info(f"ACTION - BUY:{action['agent']}, SELL:{sell_action['agent']}, "
-                                    f"STOCK:{stock.name}, PRICE:{action['price']}, AMOUNT:{close_amount}")
-                    sell_action["amount"] -= close_amount
-                    return
-        # 遍历卖单后仍然有剩余
-        stock_deals["buy"].append(action)
+                    if action["amount"] > close_amount:  # 买单未结束，卖单结束，继续循环
+                        log.logger.info(f"ACTION - BUY:{action['agent']}, SELL:{sell_action['agent']}, "
+                                        f"STOCK:{stock.name}, PRICE:{action['price']}, AMOUNT:{close_amount}")
+                        stock_deals["sell"].remove(sell_action)
+                        action["amount"] -= close_amount
+                    else:  # 卖单未结束，买单结束
+                        log.logger.info(f"ACTION - BUY:{action['agent']}, SELL:{sell_action['agent']}, "
+                                        f"STOCK:{stock.name}, PRICE:{action['price']}, AMOUNT:{close_amount}")
+                        sell_action["amount"] -= close_amount
+                        return
+            # 遍历卖单后仍然有剩余
+            stock_deals["buy"].append(action)
 
-    else:
-        for buy_action in stock_deals["buy"][:]:
-            if action["price"] == buy_action["price"]:
-                # 交易成交
-                close_amount = min(action["amount"], buy_action["amount"])
-                all_agents[action["agent"]].sell_stock(stock.name, close_amount, action["price"])
-                all_agents[buy_action["agent"]].buy_stock(stock.name, close_amount, action["price"])
-                stock.add_session_deal({"price": action["price"], "amount": close_amount})
-                create_trade_record(action["date"], session, stock.name, buy_action["agent"], action["agent"],
-                                    close_amount, action["price"])
+        else:
+            for buy_action in stock_deals["buy"][:]:
+                if action["price"] == buy_action["price"]:
+                    # 交易成交
+                    close_amount = min(action["amount"], buy_action["amount"])
+                    get_agent(all_agents, action["agent"]).sell_stock(stock.name, close_amount, action["price"])
+                    get_agent(all_agents, buy_action["agent"]).buy_stock(stock.name, close_amount, action["price"])
+                    stock.add_session_deal({"price": action["price"], "amount": close_amount})
+                    create_trade_record(action["date"], session, stock.name, buy_action["agent"], action["agent"],
+                                        close_amount, action["price"])
 
-                if action["amount"] > close_amount:  # 卖单未结束，买单结束，继续循环
-                    log.logger.info(f"ACTION - BUY:{buy_action['agent']}, SELL:{action['agent']}, "
-                                    f"STOCK:{stock.name}, PRICE:{action['price']}, AMOUNT:{close_amount}")
-                    stock_deals["buy"].remove(buy_action)
-                    action["amount"] -= close_amount
-                else:  # 买单未结束，卖单结束
-                    log.logger.info(f"ACTION - BUY:{buy_action['agent']}, SELL:{action['agent']}, "
-                                    f"STOCK:{stock.name}, PRICE:{action['price']}, AMOUNT:{close_amount}")
-                    buy_action["amount"] -= close_amount
-                    return
-        stock_deals["sell"].append(action)
+                    if action["amount"] > close_amount:  # 卖单未结束，买单结束，继续循环
+                        log.logger.info(f"ACTION - BUY:{buy_action['agent']}, SELL:{action['agent']}, "
+                                        f"STOCK:{stock.name}, PRICE:{action['price']}, AMOUNT:{close_amount}")
+                        stock_deals["buy"].remove(buy_action)
+                        action["amount"] -= close_amount
+                    else:  # 买单未结束，卖单结束
+                        log.logger.info(f"ACTION - BUY:{buy_action['agent']}, SELL:{action['agent']}, "
+                                        f"STOCK:{stock.name}, PRICE:{action['price']}, AMOUNT:{close_amount}")
+                        buy_action["amount"] -= close_amount
+                        return
+            stock_deals["sell"].append(action)
+    except Exception as e:
+        log.logger.error(f"handle_action error: {e}")
+        return
 
 
 def simulation(args):
@@ -116,6 +125,7 @@ def simulation(args):
             if agent.is_bankrupt:
                 quit_sig = agent.bankrupt_process(stock_a.get_price(), stock_b.get_price())
                 if quit_sig:
+                    agent.quit = True
                     all_agents.remove(agent)
 
         # special events

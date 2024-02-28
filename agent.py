@@ -64,6 +64,7 @@ class Agent:
         self.chat_history = []
         self.loans = [init_debt]
         self.is_bankrupt = False
+        self.quit = False
 
     def run_api(self, prompt, temperature: float = 1):
         if 'gpt' in self.model:
@@ -139,6 +140,8 @@ class Agent:
         return debt
 
     def plan_loan(self, date, stock_a_price, stock_b_price, lastday_forum_message):
+        if self.quit:
+            return {"loan": "no"}
         # first day action : prompt with background
         if date == 1:
             prompt = Collection(BACKGROUND_PROMPT,
@@ -217,6 +220,8 @@ class Agent:
     # date=交易日, time=当前交易时段
     # 设置
     def plan_stock(self, date, time, stock_a, stock_b, stock_a_deals, stock_b_deals):
+        if self.quit:
+            return {"action_type": "no"}
         if date in util.SEASON_REPORT_DAYS and time == 1:
             index = util.SEASON_REPORT_DAYS.index(date)
             prompt = Collection(FIRST_DAY_FINANCIAL_REPORT, FIRST_DAY_BACKGROUND_KNOWLEDGE, SEASONAL_FINANCIAL_REPORT,
@@ -314,6 +319,8 @@ class Agent:
         return {"action_type": "no"}
 
     def buy_stock(self, stock_name, price, amount):
+        if self.quit:
+            return False
         if self.cash < price * amount or stock_name not in ['A', 'B']:
             log.logger.warning("ILLEGAL STOCK BUY BEHAVIOR: remain cash {}".format(self.cash))
             return False
@@ -326,6 +333,8 @@ class Agent:
         return True
 
     def sell_stock(self, stock_name, price, amount):
+        if self.quit:
+            return False
         if stock_name == 'B' and self.stock_b_amount < amount:
             log.logger.warning("ILLEGAL STOCK SELL BEHAVIOR: remain stock_b {}, amount {}".format(self.stock_b_amount,
                                                                                                   amount))
@@ -342,6 +351,8 @@ class Agent:
         return True
 
     def loan_repayment(self, date):
+        if self.quit:
+            return
         # check是否贷款还款日，还款，破产检查
         to_del = []
         for idx, loan in enumerate(self.loans):
@@ -354,6 +365,8 @@ class Agent:
             del self.loans[idx]
 
     def interest_payment(self):
+        if self.quit:
+            return
         # 贷款付息日付息
         for loan in self.loans:
             self.cash -= loan["amount"] * util.LOAN_RATE[loan["loan_type"]] / 12
@@ -361,6 +374,8 @@ class Agent:
                 self.is_bankrupt = True
 
     def bankrupt_process(self, stock_a_price, stock_b_price):
+        if self.quit:
+            return False
         total_value_of_stock = self.stock_a_amount * stock_a_price + self.stock_b_amount * stock_b_price
         if total_value_of_stock + self.cash < 0:
             log.logger.warning(f"Agent {self.order} bankrupt. Action history: " + str(self.action_history))
@@ -382,11 +397,15 @@ class Agent:
         return False
 
     def post_message(self):
+        if self.quit:
+            return ""
         prompt = format_prompt(POST_MESSAGE_PROMPT, inputs={})
         resp = self.run_api(prompt)
         return resp
 
     def next_day_estimate(self):
+        if self.quit:
+            return {"buy_A": "no", "buy_B": "no", "sell_A": "no", "sell_B": "no", "loan": "no"}
         prompt = format_prompt(NEXT_DAY_ESTIMATE_PROMPT, inputs={})
         resp = self.run_api(prompt)
         if resp == "":
