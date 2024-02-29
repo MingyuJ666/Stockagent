@@ -1,0 +1,7 @@
+colorama==0.4.4
+openai==1.13.3
+pandas==1.3.5
+pandas==1.3.4
+protobuf==3.20.3
+Requests==2.31.0
+tiktoken==0.5.1
