@@ -1,6 +1,6 @@
 # When AI Meets Finance: StockAgent for LLM-based Financial Assistant
 
-![workflow](fig\workflow.png)
+![workflow](fig/workflow.png)
 
 Can we adjust our purchasing strategies in a timely manner to maximize profits in stock trading? This question frequently arises among investors. The pursuit of maximum profit is a primary motivation for investors in stock trading. This study aims to address this question with the latest advancements in Artificial Intelligence and Large Language Models (LLMs). We have developed a multi-agent AI system called stock agent, driven by LLMs, designed to simulate the trading behaviors of investors in response to new stock offerings. This system allows us to assess the merits of different trading strategies and to analyze the performance of economic behaviors and the consequences of decision-making. By evaluating the effects of these simulations, we investigate the progress and limitations of cutting-edge AI systems in studying complex human collective behaviors, such as the differences in trading approaches influenced by various public opinions in forums. The emerging interactions among agents in these simulations also provide a novel perspective on the selection of stock profitability behaviors and the underlying conditions. Our research results offer data-driven and AI-enhanced insights that could redefine how to choose the path to maximize profits.
 

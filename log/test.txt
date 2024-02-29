@@ -34472,3 +34472,8 @@ Please note that these are just my personal recommendations and should not be ta
 2024-02-29 16:33:55,581 - Stocklogger - INFO - INFO: Agent 16 decide not to action
 2024-02-29 16:34:00,549 - Stocklogger - INFO - INFO: Agent 21 decide to action: {'action_type': 'sell', 'stock': 'A', 'amount': 5000, 'price': 18.5}
 2024-02-29 16:34:03,973 - Stocklogger - INFO - INFO: Agent 18 decide to action: {'action_type': 'sell', 'stock': 'A', 'amount': 3396, 'price': 18.5}
+2024-02-29 16:34:10,053 - Stocklogger - INFO - INFO: Agent 49 decide to action: {'action_type': 'buy', 'stock': 'B', 'amount': 100, 'price': 32.1}
+2024-02-29 16:34:13,579 - Stocklogger - INFO - INFO: Agent 13 decide not to action
+2024-02-29 16:34:16,813 - Stocklogger - INFO - INFO: Agent 30 decide not to action
+2024-02-29 16:34:20,135 - Stocklogger - INFO - INFO: Agent 28 decide not to action
+2024-02-29 16:34:26,438 - Stocklogger - INFO - INFO: Agent 40 decide to action: {'action_type': 'sell', 'stock': 'A', 'amount': 40000, 'price': 18.5}
