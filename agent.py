@@ -354,15 +354,13 @@ class Agent:
         if self.quit:
             return
         # check是否贷款还款日，还款，破产检查
-        to_del = []
-        for idx, loan in enumerate(self.loans):
+        for loan in self.loans[:]:
             if loan["repayment_date"] == date:
                 self.cash -= loan["amount"] * (1 + util.LOAN_RATE[loan["loan_type"]])
-                to_del.append(idx)
+                self.loans.remove(loan)
         if self.cash < 0:
             self.is_bankrupt = True
-        for idx in to_del:
-            del self.loans[idx]
+
 
     def interest_payment(self):
         if self.quit:
