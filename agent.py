@@ -210,7 +210,7 @@ class Agent:
         if loan["loan"] == "yes":
             loan["repayment_date"] = date + util.LOAN_TYPE_DATE[loan["loan_type"]]  # add loan repayment_date
             self.loans.append(loan)
-            self.action_history[date].append(loan)
+            #self.action_history[date].append(loan)
             self.cash += loan["amount"]
             log.logger.info("INFO: Agent {} decide to loan: {}".format(self.order, loan))
         else:
@@ -292,7 +292,7 @@ class Agent:
                 resp, self.cash, self.stock_a_amount, self.stock_b_amount, stock_a.get_price(), stock_b.get_price())
 
         if action["action_type"] == "buy":
-            self.action_history[date].append(action)
+            #self.action_history[date].append(action)
             log.logger.info("INFO: Agent {} decide to action: {}".format(self.order, action))
             # if action["stock"] == "stock_a":
             #     self.stock_a_amount += action["amount"]
@@ -302,7 +302,7 @@ class Agent:
             #     self.cash -= action["amount"] * stock_b.get_price()
             return action
         elif action["action_type"] == "sell":
-            self.action_history[date].append(action)
+            #self.action_history[date].append(action)
             log.logger.info("INFO: Agent {} decide to action: {}".format(self.order, action))
             # if action["stock"] == "stock_a":
             #     self.stock_a_amount -= action["amount"]
@@ -376,7 +376,8 @@ class Agent:
             return False
         total_value_of_stock = self.stock_a_amount * stock_a_price + self.stock_b_amount * stock_b_price
         if total_value_of_stock + self.cash < 0:
-            log.logger.warning(f"Agent {self.order} bankrupt. Action history: " + str(self.action_history))
+            log.logger.warning(f"Agent {self.order} bankrupt. ")
+                               #f"Action history: " + str(self.action_history))
             return True
         if stock_a_price * self.stock_a_amount >= -self.cash:
             sell_a = math.ceil(-self.cash / stock_a_price)
