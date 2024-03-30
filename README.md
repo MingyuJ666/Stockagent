@@ -22,7 +22,7 @@ cd PromptCoder
 pip install -e .
 cd ..
 
-git clone https://github.com/jmyissb/Stockagent.git
+git clone <This Github Project>
 cd Stockagent
 pip install -r requirements.txt
 ```
