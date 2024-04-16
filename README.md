@@ -50,3 +50,19 @@ python main.py --model MODEL_NAME
 ```
 
 We set gemini-pro for default LLM.
+
+
+## Citation
+Please cite the following paper corresponding to the repository:
+```
+@unknown{unknown,
+author = {Zhang, Chong},
+year = {2024},
+month = {04},
+pages = {},
+title = {When AI Meets Finance (StockAgent): Large Language Model- based Stock Trading in Simulated Real-world Environments},
+doi = {10.13140/RG.2.2.29976.20489}
+}
+```
+
+
