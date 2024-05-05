@@ -55,13 +55,9 @@ We set gemini-pro for default LLM.
 ## Citation
 Please cite the following paper corresponding to the repository:
 ```
-@unknown{unknown,
-author = {Zhang, Chong},
-year = {2024},
-month = {04},
-pages = {},
-title = {When AI Meets Finance (StockAgent): Large Language Model- based Stock Trading in Simulated Real-world Environments},
-doi = {10.13140/RG.2.2.29976.20489}
+@article{liuai,
+  title={When AI Meets Finance (StockAgent): Large Language Model-based Stock Trading in Simulated Real-world Environments},
+  author={Liu, Xinyi and Zhang, Chong and Jin, Mingyu and Zhang, Zhongmou and Wang, Zhenting and Shu, Dong and Zhu, Suiyuan and Li, Sujian and Du, Mengnan and Zhang, Yongfeng}
 }
 ```
 
