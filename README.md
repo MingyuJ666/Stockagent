@@ -1,4 +1,4 @@
-# When AI Meets Finance: StockAgent for LLM-based Financial Assistant
+# When AI Meets Finance (StockAgent): Large Language Model-based Stock Trading in Simulated Real-world Environments
 
 ![workflow](fig/workflow.png)
 
