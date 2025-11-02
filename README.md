@@ -54,6 +54,10 @@ python main.py --model MODEL_NAME
 
 We set gemini-pro for default LLM.
 
+#### About ’procoder‘
+
+Here we use the: https://github.com/dhh1995/PromptCoder.git this tool, please download after its installation.
+
 #### Citation
 If you find the code is valuable, please use this citation.
 ```
