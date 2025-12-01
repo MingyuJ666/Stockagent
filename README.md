@@ -1,5 +1,29 @@
 # When AI Meets Finance (StockAgent): Large Language Model-based Stock Trading in Simulated Real-world Environments
 
+## ⚠️ ÖNEMLI UYARI / IMPORTANT DISCLAIMER
+
+**🇹🇷 TÜRKÇE:**
+
+Bu proje **yatırım tavsiyesi değildir**. Tamamen eğitim, test ve kişisel hobi amaçlı geliştirilmiştir. 
+
+- ❌ Bu sistemden elde edilen sonuçlar kesinlikle gerçek yatırım kararları için kullanılmamalıdır
+- ❌ AI modelleri hata yapabilir ve geçmiş performans gelecekteki sonuçları garanti etmez
+- ❌ Finansal piyasalar öngörülemezdir ve kayıp riski her zaman mevcuttur
+- ✅ Gerçek yatırım yapmadan önce profesyonel bir finansal danışmana başvurun
+- ✅ Yatırım kararları tamamen kendi sorumluluğunuzdadır
+
+**🇬🇧 ENGLISH:**
+
+This project is **NOT financial advice**. It is developed purely for educational, testing, and personal hobby purposes.
+
+- ❌ Results from this system should never be used for real investment decisions
+- ❌ AI models can make mistakes and past performance does not guarantee future results
+- ❌ Financial markets are unpredictable and risk of loss always exists
+- ✅ Consult a professional financial advisor before making real investments
+- ✅ Investment decisions are entirely your own responsibility
+
+---
+
 ![workflow](fig/workflow.png)
 ![schematic](fig/schematic.png)
 

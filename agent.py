@@ -18,11 +18,15 @@ from stock import Stock
 
 def random_init(stock_a_initial, stock_b_initial):
     stock_a, stock_b, cash, debt_amount = 0.0, 0.0, 0.0, 0.0
-    while stock_a * stock_a_initial + stock_b * stock_b_initial + cash < util.MIN_INITIAL_PROPERTY \
-            or stock_a * stock_a_initial + stock_b * stock_b_initial + cash > util.MAX_INITIAL_PROPERTY \
-            or debt_amount > stock_a * stock_a_initial + stock_b * stock_b_initial + cash:
+    
+    # B hissesi yoksa (0 ise) sadece A hissesi ile çalış
+    use_stock_b = stock_b_initial > 0
+    
+    while stock_a * stock_a_initial + (stock_b * stock_b_initial if use_stock_b else 0) + cash < util.MIN_INITIAL_PROPERTY \
+            or stock_a * stock_a_initial + (stock_b * stock_b_initial if use_stock_b else 0) + cash > util.MAX_INITIAL_PROPERTY \
+            or debt_amount > stock_a * stock_a_initial + (stock_b * stock_b_initial if use_stock_b else 0) + cash:
         stock_a = int(random.uniform(0, util.MAX_INITIAL_PROPERTY / stock_a_initial))
-        stock_b = int(random.uniform(0, util.MAX_INITIAL_PROPERTY / stock_b_initial))
+        stock_b = int(random.uniform(0, util.MAX_INITIAL_PROPERTY / stock_b_initial)) if use_stock_b else 0
         cash = random.uniform(0, util.MAX_INITIAL_PROPERTY)
         debt_amount = random.uniform(0, util.MAX_INITIAL_PROPERTY)
     debt = {

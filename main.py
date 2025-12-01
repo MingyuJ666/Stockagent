@@ -75,9 +75,17 @@ def handle_action(action, stock_deals, all_agents, stock, session):
 def simulation(args):
     # init
     secretary = Secretary(args.model)
-    stock_a = Stock("A", util.STOCK_A_INITIAL_PRICE, 0, is_new=False)
-    #stock_b = Stock("B", util.STOCK_B_INITIAL_PRICE, util.STOCK_B_PUBLISH, is_new=True)
-    stock_b = Stock("B", util.STOCK_B_INITIAL_PRICE, 0, is_new=False)
+    
+    # NVIDIA hissesi için (A hissesi olarak)
+    print(f"\n{'='*60}")
+    print(f"  NVIDIA (NVDA) Hisse Analiz Sistemi")
+    print(f"  AI Ajanları: {util.AGENTS_NUM} | Simülasyon Süresi: {util.TOTAL_DATE} gün")
+    print(f"{'='*60}\n")
+    
+    stock_a = Stock("A", util.STOCK_A_INITIAL_PRICE, 0, is_new=False, symbol=util.STOCK_SYMBOL if util.USE_REAL_DATA else None)
+    # B hissesi kullanılmayacak ama sistem için minimal tanımlama
+    stock_b = Stock("B", util.STOCK_B_INITIAL_PRICE, 0, is_new=False, symbol=None)
+    
     all_agents = []
     log.logger.debug("Agents initial...")
     for i in range(0, util.AGENTS_NUM):  # agents start from 0, -1 refers to admin
