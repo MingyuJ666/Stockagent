@@ -56,6 +56,46 @@ python main.py --model MODEL_NAME
 
 We set gemini-pro for default LLM.
 
+## Read-only IBKR suggestion dashboard
+
+`ibkr_dashboard.py` is a local dashboard for the `AAPL`, `MSFT`, `NVDA`, and
+`SPY` watchlist. It requests snapshot market data from an already authenticated
+Interactive Brokers TWS or IB Gateway session. It **does not contain any order
+placement, modification, or cancellation code**.
+
+1. Install the additional dependencies:
+
+   ```
+   pip install -r requirements.txt
+   ```
+
+2. Start TWS or IB Gateway, sign in to your IBKR account, and enable API
+   connections. The live TWS API port is normally `7496`; paper TWS normally
+   uses `7497`.
+
+3. Start the dashboard:
+
+   ```
+   python ibkr_dashboard.py
+   ```
+
+4. Open `http://127.0.0.1:5000` in a browser. The dashboard is deliberately
+   bound to your own computer and does not expose an order-entry endpoint.
+
+Optional environment variables:
+
+```
+IBKR_HOST=127.0.0.1
+IBKR_PORT=7496
+IBKR_CLIENT_ID=21
+IBKR_WATCHLIST=AAPL,MSFT,NVDA,SPY
+```
+
+The suggestions are simple previous-close price-change indicators: at least 2%
+below close produces `WATCH FOR BUY`, at least 2% above produces `WATCH FOR
+SELL`, and otherwise the dashboard shows `HOLD / MONITOR`. They are educational
+signals, not personalized financial advice.
+
 #### About ’procoder‘
 
 Here we use the: https://github.com/dhh1995/PromptCoder.git this tool, please download after its installation.
@@ -70,5 +110,4 @@ If you find the code is valuable, please use this citation.
   year={2024}
 }
 ```
-
 
