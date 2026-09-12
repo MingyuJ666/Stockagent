@@ -5,7 +5,7 @@ BACKGROUND_PROMPT = NamedBlock(
     name="Background",
     content="""
     You are a stock trader, and you will simulate your interactions with other traders in the market.
-    There are four stocks in the market, named A, B, C, and D, where B is the newly listed stock.
+    There are two stocks in the market, named A and B, where B is the newly listed stock.
     Next, follow the instructions to complete your trading actions.
     """
 )
@@ -14,10 +14,9 @@ BACKGROUND_PROMPT = NamedBlock(
 LASTDAY_FORUM_AND_STOCK_PROMPT = NamedBlock(
     name="Last Day Forum and Stock",
     content="""
-    After the close of trading yesterday, the stock prices of Company A, Company B,
-    Company C, and Company D were {stock_a_price} dollars per share, {stock_b_price}
-    dollars per share, {stock_c_price} dollars per share, and {stock_d_price} dollars
-    per share, respectively. Posts by other traders on the forum are as follows:
+    After the close of trading yesterday, the stock prices of Company A and Company B
+    were {stock_a_price} dollars per share and {stock_b_price} dollars per share,
+    respectively. Posts by other traders on the forum are as follows:
     {lastday_forum_message}
     """
 )
@@ -38,9 +37,8 @@ DECIDE_IF_LOAN_PROMPT = NamedBlock(
     name="Instruction",
     content="""
     It is the {date} day, and your current character is {character}.
-    You hold {stock_a} shares of Company A, {stock_b} shares of Company B,
-    {stock_c} shares of Company C, {stock_d} shares of Company D,
-    now you have {cash} dollars in cash and {debt} in your loan situation.
+    You hold {stock_a} shares of Company A and {stock_b} shares of Company B.
+    You have {cash} dollars in cash and {debt} in your loan situation.
     You need to decide whether to continue the loan and the amount of the loan.
     The alternative type is {loan_type_prompt}, and you should use the number to select a loan type.
     The loan amount shall not exceed {max_loan}.
@@ -71,22 +69,20 @@ LOAN_RETRY_PROMPT = NamedBlock(
 DECIDE_BUY_STOCK_PROMPT = NamedBlock(
     name="Instruction",
     content="""
-    It is the {time} trading session on the {date} day, and after the previous session,
-    the stock price of Company A is {stock_a_price}, the stock price of Company B is
-    {stock_b_price}, the stock price of Company C is {stock_c_price}, and the stock
-    price of Company D is {stock_d_price}.
+    It is the {time} trading session on the {date} day. After the previous session,
+    the stock price of Company A is {stock_a_price}, and the stock price of Company B is
+    {stock_b_price}.
     In the current session, the buy and sell order of stock A is {stock_a_deals},
-    the buy and sell order of stock B is {stock_b_deals}, the buy and sell order of
-    stock C is {stock_c_deals}, and the buy and sell order of stock D is {stock_d_deals}.
+    and the buy and sell order of stock B is {stock_b_deals}.
     You currently hold {stock_a} shares of Company A, {stock_b} shares of Company B,
-    {stock_c} shares of Company C, {stock_d} shares of Company D, and {cash} yuan in cash.
-    You need to decide whether to buy/sell shares of Company A or Company B or Company C or Company D,
+    and {cash} dollars in cash.
+    You need to decide whether to buy or sell shares of Company A or Company B,
     and how much to buy/sell and at what price.
     You can refer to the current share price and the market to determine the price yourself,
     not the current share price. The quantity must be an integer.
     We encourage you to buy and sell more. You can only answer one json action.
     Return the result as json, for example:
-    {{"action_type":"buy"|"sell", "stock":"A"|"B"|"C"|"D", amount: 100, price : 30.1}}
+    {{"action_type":"buy"|"sell", "stock":"A"|"B", amount: 100, price : 30.1}}
     If neither buy nor sell, return:
     {{"action_type" : "no"}}
     """
@@ -99,7 +95,7 @@ BUY_STOCK_RETRY_PROMPT = NamedBlock(
     The following questions appeared in the action format you last answered:
     {fail_response}.
     You should return the result as json, for example:
-    {{"action_type":"buy"|"sell", "stock":"A"|"B"|"C"|"D", amount: 100, price: 30.1}}
+    {{"action_type":"buy"|"sell", "stock":"A"|"B", amount: 100, price: 30.1}}
     If neither buy nor sell, return:
     {{"action_type" : "no"}}
     Please answer again. You can only answer one json action.
@@ -142,22 +138,17 @@ FIRST_DAY_BACKGROUND_KNOWLEDGE = NamedBlock(
     Company B, as a technology company, has just been listed for three years and is in a period of business growth.
     Last year, its revenue declined due to the overall tech environment, but the company's operations remain robust.
 
-    Company C and Company D are mature market participants with different capital structures and growth expectations.
     Please infer and update your beliefs based on the financial reports and evolving market information.
-
-    The last 3 years financial report of stock A, B, C and D is listed in {first_day_financial_prompt}.
     """
 )
 
 
 SEASONAL_FINANCIAL_REPORT = NamedVariable(
     refname="seasonal_financial_report",
-    name="The Seasonal financial report of Stock A, B, C and D",
+    name="The Seasonal financial report of Stock A and B",
     content="""
     Stock A: {stock_a_report}
     Stock B: {stock_b_report}
-    Stock C: {stock_c_report}
-    Stock D: {stock_d_report}
     """
 )
 
@@ -177,10 +168,10 @@ NEXT_DAY_ESTIMATE_PROMPT = NamedBlock(
     name="Instruction",
     content="""
     Based on the market information and forum information of the current trading day, please estimate whether you
-    will buy and sell stock A and stock B and stock C and stock D tomorrow and whether you will choose a loan.
+    will buy or sell stock A and stock B tomorrow and whether you will choose a loan.
     Actions that are expected to take place are marked yes, and actions that will not take place are marked no.
     Return the result in JSON format, for example:
-    {{"buy_A":"yes", "buy_B":"no", "buy_C":"yes", "buy_D":"no", "sell_A":"yes", "sell_B":"no", "sell_C":"yes", "sell_D":"no", "loan":"yes"}}
+    {{"buy_A":"yes", "buy_B":"no", "sell_A":"yes", "sell_B":"no", "loan":"yes"}}
     """
 )
 
@@ -192,6 +183,6 @@ NEXT_DAY_ESTIMATE_RETRY = NamedBlock(
     The following questions appeared in the JSON format you last answered:
     {fail_response}.
     Return the result in JSON format, for example:
-    {{"buy_A":"yes", "buy_B":"no", "buy_C":"yes", "buy_D":"no", "sell_A":"yes", "sell_B":"no", "sell_C":"yes", "sell_D":"no", "loan":"yes"}}
+    {{"buy_A":"yes", "buy_B":"no", "sell_A":"yes", "sell_B":"no", "loan":"yes"}}
     """
 )

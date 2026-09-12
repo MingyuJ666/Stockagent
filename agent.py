@@ -224,7 +224,7 @@ class Agent:
             return {"action_type": "no"}
         if date in util.SEASON_REPORT_DAYS and time == 1:
             index = util.SEASON_REPORT_DAYS.index(date)
-            prompt = Collection(FIRST_DAY_FINANCIAL_REPORT, FIRST_DAY_BACKGROUND_KNOWLEDGE, SEASONAL_FINANCIAL_REPORT,
+            prompt = Collection(FIRST_DAY_BACKGROUND_KNOWLEDGE, SEASONAL_FINANCIAL_REPORT,
                                 DECIDE_BUY_STOCK_PROMPT).set_indexing_method(sharp2_indexing).set_sep("\n")
             inputs = {
                 "date": date,
@@ -240,7 +240,7 @@ class Agent:
                 "stock_b_report": stock_b.gen_financial_report(index)
             }
         elif time == 1:
-            prompt = Collection(FIRST_DAY_FINANCIAL_REPORT, FIRST_DAY_BACKGROUND_KNOWLEDGE,
+            prompt = Collection(FIRST_DAY_BACKGROUND_KNOWLEDGE,
                                 DECIDE_BUY_STOCK_PROMPT).set_indexing_method(sharp2_indexing).set_sep("\n")
             inputs = {
                 "date": date,
@@ -423,5 +423,4 @@ class Agent:
                 return {"buy_A": "no", "buy_B": "no", "sell_A": "no", "sell_B": "no", "loan": "no"}
             format_check, fail_response, estimate = self.secretary.check_estimate(resp)
         return estimate
-
 
